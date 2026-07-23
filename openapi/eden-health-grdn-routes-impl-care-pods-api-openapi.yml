@@ -1,0 +1,24 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.care-pods API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.care-pods
+  description: null
+paths:
+  /v2/care-pods:
+    get:
+      summary: get-care-pods
+      description: ''
+      tags:
+      - grdn.routes.impl.care-pods
+      parameters: []
+      responses:
+        default:
+          description: Default success response.
+          schema: {}

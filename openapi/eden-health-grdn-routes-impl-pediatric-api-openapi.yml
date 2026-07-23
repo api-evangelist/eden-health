@@ -1,0 +1,764 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.pediatric API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.pediatric
+  description: null
+paths:
+  /v2/pediatric-patient:
+    post:
+      summary: create-pediatric-patient
+      description: "Creates a pediatric MyTelemedicine dependent member for the minor to be treated.\n   Creates the MyTelemedicine primary member for the parent/guardian if necessary.\n   The MTM primary member demo info will be taken from the primary Eden patient for the patient membership."
+      tags:
+      - grdn.routes.impl.pediatric
+      parameters:
+      - in: body
+        name: grdn.specs.pediatric/create-pediatric-patient-params
+        description: 'origin spec: grdn.specs.pediatric/create-pediatric-patient-params'
+        schema:
+          type: object
+          properties:
+            first-name:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            medical-conditions:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  mytelemedicine-id:
+                    type: number
+                    format: double
+                required:
+                - name
+                title: grdn.specs.pediatric/medical-condition
+            dob:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            city:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            last-name:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            address2:
+              type: string
+              allowEmptyValue: true
+            address1:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            medications:
+              type: array
+              items:
+                type: object
+                properties:
+                  foreign-id:
+                    type: string
+                  ndc:
+                    type: string
+                  name:
+                    type: string
+                required:
+                - foreign-id
+                - ndc
+                - name
+                title: grdn.specs.pediatric/medication
+            allergies:
+              type: array
+              items:
+                type: object
+                properties:
+                  foreign-id:
+                    type: string
+                  name:
+                    type: string
+                  dam-concept-id:
+                    type: string
+                  dam-concept-id-type:
+                    type: string
+                  mytelemedicine-id:
+                    type: number
+                    format: double
+                required:
+                - foreign-id
+                - name
+                - dam-concept-id
+                - dam-concept-id-type
+                title: grdn.specs.pediatric/allergy
+            state:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            sex:
+              enum:
+              - ''
+              - M
+              - F
+              type: string
+            zip:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+          required:
+          - first-name
+          - last-name
+          - dob
+          - sex
+          - address1
+          - address2
+          - city
+          - state
+          - zip
+          - medications
+          - allergies
+          - medical-conditions
+          title: grdn.specs.pediatric/create-pediatric-patient-params
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+            required:
+            - id
+            title: grdn.specs.pediatric/create-pediatric-patient-response
+    get:
+      summary: get-pediatric-patients
+      description: Retrieves a list of minor dependents for an Eden patient.
+      tags:
+      - grdn.routes.impl.pediatric
+      parameters: []
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                first-name:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                last-name:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                dob:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+              required:
+              - id
+              - first-name
+              - last-name
+              - dob
+              title: grdn.specs.pediatric/pediatric-patient-summary
+  /v2/pediatric-patient/pending-appointment:
+    get:
+      summary: get-pending-pediatric-appointments
+      description: Returns all pending pediatric appointments.
+      tags:
+      - grdn.routes.impl.pediatric
+      parameters: []
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                mytelemedicine-id:
+                  type: number
+                  format: double
+                first-name:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                last-name:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                dob:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                sex:
+                  enum:
+                  - ''
+                  - M
+                  - F
+                  type: string
+                start-date-time:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                phone:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+              required:
+              - mytelemedicine-id
+              - first-name
+              - last-name
+              - dob
+              - sex
+              - start-date-time
+              - phone
+              title: grdn.specs.pediatric/pending-appointment
+  /v2/pediatric-patient/pharmacy:
+    get:
+      summary: search-pharmacies
+      description: "Returns all pharmacies from MTM for a given zip and/or name.\n  Filters out unwanted keys from MTM's response to only keep a subset of\n  relevant keys, and renames them to match Grdn's internal model."
+      tags:
+      - grdn.routes.impl.pediatric
+      parameters:
+      - in: query
+        name: zip
+        description: 'origin spec: grdn.specs.pediatric/search-pharmacies-params'
+        required: true
+        type: string
+        x-allOf:
+        - type: string
+        - {}
+      - in: query
+        name: name
+        description: 'origin spec: grdn.specs.pediatric/search-pharmacies-params'
+        required: false
+        type: string
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                address-1:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                city:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                state:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                zip:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                surescript-id:
+                  type: number
+                  format: double
+                address-2:
+                  type: string
+                  x-nullable: true
+              required:
+              - name
+              - address-1
+              - city
+              - state
+              - zip
+              - surescript-id
+              title: grdn.specs.pediatric/pharmacy
+  /v2/pediatric-patient/{pediatric-patient-id}:
+    get:
+      summary: get-pediatric-patient
+      description: Retrieves a pediatric patient's details.
+      tags:
+      - grdn.routes.impl.pediatric
+      parameters:
+      - in: path
+        name: pediatric-patient-id
+        description: 'origin spec: grdn.specs.pediatric/get-pediatric-patient-params'
+        required: true
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              first-name:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              medical-conditions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    mytelemedicine-id:
+                      type: number
+                      format: double
+                  required:
+                  - name
+                  title: grdn.specs.pediatric/medical-condition
+              dob:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              city:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              id:
+                type: string
+                format: uuid
+              last-name:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              address2:
+                type: string
+                x-nullable: true
+              address1:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              medications:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    foreign-id:
+                      type: string
+                    ndc:
+                      type: string
+                    name:
+                      type: string
+                  required:
+                  - foreign-id
+                  - ndc
+                  - name
+                  title: grdn.specs.pediatric/medication
+              allergies:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    foreign-id:
+                      type: string
+                    name:
+                      type: string
+                    dam-concept-id:
+                      type: string
+                    dam-concept-id-type:
+                      type: string
+                    mytelemedicine-id:
+                      type: number
+                      format: double
+                  required:
+                  - foreign-id
+                  - name
+                  - dam-concept-id
+                  - dam-concept-id-type
+                  title: grdn.specs.pediatric/allergy
+              state:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              sex:
+                enum:
+                - ''
+                - M
+                - F
+                type: string
+              zip:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+            required:
+            - address1
+            - address2
+            - allergies
+            - city
+            - dob
+            - first-name
+            - id
+            - last-name
+            - medical-conditions
+            - medications
+            - sex
+            - state
+            - zip
+    put:
+      summary: update-pediatric-patient
+      description: Updates the pediatric patient with the info supplied.
+      tags:
+      - grdn.routes.impl.pediatric
+      parameters:
+      - in: path
+        name: pediatric-patient-id
+        description: 'origin spec: grdn.specs.pediatric/update-pediatric-patient-params'
+        required: true
+        type: string
+        format: uuid
+      - in: body
+        name: grdn.specs.pediatric/update-pediatric-patient-params
+        description: 'origin spec: grdn.specs.pediatric/update-pediatric-patient-params'
+        schema:
+          type: object
+          properties:
+            first-name:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            medical-conditions:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  mytelemedicine-id:
+                    type: number
+                    format: double
+                required:
+                - name
+                title: grdn.specs.pediatric/medical-condition
+            dob:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            city:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            last-name:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            address2:
+              type: string
+              allowEmptyValue: true
+            address1:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            medications:
+              type: array
+              items:
+                type: object
+                properties:
+                  foreign-id:
+                    type: string
+                  ndc:
+                    type: string
+                  name:
+                    type: string
+                required:
+                - foreign-id
+                - ndc
+                - name
+                title: grdn.specs.pediatric/medication
+            allergies:
+              type: array
+              items:
+                type: object
+                properties:
+                  foreign-id:
+                    type: string
+                  name:
+                    type: string
+                  dam-concept-id:
+                    type: string
+                  dam-concept-id-type:
+                    type: string
+                  mytelemedicine-id:
+                    type: number
+                    format: double
+                required:
+                - foreign-id
+                - name
+                - dam-concept-id
+                - dam-concept-id-type
+                title: grdn.specs.pediatric/allergy
+            state:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            sex:
+              enum:
+              - ''
+              - M
+              - F
+              type: string
+            zip:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+          required:
+          - first-name
+          - last-name
+          - dob
+          - sex
+          - address1
+          - address2
+          - city
+          - state
+          - zip
+          - medications
+          - allergies
+          - medical-conditions
+          title: grdn.specs.pediatric/update-pediatric-patient-params
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /v2/pediatric-patient/{pediatric-patient-id}/appointment:
+    post:
+      summary: create-pediatric-appointment
+      description: "Creates an appointment for the given pediatric patient. Upon success, creates an event to facilitate feedback and\n  analytics."
+      tags:
+      - grdn.routes.impl.pediatric
+      parameters:
+      - in: path
+        name: pediatric-patient-id
+        description: 'origin spec: grdn.specs.pediatric/create-pediatric-appointment-params'
+        required: true
+        type: string
+        format: uuid
+      - in: body
+        name: grdn.specs.pediatric/create-pediatric-appointment-params
+        description: 'origin spec: grdn.specs.pediatric/create-pediatric-appointment-params'
+        schema:
+          type: object
+          properties:
+            phone:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            primary-complaint:
+              type: string
+          required:
+          - phone
+          - primary-complaint
+          title: grdn.specs.pediatric/create-pediatric-appointment-params
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /v2/pediatric-patient/{pediatric-patient-id}/image:
+    post:
+      summary: add-attachment
+      description: "Attaches the provided `document` to the given pediatric patient on MTM's side.\n\n  The attachment is not attached to a specific consultation, but instead appears\n  in the pediatric patient's health records on MTM's dashboard.\n\n  All EXIF metadata are removed from the file before uploading it to MTM.\n  The original filename from the device is dropped for a filename which reflects\n  the pediatric patient's MTM ID and the date the file was uploaded on.\n\n  The provided `document` image must be a valid base64 string."
+      tags:
+      - grdn.routes.impl.pediatric
+      parameters:
+      - in: path
+        name: pediatric-patient-id
+        description: 'origin spec: grdn.specs.pediatric/add-attachment-params'
+        required: true
+        type: string
+        format: uuid
+      - in: body
+        name: grdn.specs.pediatric/add-attachment-params
+        description: 'origin spec: grdn.specs.pediatric/add-attachment-params'
+        schema:
+          type: object
+          properties:
+            document:
+              type: string
+          required:
+          - document
+          title: grdn.specs.pediatric/add-attachment-params
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /v2/pediatric-patient/{pediatric-patient-id}/pharmacy:
+    post:
+      summary: create-pediatric-patient-pharmacy
+      description: "Stores the preferred pharmacy for a pediatric patient.\n  If the pharmacy does not exist in the database, adds a new row.\n  If it already exists, updates the row with same Surescript ID."
+      tags:
+      - grdn.routes.impl.pediatric
+      parameters:
+      - in: path
+        name: pediatric-patient-id
+        description: 'origin spec: '
+        required: true
+        type: string
+        format: uuid
+      - in: body
+        name: null
+        description: 'origin spec: '
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+            address-1:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            city:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            state:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            zip:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            surescript-id:
+              type: number
+              format: double
+            address-2:
+              type: string
+              allowEmptyValue: true
+          required:
+          - address-1
+          - city
+          - name
+          - state
+          - surescript-id
+          - zip
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            x-anyOf:
+            - {}
+            - type: object
+              properties:
+                error:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                    type:
+                      type: string
+                  required:
+                  - message
+                  - type
+                  title: grdn.specs/error
+              required:
+              - error
+    get:
+      summary: get-pediatric-patient-pharmacy
+      description: Retrieves a dependent's preferred pharmacy.
+      tags:
+      - grdn.routes.impl.pediatric
+      parameters:
+      - in: path
+        name: pediatric-patient-id
+        description: 'origin spec: grdn.specs.pediatric/get-pediatric-patient-pharmacy-params'
+        required: true
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              name:
+                type: string
+              address1:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              city:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              state:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              zip:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              surescript-id:
+                type: number
+                format: double
+              address2:
+                type: string
+                x-nullable: true
+            required:
+            - id
+            - name
+            - address1
+            - city
+            - state
+            - zip
+            - surescript-id
+            title: grdn.specs.pediatric/get-pediatric-patient-pharmacy-response

@@ -1,0 +1,91 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.app API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.app
+  description: Generic application handlers.
+paths:
+  /appdata:
+    get:
+      summary: app-data-deprecated-handler
+      description: ''
+      tags:
+      - grdn.routes.impl.app
+      parameters: []
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /healthcheck:
+    get:
+      summary: healthcheck-handler
+      description: Generic healthcheck handler, called by aptible and pingdom.
+      tags:
+      - grdn.routes.impl.app
+      parameters: []
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /v2/app-data:
+    get:
+      summary: app-data-handler
+      description: ''
+      tags:
+      - grdn.routes.impl.app
+      parameters: []
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              latest-consent-form-version:
+                type: string
+              latest-hipaa-version:
+                type: string
+              latest-policy-version:
+                type: string
+              minimum-supported-version:
+                type: string
+              maintenance-active:
+                type: boolean
+              unplanned-downtime-active:
+                type: boolean
+            required:
+            - latest-consent-form-version
+            - latest-hipaa-version
+            - latest-policy-version
+            - minimum-supported-version
+            - maintenance-active
+            - unplanned-downtime-active
+            title: grdn.specs.app/app-data-response
+  /v2/ping-afterhours:
+    get:
+      summary: ping-afterhours-handler
+      description: Sends an afterhours pagerduty alert.
+      tags:
+      - grdn.routes.impl.app
+      parameters:
+      - in: query
+        name: patient-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: true
+        type: string
+        format: uuid
+      - in: query
+        name: funnel-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: false
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema: {}

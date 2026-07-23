@@ -1,0 +1,24 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.sendbird API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.sendbird
+  description: Handlers for sendbird webhooks.
+paths:
+  /v2/sendbird-webhook:
+    post:
+      summary: webhook-handler
+      description: "Asynchronously handles sendbird webhook. Always returns a 200 to sendbird immediately.\n  [SEE: https://docs.sendbird.com/platform/webhooks#3_webhook_endpoint_requirements]\n  NOTE: webhook endpoint and event type config is setup in the sendbird dashboard."
+      tags:
+      - grdn.routes.impl.sendbird
+      parameters: []
+      responses:
+        default:
+          description: Default success response.
+          schema: {}

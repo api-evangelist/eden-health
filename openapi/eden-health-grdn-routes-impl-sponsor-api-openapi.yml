@@ -1,0 +1,232 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.sponsor API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.sponsor
+  description: Handlers for sponsor data.
+paths:
+  /v2/sponsor/{sponsor-id}/divisions:
+    get:
+      summary: get-sponsor-divisions-handler
+      description: Get all divisions for a sponsor.
+      tags:
+      - grdn.routes.impl.sponsor
+      parameters:
+      - in: path
+        name: sponsor-id
+        description: 'origin spec: grdn.specs.sponsor/get-sponsor-divisions-params'
+        required: true
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              divisions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      x-nullable: true
+                    name:
+                      type: string
+                      x-allOf:
+                      - type: string
+                      - {}
+                  required:
+                  - id
+                  - name
+                  title: grdn.specs.sponsor/division
+            required:
+            - divisions
+            title: grdn.specs.sponsor/get-sponsor-divisions-response
+  /v2/sponsor/{sponsor-id}/roster:
+    post:
+      summary: post-roster
+      description: Uploads a roster to S3 and logs the event.
+      tags:
+      - grdn.routes.impl.sponsor
+      parameters:
+      - in: path
+        name: sponsor-id
+        description: 'origin spec: grdn.specs.sponsor/post-roster-params'
+        required: true
+        type: string
+        format: uuid
+      - in: body
+        name: grdn.specs.sponsor/post-roster-params
+        description: 'origin spec: grdn.specs.sponsor/post-roster-params'
+        schema:
+          type: object
+          properties:
+            roster-data:
+              type: string
+          required:
+          - roster-data
+          title: grdn.specs.sponsor/post-roster-params
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              provider-id:
+                type: string
+                format: uuid
+              processed-at:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+                x-nullable: true
+              id:
+                type: string
+                format: uuid
+              errors:
+                type: array
+                items:
+                  type: string
+                x-nullable: true
+              status:
+                enum:
+                - ingestion_error
+                - uploaded
+                - ingestion_success
+                type: string
+              sponsor-id:
+                type: string
+                format: uuid
+              provider-display-name:
+                type: string
+              uploaded-at:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              filename:
+                type: string
+            required:
+            - id
+            - sponsor-id
+            - provider-id
+            - provider-display-name
+            - uploaded-at
+            - processed-at
+            - status
+            - filename
+            - errors
+            title: grdn.specs.sponsor/post-roster-response
+  /v2/sponsor/{sponsor-id}/roster-statuses:
+    get:
+      summary: get-roster-ingestion-statuses
+      description: Returns the last roster ingestion status records for the sponsor; limit can be set in environment (default 10).
+      tags:
+      - grdn.routes.impl.sponsor
+      parameters:
+      - in: path
+        name: sponsor-id
+        description: 'origin spec: grdn.specs.sponsor/get-roster-ingestion-status'
+        required: true
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                provider-id:
+                  type: string
+                  format: uuid
+                processed-at:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                  x-nullable: true
+                id:
+                  type: string
+                  format: uuid
+                errors:
+                  type: array
+                  items:
+                    type: string
+                  x-nullable: true
+                status:
+                  enum:
+                  - ingestion_error
+                  - uploaded
+                  - ingestion_success
+                  type: string
+                sponsor-id:
+                  type: string
+                  format: uuid
+                provider-display-name:
+                  type: string
+                uploaded-at:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                filename:
+                  type: string
+              required:
+              - id
+              - sponsor-id
+              - provider-id
+              - provider-display-name
+              - uploaded-at
+              - processed-at
+              - status
+              - filename
+              - errors
+              title: grdn.specs.sponsor/ingestion-status
+  /v2/sponsors:
+    get:
+      summary: get-sponsors
+      description: Get all sponsor data.
+      tags:
+      - grdn.routes.impl.sponsor
+      parameters: []
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                name:
+                  type: string
+                created_at: {}
+                schema_name:
+                  type: string
+                  x-nullable: true
+                screeners:
+                  type: array
+                  items:
+                    type: string
+                    format: uuid
+              required:
+              - id
+              - name
+              - created_at
+              - schema_name
+              - screeners
+              title: grdn.specs.sponsor/sponsor

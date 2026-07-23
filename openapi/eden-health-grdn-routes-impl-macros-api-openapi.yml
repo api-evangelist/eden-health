@@ -1,0 +1,124 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.macros API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.macros
+  description: Simple CRUD operations for macros.
+paths:
+  /v2/macro:
+    get:
+      summary: get-macro-handler
+      description: Returns all macros
+      tags:
+      - grdn.routes.impl.macros
+      parameters: []
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                title:
+                  type: string
+                text:
+                  type: string
+              required:
+              - id
+              - title
+              - text
+    post:
+      summary: post-macro-handler
+      description: Creates a new macro.
+      tags:
+      - grdn.routes.impl.macros
+      parameters:
+      - in: body
+        name: grdn.specs.macros/post-macro-params
+        description: 'origin spec: grdn.specs.macros/post-macro-params'
+        schema:
+          type: object
+          properties:
+            title:
+              type: string
+            text:
+              type: string
+          required:
+          - title
+          - text
+          title: grdn.specs.macros/post-macro-params
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              title:
+                type: string
+              text:
+                type: string
+            required:
+            - id
+            - title
+            - text
+            title: grdn.specs.macros/post-macro-response
+  /v2/macro/{macro-id}:
+    put:
+      summary: put-macro-handler
+      description: Updates the given macro
+      tags:
+      - grdn.routes.impl.macros
+      parameters:
+      - in: path
+        name: macro-id
+        description: 'origin spec: grdn.specs.macros/put-macro-params'
+        required: true
+        type: string
+        format: uuid
+      - in: body
+        name: grdn.specs.macros/put-macro-params
+        description: 'origin spec: grdn.specs.macros/put-macro-params'
+        schema:
+          type: object
+          properties:
+            title:
+              type: string
+            text:
+              type: string
+          required:
+          - title
+          - text
+          title: grdn.specs.macros/put-macro-params
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+    delete:
+      summary: delete-macro-handler
+      description: Deletes the given macro
+      tags:
+      - grdn.routes.impl.macros
+      parameters:
+      - in: path
+        name: macro-id
+        description: 'origin spec: grdn.specs.macros/delete-macro-params'
+        required: true
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema: {}

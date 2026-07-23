@@ -1,0 +1,185 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.insurance API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.insurance
+  description: null
+paths:
+  /v2/insurance-packages:
+    get:
+      summary: get-insurance-packages-handler
+      description: Search for insurance packages given a search term and an optional zip code.
+      tags:
+      - grdn.routes.impl.insurance
+      parameters:
+      - in: query
+        name: search-term
+        description: 'origin spec: grdn.specs.insurance/get-insurance-packages-params'
+        required: true
+        type: string
+      - in: query
+        name: insurance-zip
+        description: 'origin spec: grdn.specs.insurance/get-insurance-packages-params'
+        required: false
+        type: string
+        x-allOf:
+        - type: string
+        - {}
+        x-anyOf:
+        - type: string
+          x-allOf:
+          - type: string
+          - {}
+        - type: string
+          x-allOf:
+          - type: string
+          - {}
+        - type: string
+          allowEmptyValue: true
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /v2/patient/{patient-id}/insurance:
+    get:
+      summary: get-insurance-handler
+      description: Gets a patients primary insurance.
+      tags:
+      - grdn.routes.impl.insurance
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: true
+        type: string
+        format: uuid
+      - in: query
+        name: funnel-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: false
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+    post:
+      summary: post-insurance-handler
+      description: ''
+      tags:
+      - grdn.routes.impl.insurance
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.insurance/post-insurance-params'
+        required: true
+        type: string
+        format: uuid
+      - in: body
+        name: grdn.specs.insurance/post-insurance-params
+        description: 'origin spec: grdn.specs.insurance/post-insurance-params'
+        schema:
+          type: object
+          properties:
+            insurance-card-front-image:
+              type: string
+            insurance-card-back-image:
+              type: string
+            is-self-pay:
+              type: boolean
+            insurance-record:
+              type: object
+              properties:
+                insurance-policy-holder-first-name:
+                  type: string
+                  allowEmptyValue: true
+                insurance-policy-holder-last-name:
+                  type: string
+                  allowEmptyValue: true
+                insurance-policy-holder-sex:
+                  enum:
+                  - M
+                  - F
+                  type: string
+                  allowEmptyValue: true
+                insurance-policy-holder-dob:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                  allowEmptyValue: true
+                insurance-id-number:
+                  type: string
+                insurance-package-id:
+                  type: integer
+                  allowEmptyValue: true
+              required:
+              - insurance-policy-holder-first-name
+              - insurance-policy-holder-last-name
+              - insurance-policy-holder-sex
+              - insurance-policy-holder-dob
+              - insurance-id-number
+              - insurance-package-id
+              allowEmptyValue: true
+          required:
+          - insurance-card-front-image
+          - insurance-card-back-image
+          - is-self-pay
+          title: grdn.specs.insurance/post-insurance-params
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+    delete:
+      summary: delete-primary-insurance-handler
+      description: Deletes a patient's primary insurance
+      tags:
+      - grdn.routes.impl.insurance
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.insurance/delete-insurance-params'
+        required: true
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /v2/patient/{patient-id}/insurance/{insurance-id}/eligibility:
+    put:
+      summary: queue-eligibility-check-handler
+      description: Queue an eligibility check for the patient's insurance in Athena.
+      tags:
+      - grdn.routes.impl.insurance
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: true
+        type: string
+        format: uuid
+      - in: path
+        name: insurance-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: null
+      - in: body
+        name: grdn.specs/patient-id-params
+        description: 'origin spec: grdn.specs/patient-id-params'
+        schema:
+          type: object
+          properties:
+            funnel-id:
+              type: string
+              format: uuid
+          title: grdn.specs/patient-id-params
+      responses:
+        default:
+          description: Default success response.
+          schema: {}

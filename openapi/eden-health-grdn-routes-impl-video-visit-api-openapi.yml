@@ -1,0 +1,77 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.video-visit API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.video-visit
+  description: Handlers for getting and creating Video Visits.
+paths:
+  /v2/video-visit:
+    post:
+      summary: create-video-visit
+      description: "Creates a video visit record and sends a message requesting a video visit booking\n   to the patient. Does not book an appointment in Athena or schedule a video meeting\n   in zoom. Those actions are performed after this resource is created."
+      tags:
+      - grdn.routes.impl.video-visit
+      parameters:
+      - in: body
+        name: grdn.specs.video-visit/create-video-visit-params
+        description: 'origin spec: grdn.specs.video-visit/create-video-visit-params'
+        schema:
+          type: object
+          properties:
+            patient-id:
+              type: string
+              format: uuid
+            appointment-reason-id:
+              type: number
+              format: double
+              allowEmptyValue: true
+          required:
+          - patient-id
+          title: grdn.specs.video-visit/create-video-visit-params
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+    get:
+      summary: get-video-visit
+      description: Gets a video visit record from postgres.
+      tags:
+      - grdn.routes.impl.video-visit
+      parameters:
+      - in: query
+        name: video-visit-id
+        description: 'origin spec: grdn.specs.video-visit/get-video-visit-params'
+        required: true
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              created_at: {}
+              updated_at: {}
+              patient_id:
+                type: string
+                format: uuid
+              appointment_id:
+                type: number
+                format: double
+                x-nullable: true
+            required:
+            - id
+            - created_at
+            - updated_at
+            - patient_id
+            - appointment_id
+            title: grdn.specs.video-visit/get-video-visit-response

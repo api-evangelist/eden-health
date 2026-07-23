@@ -1,0 +1,40 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.eligibility API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.eligibility
+  description: Route implementation for all things eligibility
+paths:
+  /v2/eligibility/validate:
+    get:
+      summary: validate-eligibility-handler
+      description: Provides a means of determining the eligibility of an individual.
+      tags:
+      - grdn.routes.impl.eligibility
+      parameters:
+      - in: query
+        name: dob
+        description: 'origin spec: grdn.specs.eligibility/validate-params'
+        required: true
+        type: string
+      - in: query
+        name: member-id
+        description: 'origin spec: grdn.specs.eligibility/validate-params'
+        required: true
+        type: string
+      - in: query
+        name: funnel-id
+        description: 'origin spec: grdn.specs.eligibility/validate-params'
+        required: false
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema: {}

@@ -1,0 +1,304 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.ticklers API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.ticklers
+  description: null
+paths:
+  /v2/patient/{patient-id}/ticklers:
+    get:
+      summary: patient-ticklers-handler
+      description: "Returns list of open ticklers for given patient\n  Time box - three months before today to twelve months from today"
+      tags:
+      - grdn.routes.impl.ticklers
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.ticklers/patient-ticklers-params'
+        required: true
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              ticklers:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    patient-id:
+                      type: string
+                      format: uuid
+                    assigned-to:
+                      type: integer
+                      format: int64
+                    due-date:
+                      type: string
+                      x-allOf:
+                      - type: string
+                      - {}
+                    note:
+                      type: string
+                      x-allOf:
+                      - type: string
+                      - {}
+                    tickler-athena-id:
+                      type: integer
+                      format: int64
+                    department-id:
+                      type: integer
+                      format: int64
+                  required:
+                  - patient-id
+                  - assigned-to
+                  - due-date
+                  - note
+                  - tickler-athena-id
+                  - department-id
+                  title: grdn.specs.ticklers/tickler
+              failures:
+                type: array
+                items:
+                  type: integer
+                  format: int64
+            required:
+            - ticklers
+            - failures
+            title: grdn.specs.ticklers/patient-ticklers-response
+  /v2/ticklers:
+    post:
+      summary: create-tickler-handler
+      description: Creates a tickler in Athena
+      tags:
+      - grdn.routes.impl.ticklers
+      parameters:
+      - in: body
+        name: grdn.specs.ticklers/create-tickler-params
+        description: 'origin spec: grdn.specs.ticklers/create-tickler-params'
+        schema:
+          type: object
+          properties:
+            patient-id:
+              type: string
+              format: uuid
+            athena-provider-id:
+              type: integer
+              format: int64
+            due-date:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            note:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+          required:
+          - patient-id
+          - athena-provider-id
+          - due-date
+          - note
+          title: grdn.specs.ticklers/create-tickler-params
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              patient-id:
+                type: string
+                format: uuid
+              assigned-to:
+                type: integer
+                format: int64
+              due-date:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              note:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              tickler-athena-id:
+                type: integer
+                format: int64
+              department-id:
+                type: integer
+                format: int64
+            required:
+            - patient-id
+            - assigned-to
+            - due-date
+            - note
+            - tickler-athena-id
+            - department-id
+            title: grdn.specs.ticklers/create-tickler-response
+  /v2/ticklers/{tickler-athena-id}:
+    put:
+      summary: update-tickler-handler
+      description: Updates given tickler in Athena
+      tags:
+      - grdn.routes.impl.ticklers
+      parameters:
+      - in: path
+        name: tickler-athena-id
+        description: 'origin spec: grdn.specs.ticklers/update-tickler-params'
+        required: true
+        type: integer
+        format: int64
+      - in: body
+        name: grdn.specs.ticklers/update-tickler-params
+        description: 'origin spec: grdn.specs.ticklers/update-tickler-params'
+        schema:
+          type: object
+          properties:
+            patient-id:
+              type: string
+              format: uuid
+            athena-provider-id:
+              type: integer
+              format: int64
+            due-date:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            note:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+          required:
+          - patient-id
+          - athena-provider-id
+          - due-date
+          - note
+          title: grdn.specs.ticklers/update-tickler-params
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              patient-id:
+                type: string
+                format: uuid
+              tickler-athena-id:
+                type: integer
+                format: int64
+              assigned-to:
+                type: integer
+                format: int64
+              due-date:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              note:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+            required:
+            - patient-id
+            - tickler-athena-id
+            - assigned-to
+            - due-date
+            - note
+            title: grdn.specs.ticklers/update-tickler-response
+  /v2/ticklers/{tickler-athena-id}/complete:
+    put:
+      summary: complete-tickler-handler
+      description: Completes the given tickler by marking it deleted in Athena
+      tags:
+      - grdn.routes.impl.ticklers
+      parameters:
+      - in: path
+        name: tickler-athena-id
+        description: 'origin spec: grdn.specs.ticklers/complete-tickler-params'
+        required: true
+        type: integer
+        format: int64
+      - in: body
+        name: grdn.specs.ticklers/complete-tickler-params
+        description: 'origin spec: grdn.specs.ticklers/complete-tickler-params'
+        schema:
+          type: object
+          properties:
+            patient-id:
+              type: string
+              format: uuid
+            note:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+          required:
+          - patient-id
+          title: grdn.specs.ticklers/complete-tickler-params
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              tickler-athena-id:
+                type: integer
+                format: int64
+            required:
+            - tickler-athena-id
+            title: grdn.specs.ticklers/complete-tickler-response
+  /v2/ticklers/{tickler-athena-id}/delete:
+    put:
+      summary: delete-tickler-handler
+      description: Marks given tickler as deleted in Athena
+      tags:
+      - grdn.routes.impl.ticklers
+      parameters:
+      - in: path
+        name: tickler-athena-id
+        description: 'origin spec: grdn.specs.ticklers/delete-tickler-params'
+        required: true
+        type: integer
+        format: int64
+      - in: body
+        name: grdn.specs.ticklers/delete-tickler-params
+        description: 'origin spec: grdn.specs.ticklers/delete-tickler-params'
+        schema:
+          type: object
+          properties:
+            patient-id:
+              type: string
+              format: uuid
+            note:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+          required:
+          - patient-id
+          title: grdn.specs.ticklers/delete-tickler-params
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              tickler-athena-id:
+                type: integer
+                format: int64
+            required:
+            - tickler-athena-id
+            title: grdn.specs.ticklers/delete-tickler-response

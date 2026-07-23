@@ -1,0 +1,45 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.athena-providers API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.athena-providers
+  description: null
+paths:
+  /v2/athena-provider:
+    get:
+      summary: get-athena-providers-handler
+      description: Returns all Athena providers.
+      tags:
+      - grdn.routes.impl.athena-providers
+      parameters: []
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                display-name:
+                  type: string
+                entity-type:
+                  type: string
+                athena-provider-id:
+                  type: integer
+                  format: int64
+                provider-group-list:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+              required:
+              - display-name
+              - entity-type
+              - athena-provider-id
+              - provider-group-list

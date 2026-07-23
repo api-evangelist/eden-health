@@ -1,0 +1,31 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.configuration API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.configuration
+  description: null
+paths:
+  /v2/configuration:
+    get:
+      summary: get-for-current-user
+      description: "Get configuration specific to authenticated user. Currently simply returns the LD feature flags already\n   retrieved by the `wrap-v2-auth` middleware."
+      tags:
+      - grdn.routes.impl.configuration
+      parameters: []
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              feature-flags:
+                type: object
+            required:
+            - feature-flags
+            title: grdn.specs/get-configuration

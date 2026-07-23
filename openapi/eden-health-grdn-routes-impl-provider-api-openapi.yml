@@ -1,0 +1,107 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.provider API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.provider
+  description: Handlers to get general info about providers and departments.
+paths:
+  /v2/clinician-details:
+    get:
+      summary: get-provider-details-handler
+      description: Get all provider details.
+      tags:
+      - grdn.routes.impl.provider
+      parameters: []
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                athena-username:
+                  type: string
+                  x-nullable: true
+                google-id:
+                  type: string
+                entity-type:
+                  type: string
+                  x-nullable: true
+                licenses:
+                  type: array
+                  items:
+                    type: string
+                  x-nullable: true
+                provider-type:
+                  type: string
+                headshot-url:
+                  type: string
+                  x-nullable: true
+                display-name:
+                  type: string
+                sendbird-user-id:
+                  type: string
+                  format: uuid
+                zoom-id:
+                  type: string
+                  x-nullable: true
+                id:
+                  type: string
+                  format: uuid
+                updated-at: {}
+                created-at: {}
+                careteam-id:
+                  type: string
+                  format: uuid
+                  x-nullable: true
+                channel-user-id:
+                  type: string
+                  format: uuid
+                is-closeknit-credentialed:
+                  type: boolean
+                  x-nullable: true
+                athena-provider-ids:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      provider-group:
+                        type: string
+                        x-nullable: true
+                      provider-group-id:
+                        type: integer
+                        format: int64
+                        minimum: 1
+                        x-nullable: true
+                      provider-id:
+                        type: integer
+                        format: int64
+                        minimum: 1
+                        x-nullable: true
+                    required:
+                    - provider-group
+                    - provider-group-id
+                    - provider-id
+                    title: grdn.specs.provider/athena-provider-id
+              required:
+              - athena-username
+              - id
+              - careteam-id
+              - channel-user-id
+              - created-at
+              - display-name
+              - google-id
+              - headshot-url
+              - licenses
+              - provider-type
+              - sendbird-user-id
+              - updated-at
+              - zoom-id
+              - is-closeknit-credentialed

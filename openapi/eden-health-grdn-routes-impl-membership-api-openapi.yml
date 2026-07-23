@@ -1,0 +1,247 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.membership API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.membership
+  description: Handlers for membership, invites, codes
+paths:
+  /v2/membership/code:
+    post:
+      summary: send-code-handler-deprecated
+      description: Sends a registration code email.
+      tags:
+      - grdn.routes.impl.membership
+      parameters:
+      - in: body
+        name: grdn.specs/send-code-params
+        description: 'origin spec: grdn.specs/send-code-params'
+        schema:
+          type: object
+          properties:
+            work-email:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            invite-email:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            funnel-id:
+              type: string
+              format: uuid
+          required:
+          - work-email
+          - invite-email
+          title: grdn.specs/send-code-params
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /v2/membership/validate:
+    get:
+      summary: validate-code-handler
+      description: Validates a registration code.
+      tags:
+      - grdn.routes.impl.membership
+      parameters:
+      - in: query
+        name: member-code
+        description: 'origin spec: grdn.specs/validate-code-params'
+        required: true
+        type: string
+        x-allOf:
+        - type: string
+        - {}
+      - in: query
+        name: email
+        description: 'origin spec: grdn.specs/validate-code-params'
+        required: true
+        type: string
+        x-allOf:
+        - type: string
+        - {}
+      - in: query
+        name: invite-code
+        description: 'origin spec: grdn.specs/validate-code-params'
+        required: true
+        type: string
+        x-allOf:
+        - type: string
+        - {}
+      - in: query
+        name: promo-code
+        description: 'origin spec: grdn.specs/validate-code-params'
+        required: true
+        type: string
+        x-allOf:
+        - type: string
+        - {}
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+    post:
+      summary: validate-membership-handler
+      description: Validates a membership.
+      tags:
+      - grdn.routes.impl.membership
+      parameters:
+      - in: body
+        name: grdn.specs/validate-membership-params
+        description: 'origin spec: grdn.specs/validate-membership-params'
+        schema:
+          type: object
+          properties:
+            work-email:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            last-name:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            dob:
+              type: string
+            zip:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            invite-email:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            funnel-id:
+              type: string
+              format: uuid
+          required:
+          - work-email
+          - last-name
+          - dob
+          - zip
+          - invite-email
+          title: grdn.specs/validate-membership-params
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /v2/membership/{patient-id}/family:
+    get:
+      summary: get-family-handler
+      description: "Gets a patient's family members who are also patients as an array of\n  maps of form {:first-name 'Bob' :last-name 'Dobalina' :email 'a@b.c'};\n  the family is filtered using the `-filter-family` function above"
+      tags:
+      - grdn.routes.impl.membership
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: true
+        type: string
+        format: uuid
+      - in: query
+        name: funnel-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: false
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                first-name:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                last-name:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                email:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+              required:
+              - first-name
+              - last-name
+              - email
+              title: grdn.specs.membership/family-member
+  /v2/membership/{patient-id}/invite:
+    post:
+      summary: invite-dependents-handler
+      description: "Given a primary patient and a list of emails to invite, first validates the emails and,\n  if they are all valid, creates a patient invite with the given email address and a unique code for each\n  and sends each email address the invitation email with code."
+      tags:
+      - grdn.routes.impl.membership
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: true
+        type: string
+        format: uuid
+      - in: body
+        name: grdn.specs/patient-id-params
+        description: 'origin spec: grdn.specs/patient-id-params'
+        schema:
+          type: object
+          properties:
+            funnel-id:
+              type: string
+              format: uuid
+          title: grdn.specs/patient-id-params
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /v2/membership/{patient-id}/pending-invites:
+    get:
+      summary: get-pending-invites-handler
+      description: Gets a patient's invites as an array of email addresses
+      tags:
+      - grdn.routes.impl.membership
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: true
+        type: string
+        format: uuid
+      - in: query
+        name: funnel-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: false
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                email:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+              required:
+              - email
+              title: grdn.specs.membership/email-entry

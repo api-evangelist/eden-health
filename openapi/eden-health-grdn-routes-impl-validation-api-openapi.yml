@@ -1,0 +1,54 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.validation API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.validation
+  description: null
+paths:
+  /v2/validate-emails:
+    post:
+      summary: validate-emails
+      description: "Validates the supplied emails with mailgun. Payload is of form\n  [{:email \"email1@domain.com\" :valid true}\n   {:email \"e@b.cd\"            :valid false}]"
+      tags:
+      - grdn.routes.impl.validation
+      parameters:
+      - in: body
+        name: grdn.specs.validation/validate-emails-params
+        description: 'origin spec: grdn.specs.validation/validate-emails-params'
+        schema:
+          type: object
+          properties:
+            emails:
+              type: array
+              items:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+          required:
+          - emails
+          title: grdn.specs.validation/validate-emails-params
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                email:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                valid:
+                  type: boolean
+              required:
+              - email
+              - valid

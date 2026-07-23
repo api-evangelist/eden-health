@@ -1,0 +1,1383 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.appointments API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.appointments
+  description: "Contains handlers for routes related to Appointments, Cases, Encounters etc.\n\n  On timezones:\n\n  Appointments are tied to Athena departments, and their date and start time are\n  to be interpreted as representing a local datetime in the Athena department's\n  time zone.\n\n  Popups are special in that they have a dedicated department with the New York\n  time zone, but their physical location (and thus time zone) could differ from\n  that.\n\n  To abstract over departments and popups, we introduce the notion of a location\n  time zone, that is equal to the pop-up's time zone for popup appointments, and\n  the department time zone for all others.\n\n  All appointment times for appointments at physical locations are displayed to\n  the user in the location time zone.\n\n  All appointment times for virtual appointments are displayed to the user\n  in their preferred time zone as communicated by the client.\n  "
+paths:
+  /v2/appointment:
+    get:
+      summary: get-digital-visit-handler
+      description: "Fetches a patients ongoing telehealth appointment. Ignores past ongoing\n  telehealth visits and only checks the most recent visit, if the most\n  recent visit is ongoing we return it."
+      tags:
+      - grdn.routes.impl.appointments
+      parameters:
+      - in: query
+        name: patient-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: true
+        type: string
+        format: uuid
+      - in: query
+        name: funnel-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: false
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              appointment-id:
+                type: integer
+                format: int64
+                x-anyOf:
+                - type: integer
+                  format: int64
+                - type: string
+              appointment-type-id:
+                type: integer
+                format: int64
+              appointment-status:
+                type: number
+                format: double
+              start-time:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              copay:
+                type: number
+                format: double
+              patient-appointment-type-name:
+                type: string
+              appointment-type:
+                type: integer
+                format: int64
+                x-anyOf:
+                - type: integer
+                  format: int64
+                - type: string
+              department-id:
+                type: string
+                x-anyOf:
+                - type: string
+                - type: integer
+                  format: int64
+              appointmentcopay:
+                type: object
+                properties:
+                  collectedforother:
+                    type: number
+                    format: double
+                  collectedforappointment:
+                    type: number
+                    format: double
+                  insurancecopay:
+                    type: number
+                    format: double
+                required:
+                - collectedforother
+                - collectedforappointment
+                - insurancecopay
+                title: grdn.specs.appointments/appointmentcopay
+              duration:
+                type: number
+                format: double
+              date:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+            required:
+            - appointment-id
+            - date
+            - copay
+            - start-time
+            - department-id
+            - duration
+            - appointment-type
+            - appointment-type-id
+            - patient-appointment-type-name
+            - appointment-status
+            - appointmentcopay
+            title: grdn.specs.digital-visits/digital-visit
+            x-anyOf:
+            - type: object
+              properties:
+                appointment-id:
+                  type: integer
+                  format: int64
+                  x-anyOf:
+                  - type: integer
+                    format: int64
+                  - type: string
+                appointment-type-id:
+                  type: integer
+                  format: int64
+                appointment-status:
+                  type: number
+                  format: double
+                start-time:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                copay:
+                  type: number
+                  format: double
+                patient-appointment-type-name:
+                  type: string
+                appointment-type:
+                  type: integer
+                  format: int64
+                  x-anyOf:
+                  - type: integer
+                    format: int64
+                  - type: string
+                department-id:
+                  type: string
+                  x-anyOf:
+                  - type: string
+                  - type: integer
+                    format: int64
+                appointmentcopay:
+                  type: object
+                  properties:
+                    collectedforother:
+                      type: number
+                      format: double
+                    collectedforappointment:
+                      type: number
+                      format: double
+                    insurancecopay:
+                      type: number
+                      format: double
+                  required:
+                  - collectedforother
+                  - collectedforappointment
+                  - insurancecopay
+                  title: grdn.specs.appointments/appointmentcopay
+                duration:
+                  type: number
+                  format: double
+                date:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+              required:
+              - appointment-id
+              - date
+              - copay
+              - start-time
+              - department-id
+              - duration
+              - appointment-type
+              - appointment-type-id
+              - patient-appointment-type-name
+              - appointment-status
+              - appointmentcopay
+              title: grdn.specs.digital-visits/digital-visit
+            - {}
+    post:
+      summary: new-digital-visit-handler
+      description: "Starts by checking for a patient's insurance. If they do not\n   have any, we set their insurance as self pay. Then, we create\n   an open appointment slot, book the patient into it, and check\n   them into it."
+      tags:
+      - grdn.routes.impl.appointments
+      parameters:
+      - in: body
+        name: grdn.specs.appointments/new-digital-visit-params
+        description: 'origin spec: grdn.specs.appointments/new-digital-visit-params'
+        schema:
+          type: object
+          properties:
+            patient-id:
+              type: string
+              format: uuid
+            appointment-type-id:
+              type: integer
+              format: int64
+          required:
+          - patient-id
+          title: grdn.specs.appointments/new-digital-visit-params
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /v2/appointment/book:
+    post:
+      summary: book-appointments-handler
+      description: "Book an appointment, send the confirmation, and then build a response. If a video visit ID\n  is provided, set the appointment ID for that visit in postgres."
+      tags:
+      - grdn.routes.impl.appointments
+      parameters:
+      - in: body
+        name: grdn.specs.appointments/book-appointments-params
+        description: 'origin spec: grdn.specs.appointments/book-appointments-params'
+        schema:
+          type: object
+          properties:
+            patient-id:
+              type: string
+              format: uuid
+            next-step-id:
+              type: string
+              format: uuid
+            appointment-ids:
+              type: array
+              items:
+                type: integer
+                format: int64
+                x-anyOf:
+                - type: integer
+                  format: int64
+                - type: string
+            current-user-tz:
+              type: string
+            appointment-type:
+              type: integer
+              format: int64
+              x-anyOf:
+              - type: integer
+                format: int64
+              - type: string
+            department-id:
+              type: string
+              x-anyOf:
+              - type: string
+              - type: integer
+                format: int64
+            popup-id:
+              type: string
+              format: uuid
+            video-visit-id:
+              type: string
+              format: uuid
+            primary-complaint:
+              type: string
+          required:
+          - appointment-ids
+          - department-id
+          - appointment-type
+          - primary-complaint
+          - patient-id
+          title: grdn.specs.appointments/book-appointments-params
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              id:
+                type: number
+                format: double
+              start-time:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              time-zone:
+                type: string
+              duration:
+                type: number
+                format: double
+              department-id:
+                type: string
+                x-anyOf:
+                - type: string
+                - type: integer
+                  format: int64
+              provider-id:
+                type: integer
+                format: int64
+                x-anyOf:
+                - type: integer
+                  format: int64
+                - type: string
+              zoom-meeting-id:
+                type: string
+            required:
+            - id
+            - start-time
+            - time-zone
+            - duration
+            - department-id
+            - provider-id
+            title: grdn.specs.appointments/appointment
+  /v2/appointment/booked:
+    get:
+      summary: booked-appointments-handler
+      description: Ask for all booked appointments for a patient.
+      tags:
+      - grdn.routes.impl.appointments
+      parameters:
+      - in: query
+        name: patient-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: true
+        type: string
+        format: uuid
+      - in: query
+        name: funnel-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: false
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                start-time:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                provider-id:
+                  type: integer
+                  format: int64
+                  x-anyOf:
+                  - type: integer
+                    format: int64
+                  - type: string
+                id:
+                  type: number
+                  format: double
+                rendering-provider-id:
+                  type: integer
+                  format: int64
+                  x-nullable: true
+                patient-appointment-type-name:
+                  type: string
+                time-zone:
+                  type: string
+                location:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    address-1:
+                      type: string
+                    city:
+                      type: string
+                    state:
+                      type: string
+                    zip:
+                      type: string
+                    address-2:
+                      type: string
+                      x-nullable: true
+                  required:
+                  - name
+                  - address-1
+                  - city
+                  - state
+                  - zip
+                  title: grdn.specs.appointments/location
+                after-visit-summary:
+                  type: object
+                  properties:
+                    appointment_id:
+                      type: integer
+                      format: int64
+                    id:
+                      type: string
+                      format: uuid
+                    patient_id:
+                      type: string
+                    updated-at: {}
+                    status:
+                      enum:
+                      - ready-status
+                      - pending-status
+                      - sent-status
+                      - expired-status
+                      type: string
+                    created-at: {}
+                    content:
+                      type: string
+                      x-nullable: true
+                    provider_id:
+                      type: string
+                    sending_provider_id:
+                      type: string
+                    encounter_id:
+                      type: integer
+                      format: int64
+                    deleted_on:
+                      x-nullable: true
+                    message_id:
+                      type: integer
+                      format: int64
+                  required:
+                  - status
+                  title: grdn.specs.after-visit-summary/after-visit-summary
+                  x-nullable: true
+                encounter-id:
+                  type: integer
+                  format: int64
+                  x-anyOf:
+                  - type: integer
+                    format: int64
+                  - type: string
+                  x-nullable: true
+                department-id:
+                  type: string
+                  x-anyOf:
+                  - type: string
+                  - type: integer
+                    format: int64
+                duration:
+                  type: number
+                  format: double
+              required:
+              - id
+              - start-time
+              - duration
+              - time-zone
+              - department-id
+              - provider-id
+              - location
+              - patient-appointment-type-name
+              - rendering-provider-id
+              - after-visit-summary
+              title: grdn.specs.appointments/booked-appointment
+  /v2/appointment/booked-established:
+    get:
+      summary: booked-appointments-established-handler
+      description: "Ask for all booked appointments for a patient and returns\n   a vector of appointments and a boolean saying if the patient is established\n   TDD: https://edenhealth.atlassian.net/wiki/spaces/PE/pages/3350986788/TDD+Filter+Appointment+Reasons+on+Patient+App+depending+on+Patient+Status+New+VS+Established+Patient"
+      tags:
+      - grdn.routes.impl.appointments
+      parameters:
+      - in: query
+        name: patient-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: true
+        type: string
+        format: uuid
+      - in: query
+        name: funnel-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: false
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                start-time:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                provider-id:
+                  type: integer
+                  format: int64
+                  x-anyOf:
+                  - type: integer
+                    format: int64
+                  - type: string
+                id:
+                  type: number
+                  format: double
+                rendering-provider-id:
+                  type: integer
+                  format: int64
+                  x-nullable: true
+                patient-appointment-type-name:
+                  type: string
+                time-zone:
+                  type: string
+                location:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    address-1:
+                      type: string
+                    city:
+                      type: string
+                    state:
+                      type: string
+                    zip:
+                      type: string
+                    address-2:
+                      type: string
+                      x-nullable: true
+                  required:
+                  - name
+                  - address-1
+                  - city
+                  - state
+                  - zip
+                  title: grdn.specs.appointments/location
+                after-visit-summary:
+                  type: object
+                  properties:
+                    appointment_id:
+                      type: integer
+                      format: int64
+                    id:
+                      type: string
+                      format: uuid
+                    patient_id:
+                      type: string
+                    updated-at: {}
+                    status:
+                      enum:
+                      - ready-status
+                      - pending-status
+                      - sent-status
+                      - expired-status
+                      type: string
+                    created-at: {}
+                    content:
+                      type: string
+                      x-nullable: true
+                    provider_id:
+                      type: string
+                    sending_provider_id:
+                      type: string
+                    encounter_id:
+                      type: integer
+                      format: int64
+                    deleted_on:
+                      x-nullable: true
+                    message_id:
+                      type: integer
+                      format: int64
+                  required:
+                  - status
+                  title: grdn.specs.after-visit-summary/after-visit-summary
+                  x-nullable: true
+                encounter-id:
+                  type: integer
+                  format: int64
+                  x-anyOf:
+                  - type: integer
+                    format: int64
+                  - type: string
+                  x-nullable: true
+                department-id:
+                  type: string
+                  x-anyOf:
+                  - type: string
+                  - type: integer
+                    format: int64
+                duration:
+                  type: number
+                  format: double
+              required:
+              - id
+              - start-time
+              - duration
+              - time-zone
+              - department-id
+              - provider-id
+              - location
+              - patient-appointment-type-name
+              - rendering-provider-id
+              - after-visit-summary
+              title: grdn.specs.appointments/booked-appointment
+  /v2/appointment/{appointment-id}:
+    put:
+      summary: checkout-digital-visit-handler
+      description: "Given patient and appointment, checkout the appointment\n  and send the patient a feedback survey. Always sends feedback\n  even if the checkout fails."
+      tags:
+      - grdn.routes.impl.appointments
+      parameters:
+      - in: path
+        name: appointment-id
+        description: 'origin spec: grdn.specs.appointments/checkout-digital-visit-params'
+        required: true
+        type: integer
+        format: int64
+        x-anyOf:
+        - type: integer
+          format: int64
+        - type: string
+      - in: body
+        name: grdn.specs.appointments/checkout-digital-visit-params
+        description: 'origin spec: grdn.specs.appointments/checkout-digital-visit-params'
+        schema:
+          type: object
+          properties:
+            patient-id:
+              type: string
+              format: uuid
+          title: grdn.specs.appointments/checkout-digital-visit-params
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /v2/appointment/{appointment-id}/after-visit-summary:
+    delete:
+      summary: delete-after-visit-summary-message-handler
+      description: "Updates an after-visit-summary message custom type to deleted and changes content to empty string.\n   If deleting message and image are successful, logs an event about the deleted message to the db."
+      tags:
+      - grdn.routes.impl.appointments
+      parameters:
+      - in: path
+        name: appointment-id
+        description: 'origin spec: grdn.specs.appointments/delete-after-visit-summary-message-params'
+        required: true
+        type: integer
+        format: int64
+        x-anyOf:
+        - type: integer
+          format: int64
+        - type: string
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              after-visit-summary:
+                type: object
+                properties:
+                  appointment_id:
+                    type: integer
+                    format: int64
+                  id:
+                    type: string
+                    format: uuid
+                  patient_id:
+                    type: string
+                  updated-at: {}
+                  status:
+                    enum:
+                    - ready-status
+                    - pending-status
+                    - sent-status
+                    - expired-status
+                    type: string
+                  created-at: {}
+                  content:
+                    type: string
+                    x-nullable: true
+                  provider_id:
+                    type: string
+                  sending_provider_id:
+                    type: string
+                  encounter_id:
+                    type: integer
+                    format: int64
+                  deleted_on:
+                    x-nullable: true
+                  message_id:
+                    type: integer
+                    format: int64
+                required:
+                - status
+                title: grdn.specs.after-visit-summary/after-visit-summary
+            required:
+            - after-visit-summary
+            title: grdn.specs.appointments/delete-after-visit-summary-message-response
+    post:
+      summary: send-after-visit-summary-handler
+      description: Creates an after-visit-summary record in grdn db and sends a message in the patient's chat.
+      tags:
+      - grdn.routes.impl.appointments
+      parameters:
+      - in: path
+        name: appointment-id
+        description: 'origin spec: grdn.specs.appointments/send-after-visit-summary-params'
+        required: true
+        type: integer
+        format: int64
+        x-anyOf:
+        - type: integer
+          format: int64
+        - type: string
+      - in: body
+        name: grdn.specs.appointments/send-after-visit-summary-params
+        description: 'origin spec: grdn.specs.appointments/send-after-visit-summary-params'
+        schema:
+          type: object
+          properties:
+            content:
+              type: string
+              allowEmptyValue: true
+          required:
+          - content
+          title: grdn.specs.appointments/send-after-visit-summary-params
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              after-visit-summary:
+                type: object
+                properties:
+                  appointment_id:
+                    type: integer
+                    format: int64
+                  id:
+                    type: string
+                    format: uuid
+                  patient_id:
+                    type: string
+                  updated-at: {}
+                  status:
+                    enum:
+                    - ready-status
+                    - pending-status
+                    - sent-status
+                    - expired-status
+                    type: string
+                  created-at: {}
+                  content:
+                    type: string
+                    x-nullable: true
+                  provider_id:
+                    type: string
+                  sending_provider_id:
+                    type: string
+                  encounter_id:
+                    type: integer
+                    format: int64
+                  deleted_on:
+                    x-nullable: true
+                  message_id:
+                    type: integer
+                    format: int64
+                required:
+                - status
+                title: grdn.specs.after-visit-summary/after-visit-summary
+            required:
+            - after-visit-summary
+            title: grdn.specs.appointments/send-after-visit-summary-response
+  /v2/appointment/{appointment-id}/cancel:
+    put:
+      summary: cancel-appointment-handler
+      description: Cancels a patients appointment.
+      tags:
+      - grdn.routes.impl.appointments
+      parameters:
+      - in: path
+        name: appointment-id
+        description: 'origin spec: grdn.specs.appointments/appointment-id-params'
+        required: true
+        type: integer
+        format: int64
+        x-anyOf:
+        - type: integer
+          format: int64
+        - type: string
+      - in: body
+        name: grdn.specs.appointments/appointment-id-params
+        description: 'origin spec: grdn.specs.appointments/appointment-id-params'
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+          title: grdn.specs.appointments/appointment-id-params
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              appointment-id:
+                type: integer
+                format: int64
+                x-anyOf:
+                - type: integer
+                  format: int64
+                - type: string
+            required:
+            - appointment-id
+            title: grdn.specs.appointments/cancel-appointment-response
+  /v2/appointment/{appointment-id}/check-in:
+    post:
+      summary: check-in-appointment-handler
+      description: Given an existing appointment, checks the user in and assigns screeners.
+      tags:
+      - grdn.routes.impl.appointments
+      parameters:
+      - in: path
+        name: appointment-id
+        description: 'origin spec: grdn.specs.appointments/check-in-appointment-params'
+        required: true
+        type: integer
+        format: int64
+        x-anyOf:
+        - type: integer
+          format: int64
+        - type: string
+      - in: body
+        name: grdn.specs.appointments/check-in-appointment-params
+        description: 'origin spec: grdn.specs.appointments/check-in-appointment-params'
+        schema:
+          type: object
+          properties:
+            patient-id:
+              type: string
+              format: uuid
+            screener-names:
+              type: array
+              items:
+                type: string
+          required:
+          - patient-id
+          title: grdn.specs.appointments/check-in-appointment-params
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+    get:
+      summary: get-check-in-screeners-handler
+      description: Gets the screeners available for an appointment.
+      tags:
+      - grdn.routes.impl.appointments
+      parameters:
+      - in: path
+        name: appointment-id
+        description: 'origin spec: grdn.specs.appointments/appointment-id-params'
+        required: true
+        type: integer
+        format: int64
+        x-anyOf:
+        - type: integer
+          format: int64
+        - type: string
+      - in: query
+        name: message
+        description: 'origin spec: grdn.specs.appointments/appointment-id-params'
+        required: false
+        type: string
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              appointment-id:
+                type: integer
+                format: int64
+                x-anyOf:
+                - type: integer
+                  format: int64
+                - type: string
+              screener-names:
+                type: array
+                items:
+                  type: string
+            required:
+            - appointment-id
+            - screener-names
+            title: grdn.specs.appointments/get-check-in-screeners-response
+  /v2/appointment/{appointment-id}/note:
+    get:
+      summary: get-appointment-note-handler
+      description: Fetch the booking note for an appointment.
+      tags:
+      - grdn.routes.impl.appointments
+      parameters:
+      - in: path
+        name: appointment-id
+        description: 'origin spec: grdn.specs.appointments/appointment-id-params'
+        required: true
+        type: integer
+        format: int64
+        x-anyOf:
+        - type: integer
+          format: int64
+        - type: string
+      - in: query
+        name: message
+        description: 'origin spec: grdn.specs.appointments/appointment-id-params'
+        required: false
+        type: string
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              notetext:
+                type: string
+              noteid:
+                type: string
+              created:
+                type: string
+              createdby:
+                type: string
+            required:
+            - notetext
+            - noteid
+            - created
+            - createdby
+            title: grdn.specs.appointments/appointment-note
+            x-anyOf:
+            - type: object
+              properties:
+                notetext:
+                  type: string
+                noteid:
+                  type: string
+                created:
+                  type: string
+                createdby:
+                  type: string
+              required:
+              - notetext
+              - noteid
+              - created
+              - createdby
+              title: grdn.specs.appointments/appointment-note
+            - {}
+  /v2/department/{department-id}/appointment-reasons:
+    get:
+      summary: appointment-reasons-by-dept-handler
+      description: "Fetch the appointment reasons using the default provider for the provided dept.\n\n  NOTE! As of 8/7/20, we are using a single deprecated department ('Old Mad') for all\n  non-Connell locations to serve the appointment reasons. However, as we bring on departments\n  offering different services, we need to move to a more department-specific model."
+      tags:
+      - grdn.routes.impl.appointments
+      parameters:
+      - in: path
+        name: department-id
+        description: 'origin spec: grdn.specs/department-id-params'
+        required: true
+        type: string
+        x-anyOf:
+        - type: string
+        - type: integer
+          format: int64
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              total-count:
+                type: number
+                format: double
+              patientappointmentreasons:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    schedulingminhours:
+                      type: number
+                      format: double
+                    reasontype:
+                      type: string
+                    reason:
+                      type: string
+                    description:
+                      type: string
+                    reason-id:
+                      type: number
+                      format: double
+                    schedulingmaxdays:
+                      type: number
+                      format: double
+                  required:
+                  - schedulingminhours
+                  - reasontype
+                  - reason
+                  - description
+                  - reason-id
+                  - schedulingmaxdays
+                  title: grdn.specs.appointments/patientappointmentreason
+            required:
+            - total-count
+            - patientappointmentreasons
+            title: grdn.specs.appointments/appointment-reasons-by-dept-handler-response
+  /v2/department/{department-id}/reason/{appointment-reason-id}/open-grouped:
+    get:
+      summary: open-appointments-grouped-handler
+      description: "Requests appointments from eligible providers, filters out the immediate ones,\n  and groups them based on department-id, start-time, and time-zone."
+      tags:
+      - grdn.routes.impl.appointments
+      parameters:
+      - in: path
+        name: department-id
+        description: 'origin spec: grdn.specs.appointments/open-appointments-grouped-params'
+        required: true
+        type: string
+        x-anyOf:
+        - type: string
+        - type: integer
+          format: int64
+      - in: path
+        name: appointment-reason-id
+        description: 'origin spec: grdn.specs.appointments/open-appointments-grouped-params'
+        required: true
+        type: integer
+        format: int64
+      - in: query
+        name: days
+        description: 'origin spec: grdn.specs.appointments/open-appointments-grouped-params'
+        required: true
+        type: integer
+        format: int64
+      - in: query
+        name: provider-id
+        description: 'origin spec: grdn.specs.appointments/open-appointments-grouped-params'
+        required: false
+        type: integer
+        format: int64
+        x-anyOf:
+        - type: integer
+          format: int64
+        - type: string
+      - in: query
+        name: start-time
+        description: 'origin spec: grdn.specs.appointments/open-appointments-grouped-params'
+        required: false
+        type: string
+        x-allOf:
+        - type: string
+        - {}
+      - in: query
+        name: popup-id
+        description: 'origin spec: grdn.specs.appointments/open-appointments-grouped-params'
+        required: false
+        type: string
+        format: uuid
+      - in: query
+        name: current-user-tz
+        description: 'origin spec: grdn.specs.appointments/open-appointments-grouped-params'
+        required: false
+        type: string
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                start-time:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                time-zone:
+                  type: string
+                department-id:
+                  type: string
+                  x-anyOf:
+                  - type: string
+                  - type: integer
+                    format: int64
+                appointment-ids:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+                    x-anyOf:
+                    - type: integer
+                      format: int64
+                    - type: string
+              required:
+              - start-time
+              - time-zone
+              - department-id
+              - appointment-ids
+              title: grdn.specs.appointments/appointment-group
+  /v2/encounter/{encounter-id}/after-visit-summary:
+    put:
+      summary: update-after-visit-summary-handler
+      description: Updates an after-visit-summary message.
+      tags:
+      - grdn.routes.impl.appointments
+      parameters:
+      - in: path
+        name: encounter-id
+        description: 'origin spec: grdn.specs.appointments/update-after-visit-summary-params'
+        required: true
+        type: integer
+        format: int64
+        x-anyOf:
+        - type: integer
+          format: int64
+        - type: string
+      - in: body
+        name: grdn.specs.appointments/update-after-visit-summary-params
+        description: 'origin spec: grdn.specs.appointments/update-after-visit-summary-params'
+        schema:
+          type: object
+          properties:
+            content:
+              type: string
+              allowEmptyValue: true
+          required:
+          - content
+          title: grdn.specs.appointments/update-after-visit-summary-params
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              after-visit-summary:
+                type: object
+                properties:
+                  appointment_id:
+                    type: integer
+                    format: int64
+                  id:
+                    type: string
+                    format: uuid
+                  patient_id:
+                    type: string
+                  updated-at: {}
+                  status:
+                    enum:
+                    - ready-status
+                    - pending-status
+                    - sent-status
+                    - expired-status
+                    type: string
+                  created-at: {}
+                  content:
+                    type: string
+                    x-nullable: true
+                  provider_id:
+                    type: string
+                  sending_provider_id:
+                    type: string
+                  encounter_id:
+                    type: integer
+                    format: int64
+                  deleted_on:
+                    x-nullable: true
+                  message_id:
+                    type: integer
+                    format: int64
+                required:
+                - status
+                title: grdn.specs.after-visit-summary/after-visit-summary
+            required:
+            - after-visit-summary
+            title: grdn.specs.appointments/update-after-visit-summary-response
+  /v2/patient/{patient-id}/encounter/{encounter-id}:
+    get:
+      summary: get-encounter-handler
+      description: Given an encounter id, return the encounter details, including associated orders and the after visit summary.
+      tags:
+      - grdn.routes.impl.appointments
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.appointments/get-encounter-params'
+        required: null
+        type: string
+        format: uuid
+      - in: path
+        name: encounter-id
+        description: 'origin spec: grdn.specs.appointments/get-encounter-params'
+        required: true
+        type: integer
+        format: int64
+        x-anyOf:
+        - type: integer
+          format: int64
+        - type: string
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              appointment-id:
+                type: integer
+                format: int64
+                x-anyOf:
+                - type: integer
+                  format: int64
+                - type: string
+              encounter-visit-name:
+                type: string
+              provider-id:
+                type: integer
+                format: int64
+                x-anyOf:
+                - type: integer
+                  format: int64
+                - type: string
+              provider-first-name:
+                type: string
+              appointment-start-date:
+                type: string
+              encounter-type:
+                type: string
+              provider-phone:
+                type: string
+              after-visit-summary:
+                type: object
+                properties:
+                  appointment_id:
+                    type: integer
+                    format: int64
+                  id:
+                    type: string
+                    format: uuid
+                  patient_id:
+                    type: string
+                  updated-at: {}
+                  status:
+                    enum:
+                    - ready-status
+                    - pending-status
+                    - sent-status
+                    - expired-status
+                    type: string
+                  created-at: {}
+                  content:
+                    type: string
+                    x-nullable: true
+                  provider_id:
+                    type: string
+                  sending_provider_id:
+                    type: string
+                  encounter_id:
+                    type: integer
+                    format: int64
+                  deleted_on:
+                    x-nullable: true
+                  message_id:
+                    type: integer
+                    format: int64
+                required:
+                - status
+                title: grdn.specs.after-visit-summary/after-visit-summary
+                x-nullable: true
+              last-updated:
+                type: string
+              status:
+                type: string
+              patient-status-id:
+                type: integer
+                format: int64
+                x-anyOf:
+                - type: integer
+                  format: int64
+                - type: string
+              encounter-id:
+                type: integer
+                format: int64
+                x-anyOf:
+                - type: integer
+                  format: int64
+                - type: string
+              patient-status:
+                type: string
+              department-id:
+                type: string
+                x-anyOf:
+                - type: string
+                - type: integer
+                  format: int64
+              provider-last-name:
+                type: string
+              patient-location:
+                type: string
+              encounter-date:
+                type: string
+              patient-location-id:
+                type: integer
+                format: int64
+                x-anyOf:
+                - type: integer
+                  format: int64
+                - type: string
+              diagnoses:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    diagnosis-id:
+                      type: integer
+                      format: int64
+                      x-anyOf:
+                      - type: integer
+                        format: int64
+                      - type: string
+                    icd-codes:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          code-set:
+                            type: string
+                          description:
+                            type: string
+                          code:
+                            type: string
+                        required:
+                        - code-set
+                        - description
+                        - code
+                        title: grdn.specs.appointments/icd-code
+                    snomed-code:
+                      type: integer
+                      format: int64
+                      x-anyOf:
+                      - type: integer
+                        format: int64
+                      - type: string
+                    description:
+                      type: string
+                  required:
+                  - diagnosis-id
+                  - icd-codes
+                  - snomed-code
+                  - description
+                  title: grdn.specs.appointments/diagnosis
+              orders:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                    description:
+                      type: string
+                    class:
+                      type: string
+                  required:
+                  - status
+                  - description
+                  - class
+                  title: grdn.specs.appointments/order
+            required:
+            - department-id
+            - patient-status
+            - encounter-type
+            - encounter-date
+            - provider-last-name
+            - provider-id
+            - patient-status-id
+            - diagnoses
+            - appointment-start-date
+            - provider-first-name
+            - encounter-id
+            - appointment-id
+            - status
+            - provider-phone
+            - encounter-visit-name
+            - last-updated
+            - after-visit-summary
+            title: grdn.specs.appointments/get-encounter-response

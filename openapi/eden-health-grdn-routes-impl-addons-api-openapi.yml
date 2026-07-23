@@ -1,0 +1,303 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.addons API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.addons
+  description: null
+paths:
+  /v2/addons/categories:
+    get:
+      summary: get-categories-handler
+      description: ''
+      tags:
+      - grdn.routes.impl.addons
+      parameters: []
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                name:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                image-url:
+                  type: string
+              required:
+              - id
+              - name
+              - image-url
+  /v2/addons/external:
+    get:
+      summary: get-external-addons-handler
+      description: ''
+      tags:
+      - grdn.routes.impl.addons
+      parameters:
+      - in: query
+        name: state
+        description: 'origin spec: grdn.specs.addons/get-external-addons-params'
+        required: false
+        enum:
+        - enabled
+        - archived
+        - disabled
+        type: string
+      - in: query
+        name: sponsor-id
+        description: 'origin spec: grdn.specs.addons/get-external-addons-params'
+        required: false
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                bullet-list:
+                  type: array
+                  items:
+                    type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  x-allOf:
+                  - type: array
+                    items:
+                      type: string
+                  - {}
+                id:
+                  type: string
+                  format: uuid
+                company-name:
+                  type: string
+                category-id:
+                  type: string
+                  format: uuid
+                state:
+                  enum:
+                  - enabled
+                  - archived
+                  - disabled
+                  type: string
+                notes:
+                  type: string
+                enrollment-instructions:
+                  type: string
+                benefit-overview:
+                  type: string
+                enrollment-url:
+                  type: string
+              required:
+              - id
+              - category-id
+              - benefit-overview
+              - tags
+              - bullet-list
+              - state
+              - company-name
+              - enrollment-instructions
+              - enrollment-url
+              title: grdn.specs.addons/external-addon
+    post:
+      summary: create-external-addon-handler
+      description: ''
+      tags:
+      - grdn.routes.impl.addons
+      parameters:
+      - in: body
+        name: grdn.specs.addons/create-external-addon-params
+        description: 'origin spec: grdn.specs.addons/create-external-addon-params'
+        schema:
+          type: object
+          properties:
+            bullet-list:
+              type: array
+              items:
+                type: string
+            tags:
+              type: array
+              items:
+                type: string
+              x-allOf:
+              - type: array
+                items:
+                  type: string
+              - {}
+            company-name:
+              type: string
+            sponsor-id:
+              type: string
+              format: uuid
+            category-id:
+              type: string
+              format: uuid
+            notes:
+              type: string
+            enrollment-instructions:
+              type: string
+            benefit-overview:
+              type: string
+            enrollment-url:
+              type: string
+          required:
+          - sponsor-id
+          - category-id
+          - benefit-overview
+          - tags
+          - bullet-list
+          - company-name
+          - enrollment-instructions
+          - enrollment-url
+          title: grdn.specs.addons/create-external-addon-params
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /v2/addons/external/{external-addon-id}:
+    put:
+      summary: update-external-addon-handler
+      description: ''
+      tags:
+      - grdn.routes.impl.addons
+      parameters:
+      - in: path
+        name: external-addon-id
+        description: 'origin spec: grdn.specs.addons/update-external-addon-params'
+        required: true
+        type: string
+        format: uuid
+      - in: body
+        name: grdn.specs.addons/update-external-addon-params
+        description: 'origin spec: grdn.specs.addons/update-external-addon-params'
+        schema:
+          type: object
+          properties:
+            bullet-list:
+              type: array
+              items:
+                type: string
+            tags:
+              type: array
+              items:
+                type: string
+              x-allOf:
+              - type: array
+                items:
+                  type: string
+              - {}
+            company-name:
+              type: string
+            category-id:
+              type: string
+              format: uuid
+            state:
+              enum:
+              - enabled
+              - archived
+              - disabled
+              type: string
+            notes:
+              type: string
+            enrollment-instructions:
+              type: string
+            benefit-overview:
+              type: string
+            enrollment-url:
+              type: string
+          required:
+          - category-id
+          - benefit-overview
+          - tags
+          - bullet-list
+          - company-name
+          - enrollment-instructions
+          - enrollment-url
+          - state
+          - notes
+          title: grdn.specs.addons/update-external-addon-params
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+    get:
+      summary: get-external-addon-handler
+      description: ''
+      tags:
+      - grdn.routes.impl.addons
+      parameters:
+      - in: path
+        name: external-addon-id
+        description: 'origin spec: grdn.specs.addons/get-external-addon-params'
+        required: true
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              bullet-list:
+                type: array
+                items:
+                  type: string
+              tags:
+                type: array
+                items:
+                  type: string
+                x-allOf:
+                - type: array
+                  items:
+                    type: string
+                - {}
+              id:
+                type: string
+                format: uuid
+              company-name:
+                type: string
+              category-id:
+                type: string
+                format: uuid
+              state:
+                enum:
+                - enabled
+                - archived
+                - disabled
+                type: string
+              notes:
+                type: string
+              enrollment-instructions:
+                type: string
+              benefit-overview:
+                type: string
+              enrollment-url:
+                type: string
+            required:
+            - id
+            - category-id
+            - benefit-overview
+            - tags
+            - bullet-list
+            - state
+            - company-name
+            - enrollment-instructions
+            - enrollment-url
+            title: grdn.specs.addons/get-external-addon-response

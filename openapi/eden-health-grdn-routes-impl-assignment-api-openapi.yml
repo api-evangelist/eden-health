@@ -1,0 +1,75 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.assignment API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.assignment
+  description: Contains handlers for routes related to provider patient assignments.
+paths:
+  /v2/patient/{patient-id}/assign:
+    post:
+      summary: assign-handler
+      description: Assigns providers to a patient. If channel is archived, updates status to pending.
+      tags:
+      - grdn.routes.impl.assignment
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.assignment/assign-params'
+        required: true
+        type: string
+        format: uuid
+      - in: body
+        name: grdn.specs.assignment/assign-params
+        description: 'origin spec: grdn.specs.assignment/assign-params'
+        schema:
+          type: object
+          properties:
+            provider-ids:
+              type: array
+              items:
+                type: string
+                format: uuid
+          required:
+          - provider-ids
+          title: grdn.specs.assignment/assign-params
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /v2/patient/{patient-id}/unassign:
+    post:
+      summary: unassign-handler
+      description: Un-assigns providers from a patient.
+      tags:
+      - grdn.routes.impl.assignment
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.assignment/unassign-params'
+        required: true
+        type: string
+        format: uuid
+      - in: body
+        name: grdn.specs.assignment/unassign-params
+        description: 'origin spec: grdn.specs.assignment/unassign-params'
+        schema:
+          type: object
+          properties:
+            provider-ids:
+              type: array
+              items:
+                type: string
+                format: uuid
+          required:
+          - provider-ids
+          title: grdn.specs.assignment/unassign-params
+      responses:
+        default:
+          description: Default success response.
+          schema: {}

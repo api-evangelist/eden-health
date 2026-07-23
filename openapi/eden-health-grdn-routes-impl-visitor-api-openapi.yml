@@ -1,0 +1,468 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.visitor API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.visitor
+  description: Handlers for sponsor visitors
+paths:
+  /v2/visitor:
+    get:
+      summary: get-visitors
+      description: GET handler
+      tags:
+      - grdn.routes.impl.visitor
+      parameters:
+      - in: query
+        name: day
+        description: 'origin spec: grdn.specs.visitor/get-visitors-params'
+        required: false
+        type: string
+        x-allOf:
+        - type: string
+        - {}
+      - in: query
+        name: triage-status
+        description: 'origin spec: grdn.specs.visitor/get-visitors-params'
+        required: false
+        enum:
+        - triage-status/never-taken
+        - triage-status/incomplete
+        - triage-status/isolate
+        - triage-status/cleared
+        type: string
+      - in: query
+        name: sort-by
+        description: 'origin spec: grdn.specs.visitor/get-visitors-params'
+        required: false
+        type: string
+      - in: query
+        name: sort-direction
+        description: 'origin spec: grdn.specs.visitor/get-visitors-params'
+        required: false
+        enum:
+        - desc
+        - asc
+        type: string
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                first-name:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                last-name:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                email:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                contact-name:
+                  type: string
+                contact-email:
+                  type: string
+                last-triage-at: {}
+                triage-status:
+                  enum:
+                  - triage-status/never-taken
+                  - triage-status/incomplete
+                  - triage-status/isolate
+                  - triage-status/cleared
+                  type: string
+              required:
+              - id
+              - first-name
+              - last-name
+              - email
+              - contact-name
+              - contact-email
+              - last-triage-at
+              - triage-status
+  /v2/visitor/screener:
+    get:
+      summary: get-sponsor-screener
+      description: Get sponsor name and screener by visitor code
+      tags:
+      - grdn.routes.impl.visitor
+      parameters:
+      - in: query
+        name: link-id
+        description: 'origin spec: grdn.specs.visitor/get-sponsor-screener-params'
+        required: true
+        type: string
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              sponsor-name:
+                type: string
+              screener-id:
+                type: string
+                format: uuid
+              screener:
+                type: object
+                properties:
+                  sections:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                        question-list:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              key:
+                                type: string
+                              question-id:
+                                type: string
+                              question:
+                                type: string
+                              question-type:
+                                enum:
+                                - ThermoImageUpload
+                                - MultipleSelect
+                                - MultipleChoice
+                                type: string
+                              prompt:
+                                type: string
+                              preamble:
+                                type: string
+                              possible-answers:
+                                type: array
+                                items: {}
+                              answer:
+                                type: integer
+                                format: int64
+                                x-anyOf:
+                                - type: integer
+                                  format: int64
+                                - type: string
+                                - type: array
+                                  items:
+                                    type: integer
+                                    format: int64
+                            required:
+                            - key
+                            - question-id
+                            - question
+                            - question-type
+                        header-text:
+                          type: string
+                      required:
+                      - key
+                      - question-list
+                  id:
+                    type: string
+                    format: uuid
+                  screener-override-id:
+                    type: string
+                    format: uuid
+                    x-nullable: true
+                  name:
+                    type: string
+                  encounter-id:
+                    type: string
+                  questionnaire-id:
+                    type: integer
+                    format: int64
+                    x-anyOf:
+                    - type: integer
+                      format: int64
+                    - type: string
+                  version:
+                    type: string
+                  scoring-status:
+                    enum:
+                    - UNSCORED
+                    - BEENSCORED
+                    type: string
+                  description:
+                    type: string
+                required:
+                - id
+                - description
+                - scoring-status
+                - name
+                - encounter-id
+                - questionnaire-id
+                - sections
+                - screener-override-id
+                title: grdn.specs.screeners/screener
+              override:
+                type: object
+                properties:
+                  sections:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                        question-list:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              key:
+                                type: string
+                              question-id:
+                                type: string
+                              question:
+                                type: string
+                              question-type:
+                                enum:
+                                - ThermoImageUpload
+                                - MultipleSelect
+                                - MultipleChoice
+                                type: string
+                              prompt:
+                                type: string
+                              preamble:
+                                type: string
+                              possible-answers:
+                                type: array
+                                items: {}
+                              answer:
+                                type: integer
+                                format: int64
+                                x-anyOf:
+                                - type: integer
+                                  format: int64
+                                - type: string
+                                - type: array
+                                  items:
+                                    type: integer
+                                    format: int64
+                            required:
+                            - key
+                            - question-id
+                            - question
+                            - question-type
+                        header-text:
+                          type: string
+                      required:
+                      - key
+                      - question-list
+                  id:
+                    type: string
+                    format: uuid
+                  screener-override-id:
+                    type: string
+                    format: uuid
+                    x-nullable: true
+                  name:
+                    type: string
+                  encounter-id:
+                    type: string
+                  questionnaire-id:
+                    type: integer
+                    format: int64
+                    x-anyOf:
+                    - type: integer
+                      format: int64
+                    - type: string
+                  version:
+                    type: string
+                  scoring-status:
+                    enum:
+                    - UNSCORED
+                    - BEENSCORED
+                    type: string
+                  description:
+                    type: string
+                x-nullable: true
+              screener-override-id:
+                type: string
+                format: uuid
+                x-nullable: true
+              vaccine-required:
+                type: boolean
+            required:
+            - sponsor-name
+            - screener-id
+            - screener
+            - override
+            title: grdn.specs.visitor/get-sponsor-screener-response
+  /v2/visitor/screener-response:
+    post:
+      summary: post-visitor-covid-19-screener
+      description: Handler for visitor COVID-19 screener
+      tags:
+      - grdn.routes.impl.visitor
+      parameters:
+      - in: body
+        name: grdn.specs.visitor/post-visitor-covid-19-screener-params
+        description: 'origin spec: grdn.specs.visitor/post-visitor-covid-19-screener-params'
+        schema:
+          type: object
+          properties:
+            first-name:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            last-name:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            email:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            screener:
+              type: object
+              properties:
+                sections:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                      question-list:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            key:
+                              type: string
+                            question-id:
+                              type: string
+                            question:
+                              type: string
+                            question-type:
+                              enum:
+                              - ThermoImageUpload
+                              - MultipleSelect
+                              - MultipleChoice
+                              type: string
+                            prompt:
+                              type: string
+                            preamble:
+                              type: string
+                            possible-answers:
+                              type: array
+                              items: {}
+                            answer:
+                              type: integer
+                              format: int64
+                              x-anyOf:
+                              - type: integer
+                                format: int64
+                              - type: string
+                              - type: array
+                                items:
+                                  type: integer
+                                  format: int64
+                          required:
+                          - key
+                          - question-id
+                          - question
+                          - question-type
+                      header-text:
+                        type: string
+                    required:
+                    - key
+                    - question-list
+                id:
+                  type: string
+                  format: uuid
+                screener-override-id:
+                  type: string
+                  format: uuid
+                  allowEmptyValue: true
+                name:
+                  type: string
+                encounter-id:
+                  type: string
+                questionnaire-id:
+                  type: integer
+                  format: int64
+                  x-anyOf:
+                  - type: integer
+                    format: int64
+                  - type: string
+                version:
+                  type: string
+                scoring-status:
+                  enum:
+                  - UNSCORED
+                  - BEENSCORED
+                  type: string
+                description:
+                  type: string
+              required:
+              - id
+              - description
+              - scoring-status
+              - name
+              - encounter-id
+              - questionnaire-id
+              - sections
+              - screener-override-id
+              title: grdn.specs.screeners/screener
+            link-id:
+              type: string
+            contact-name:
+              type: string
+            contact-email:
+              type: string
+            is-vaccinated:
+              type: boolean
+          required:
+          - first-name
+          - last-name
+          - email
+          - screener
+          - link-id
+          title: grdn.specs.visitor/post-visitor-covid-19-screener-params
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              score-data:
+                type: object
+                properties:
+                  screener-name:
+                    type: string
+                  score:
+                    type: integer
+                    format: int64
+                required:
+                - screener-name
+                title: grdn.specs.screener-response/score-data
+              covid-status:
+                enum:
+                - triage-status/isolate
+                - triage-status/cleared
+                type: string
+            required:
+            - score-data
+            title: grdn.specs.visitor/post-visitor-covid-19-screener-response

@@ -1,0 +1,157 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.screener-response API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.screener-response
+  description: Handlers for screener fetching and submission.
+paths:
+  /v2/patient/{patient-id}/screener:
+    put:
+      summary: post-screener-response-handler
+      description: Given a patient id and screener, scores and saves the screener in appropriate store.
+      tags:
+      - grdn.routes.impl.screener-response
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.screener-response/post-screener-response-params'
+        required: true
+        type: string
+        format: uuid
+      - in: body
+        name: grdn.specs.screener-response/post-screener-response-params
+        description: 'origin spec: grdn.specs.screener-response/post-screener-response-params'
+        schema:
+          type: object
+          properties:
+            screener:
+              type: object
+          required:
+          - screener
+          title: grdn.specs.screener-response/post-screener-response-params
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              score-data:
+                type: object
+                properties:
+                  screener-name:
+                    type: string
+                  score:
+                    type: integer
+                    format: int64
+                required:
+                - screener-name
+                title: grdn.specs.screener-response/score-data
+              covid-status:
+                type: object
+                properties:
+                  current_triage_status:
+                    enum:
+                    - triage-status/isolate
+                    - triage-status/cleared
+                    type: string
+                  latest_registry_created_at: {}
+                  latest_screener_created_at: {}
+                required:
+                - current_triage_status
+                - latest_registry_created_at
+                - latest_screener_created_at
+                title: grdn.specs.screeners/covid-status
+            required:
+            - score-data
+            title: grdn.specs.screener-response/post-screener-response-response
+  /v2/patient/{patient-id}/screener-response:
+    put:
+      summary: put-screener-response-handler
+      description: "Given an outstanding screener response, update the pending screener with the data provided.\n  Applies to Eden screeners only."
+      tags:
+      - grdn.routes.impl.screener-response
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.screener-response/put-screener-response-params'
+        required: null
+      - in: body
+        name: grdn.specs.screener-response/put-screener-response-params
+        description: 'origin spec: grdn.specs.screener-response/put-screener-response-params'
+        schema:
+          type: object
+          properties:
+            screener-response-id:
+              type: string
+              format: uuid
+            updates:
+              type: object
+          required:
+          - screener-response-id
+          - updates
+          title: grdn.specs.screener-response/put-screener-response-params
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+    get:
+      summary: get-screener-response-handler
+      description: "Returns a list of screener responses associated with a patient. Applies to Eden screeners only.\n   If authorization is via patient, will ignore patient-id param and will instead return screeners\n   for that patient. Thin wrapper around multimethod which dispatches based on identity."
+      tags:
+      - grdn.routes.impl.screener-response
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.screener-response/get-screener-params'
+        required: true
+        type: string
+        format: uuid
+      - in: query
+        name: completed
+        description: 'origin spec: grdn.specs.screener-response/get-screener-params'
+        required: false
+        type: boolean
+      - in: query
+        name: show-on-load
+        description: 'origin spec: grdn.specs.screener-response/get-screener-params'
+        required: false
+        type: boolean
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+    delete:
+      summary: delete-screener-response-handler
+      description: "Given a an outstanding screener response, delete the pending screener. Applies to Eden screeners\n   only."
+      tags:
+      - grdn.routes.impl.screener-response
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.screener-response/delete-screener-params'
+        required: null
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /v2/patient/{patient-id}/screener-response/welcome:
+    post:
+      summary: send-welcome-message-handler
+      description: Sends a welcome message when user completes all onboarding screeners.
+      tags:
+      - grdn.routes.impl.screener-response
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: '
+        required: null
+      responses:
+        default:
+          description: Default success response.
+          schema: {}

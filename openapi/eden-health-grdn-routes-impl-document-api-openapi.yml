@@ -1,0 +1,950 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.document API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.document
+  description: null
+paths:
+  /v2/document:
+    post:
+      summary: post-document-handler
+      description: Uploads documents to S3 and send to sb channel
+      tags:
+      - grdn.routes.impl.document
+      parameters:
+      - in: body
+        name: grdn.specs.document/upload-document-spec
+        description: 'origin spec: grdn.specs.document/upload-document-spec'
+        schema:
+          type: object
+          properties:
+            patient-id:
+              type: string
+              format: uuid
+            channel-id:
+              type: string
+              format: uuid
+            is-dependent:
+              x-anyOf:
+              - {}
+              - {}
+            file:
+              type: object
+              properties:
+                tempfile: {}
+                filename:
+                  type: string
+                content-type:
+                  enum:
+                  - image/png
+                  - application/pdf
+                  - image/jpeg
+                  type: string
+                size:
+                  type: integer
+              required:
+              - tempfile
+              - filename
+              - content-type
+              - size
+              title: grdn.specs.document/file
+            title:
+              type: string
+              allowEmptyValue: true
+              x-allOf:
+              - type: string
+                allowEmptyValue: true
+              - {}
+            notes:
+              type: string
+              allowEmptyValue: true
+              x-allOf:
+              - type: string
+                allowEmptyValue: true
+              - {}
+            internal-notes:
+              type: string
+              allowEmptyValue: true
+              x-allOf:
+              - type: string
+                allowEmptyValue: true
+              - {}
+            patient-document-type-id:
+              type: string
+              format: uuid
+          required:
+          - patient-id
+          - channel-id
+          - is-dependent
+          - file
+          title: grdn.specs.document/upload-document-spec
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              patient-document-id:
+                type: string
+                format: uuid
+            required:
+            - patient-document-id
+            title: grdn.specs.document/upload-document-response-spec
+    get:
+      summary: get-documents-handler
+      description: ''
+      tags:
+      - grdn.routes.impl.document
+      parameters:
+      - in: query
+        name: patient-id
+        description: 'origin spec: grdn.specs.document/get-documents-spec'
+        required: true
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              stats:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  latest-uploaded-at: {}
+                required:
+                - count
+                - latest-uploaded-at
+                title: grdn.specs.document/stats
+              documents:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    file-path:
+                      type: string
+                    deleted-at: {}
+                    uploaded-to-athena-at: {}
+                    provider-id:
+                      type: string
+                      format: uuid
+                    patient-id:
+                      type: string
+                      format: uuid
+                    id:
+                      type: string
+                      format: uuid
+                    patient-document-type-id:
+                      type: string
+                      format: uuid
+                    internal-notes:
+                      type: string
+                      x-nullable: true
+                      x-allOf:
+                      - type: string
+                        x-nullable: true
+                      - {}
+                    last-updated-by-provider-name:
+                      type: string
+                      x-nullable: true
+                    updated-at: {}
+                    deleted-reason:
+                      enum:
+                      - ''
+                      - wrong-patient
+                      - duplicate
+                      - irrelevant
+                      type: string
+                      x-nullable: true
+                    mimetype:
+                      type: string
+                      x-nullable: true
+                    created-at: {}
+                    last-updated-by-provider-id:
+                      type: string
+                      format: uuid
+                      x-nullable: true
+                    title:
+                      type: string
+                      x-nullable: true
+                      x-allOf:
+                      - type: string
+                        x-nullable: true
+                      - {}
+                    type:
+                      type: string
+                      x-nullable: true
+                    uploaded-by:
+                      enum:
+                      - provider
+                      - patient
+                      type: string
+                    athena-id:
+                      type: string
+                      x-nullable: true
+                    notes:
+                      type: string
+                      x-nullable: true
+                      x-allOf:
+                      - type: string
+                        x-nullable: true
+                      - {}
+                    size:
+                      type: integer
+                    is-dependent:
+                      x-anyOf:
+                      - {}
+                      - {}
+                    filename:
+                      type: string
+                  required:
+                  - id
+                  - patient-id
+                  - provider-id
+                  - file-path
+                  - athena-id
+                  - type
+                  - patient-document-type-id
+                  - uploaded-by
+                  - created-at
+                  - deleted-at
+                  - deleted-reason
+                  - filename
+                  - is-dependent
+                  - mimetype
+                  - notes
+                  - internal-notes
+                  - size
+                  - title
+                  - uploaded-to-athena-at
+                  - updated-at
+                  - last-updated-by-provider-id
+                  - last-updated-by-provider-name
+                  title: grdn.specs.document/patient-document
+            required:
+            - stats
+            - documents
+            title: grdn.specs.document/get-documents-response-spec
+  /v2/document/type:
+    get:
+      summary: get-document-types-handler
+      description: Gets list of patient document types.
+      tags:
+      - grdn.routes.impl.document
+      parameters: []
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                created-at: {}
+                updated-at: {}
+                name:
+                  type: string
+                identifier:
+                  type: string
+                description:
+                  type: string
+                  x-nullable: true
+                is-athena-upload:
+                  type: boolean
+                is-managed:
+                  type: boolean
+              required:
+              - id
+              - created-at
+              - updated-at
+              - name
+              - identifier
+              - description
+              - is-athena-upload
+              - is-managed
+              title: grdn.specs.document-type/document-type
+  /v2/document/{patient-document-id}:
+    delete:
+      summary: delete-document-handler
+      description: Deletes specified patient document.
+      tags:
+      - grdn.routes.impl.document
+      parameters:
+      - in: path
+        name: patient-document-id
+        description: 'origin spec: grdn.specs.document/delete-document-spec'
+        required: true
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+    put:
+      summary: update-document-handler
+      description: Updates specified patient document.
+      tags:
+      - grdn.routes.impl.document
+      parameters:
+      - in: path
+        name: patient-document-id
+        description: 'origin spec: '
+        required: null
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+    get:
+      summary: get-document-metadata-handler
+      description: ''
+      tags:
+      - grdn.routes.impl.document
+      parameters:
+      - in: path
+        name: patient-document-id
+        description: 'origin spec: grdn.specs.document/get-document-metadata-spec'
+        required: true
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              deleted-at: {}
+              provider-id:
+                type: string
+                format: uuid
+              patient-id:
+                type: string
+                format: uuid
+              id:
+                type: string
+                format: uuid
+              patient-document-type-id:
+                type: string
+                format: uuid
+              last-updated-by-provider-name:
+                type: string
+                x-nullable: true
+              updated-at: {}
+              deleted-reason:
+                enum:
+                - ''
+                - wrong-patient
+                - duplicate
+                - irrelevant
+                type: string
+                x-nullable: true
+              created-at: {}
+              last-updated-by-provider-id:
+                type: string
+                format: uuid
+                x-nullable: true
+              uploaded-by:
+                enum:
+                - provider
+                - patient
+                type: string
+            required:
+            - id
+            - patient-id
+            - provider-id
+            - patient-document-type-id
+            - uploaded-by
+            - created-at
+            - deleted-at
+            - deleted-reason
+            - updated-at
+            - last-updated-by-provider-id
+            - last-updated-by-provider-name
+            title: grdn.specs.document/deleted-patient-document
+            x-anyOf:
+            - type: object
+              properties:
+                deleted-at: {}
+                provider-id:
+                  type: string
+                  format: uuid
+                patient-id:
+                  type: string
+                  format: uuid
+                id:
+                  type: string
+                  format: uuid
+                patient-document-type-id:
+                  type: string
+                  format: uuid
+                last-updated-by-provider-name:
+                  type: string
+                  x-nullable: true
+                updated-at: {}
+                deleted-reason:
+                  enum:
+                  - ''
+                  - wrong-patient
+                  - duplicate
+                  - irrelevant
+                  type: string
+                  x-nullable: true
+                created-at: {}
+                last-updated-by-provider-id:
+                  type: string
+                  format: uuid
+                  x-nullable: true
+                uploaded-by:
+                  enum:
+                  - provider
+                  - patient
+                  type: string
+              required:
+              - id
+              - patient-id
+              - provider-id
+              - patient-document-type-id
+              - uploaded-by
+              - created-at
+              - deleted-at
+              - deleted-reason
+              - updated-at
+              - last-updated-by-provider-id
+              - last-updated-by-provider-name
+              title: grdn.specs.document/deleted-patient-document
+  /v2/document/{patient-document-id}/download:
+    get:
+      summary: get-document-handler
+      description: ''
+      tags:
+      - grdn.routes.impl.document
+      parameters:
+      - in: path
+        name: patient-document-id
+        description: 'origin spec: grdn.specs.document/get-document-spec'
+        required: true
+        type: string
+        format: uuid
+      - in: query
+        name: source
+        description: 'origin spec: grdn.specs.document/get-document-spec'
+        required: false
+        enum:
+        - chat
+        - files
+        type: string
+        allowEmptyValue: true
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /v2/patient/{patient-id}/document/covid-test-result:
+    post:
+      summary: post-covid-test-result-handler
+      description: Uploads a patient's test result document to Athena and S3.
+      tags:
+      - grdn.routes.impl.document
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.document/upload-covid-test-document-spec'
+        required: true
+        type: string
+        format: uuid
+      - in: body
+        name: grdn.specs.document/upload-covid-test-document-spec
+        description: 'origin spec: grdn.specs.document/upload-covid-test-document-spec'
+        schema:
+          type: object
+          properties:
+            test-document-type:
+              enum:
+              - Rapid Molecular
+              - PCR
+              - Rapid Antigen
+              type: string
+            document:
+              type: string
+            test-date:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            test-result:
+              type: string
+              allowEmptyValue: true
+            proctored:
+              type: boolean
+              allowEmptyValue: true
+          required:
+          - test-document-type
+          - document
+          - test-date
+          - test-result
+          - proctored
+          title: grdn.specs.document/upload-covid-test-document-spec
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              lab-result-id:
+                type: string
+              name:
+                type: string
+              administration-date:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              result:
+                type: string
+                x-nullable: true
+              test-attestation-data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    test-result:
+                      type: string
+                      x-nullable: true
+                    proctored:
+                      type: boolean
+                      x-nullable: true
+                  required:
+                  - test-result
+                  - proctored
+              description:
+                type: string
+              provider-id:
+                type: string
+                format: uuid
+                x-nullable: true
+            required:
+            - lab-result-id
+            - name
+            - administration-date
+            - result
+            - test-attestation-data
+            title: grdn.specs.document/upload-covid-test-document-response-spec
+  /v2/patient/{patient-id}/document/lab-result:
+    get:
+      summary: get-lab-results-summary-handler
+      description: Returns a summary of patient's lab results.
+      tags:
+      - grdn.routes.impl.document
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.document/get-lab-results-summary-spec'
+        required: true
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              lab-results:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    lab-result-id:
+                      type: string
+                    administration-date:
+                      type: string
+                      x-allOf:
+                      - type: string
+                      - {}
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    document-type-id:
+                      type: string
+                    test-attestation-data:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          test-result:
+                            type: string
+                            x-nullable: true
+                          proctored:
+                            type: boolean
+                            x-nullable: true
+                        required:
+                        - test-result
+                        - proctored
+                    result:
+                      type: string
+                      x-nullable: true
+                  required:
+                  - lab-result-id
+                  - administration-date
+                  - name
+                  - description
+            required:
+            - lab-results
+            title: grdn.specs.document/get-lab-results-summary-response-spec
+  /v2/patient/{patient-id}/document/lab-result/{lab-result-id}:
+    get:
+      summary: get-lab-result-handler
+      description: Returns a single detailed lab result.
+      tags:
+      - grdn.routes.impl.document
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.document/get-lab-result-spec'
+        required: true
+        type: string
+        format: uuid
+      - in: path
+        name: lab-result-id
+        description: 'origin spec: grdn.specs.document/get-lab-result-spec'
+        required: true
+        type: string
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              lab-result-id:
+                type: string
+              name:
+                type: string
+              administration-date:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              description:
+                type: string
+              result:
+                type: string
+                x-nullable: true
+              provider-id:
+                type: string
+                format: uuid
+                x-nullable: true
+            required:
+            - lab-result-id
+            - name
+            - administration-date
+            - description
+            - result
+            - provider-id
+            title: grdn.specs.document/get-lab-result-response-spec
+  /v2/patient/{patient-id}/document/lab-result/{lab-result-id}/file:
+    get:
+      summary: get-lab-result-file-handler
+      description: ''
+      tags:
+      - grdn.routes.impl.document
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: '
+        required: null
+      - in: path
+        name: lab-result-id
+        description: 'origin spec: '
+        required: null
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /v2/patient/{patient-id}/document/primary-insurance-card:
+    get:
+      summary: get-primary-insurance-card-handler
+      description: Get the member's primary insurance card image.
+      tags:
+      - grdn.routes.impl.document
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: true
+        type: string
+        format: uuid
+      - in: query
+        name: funnel-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: false
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /v2/patient/{patient-id}/document/vaccine:
+    post:
+      summary: post-vaccine-document-handler
+      description: Uploads a patient's vaccine document to Athena and S3.
+      tags:
+      - grdn.routes.impl.document
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.document/upload-vaccine-document-spec'
+        required: true
+        type: string
+        format: uuid
+      - in: body
+        name: grdn.specs.document/upload-vaccine-document-spec
+        description: 'origin spec: grdn.specs.document/upload-vaccine-document-spec'
+        schema:
+          type: object
+          properties:
+            document-type:
+              enum:
+              - covid-vaccine
+              - covid-test
+              type: string
+            document:
+              type: string
+            attestation-data:
+              type: object
+              properties:
+                dose-nr:
+                  type: integer
+                vaccinator:
+                  type: string
+                administer-date:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                manufacturer:
+                  enum:
+                  - Pfizer
+                  - Novavax
+                  - Johnson & Johnson
+                  - AstraZeneca
+                  - Moderna
+                  - Other
+                  type: string
+              required:
+              - dose-nr
+              - vaccinator
+              title: grdn.specs.document/attestation-data
+          required:
+          - document-type
+          - document
+          title: grdn.specs.document/upload-vaccine-document-spec
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              vaccine:
+                type: object
+                properties:
+                  administration-date:
+                    type: string
+                    x-allOf:
+                    - type: string
+                    - {}
+                  status:
+                    enum:
+                    - REFUSED
+                    - ADMINISTERED
+                    - PRESCRIBED
+                    type: string
+                  vaccinator:
+                    type: string
+                  vaccine-id:
+                    type: string
+                  attestation-data:
+                    type: object
+                    properties:
+                      dose-nr:
+                        type: integer
+                      vaccinator:
+                        type: string
+                      administer-date:
+                        type: string
+                        x-allOf:
+                        - type: string
+                        - {}
+                      manufacturer:
+                        enum:
+                        - Pfizer
+                        - Novavax
+                        - Johnson & Johnson
+                        - AstraZeneca
+                        - Moderna
+                        - Other
+                        type: string
+                    required:
+                    - dose-nr
+                    - vaccinator
+                    title: grdn.specs.document/attestation-data
+                  description:
+                    type: string
+                  lot-number:
+                    type: string
+                required:
+                - administration-date
+                - status
+                - vaccinator
+                - vaccine-id
+                title: grdn.specs.document/vaccine
+            required:
+            - vaccine
+            title: grdn.specs.document/upload-vaccine-document-response-spec
+    get:
+      summary: get-vaccines-handler
+      description: Retrieves the patient's vaccinations. For now, filters for COVID vaccines.
+      tags:
+      - grdn.routes.impl.document
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.document/get-vaccines-spec'
+        required: true
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              vaccines:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    administration-date:
+                      type: string
+                      x-allOf:
+                      - type: string
+                      - {}
+                    status:
+                      enum:
+                      - REFUSED
+                      - ADMINISTERED
+                      - PRESCRIBED
+                      type: string
+                    vaccinator:
+                      type: string
+                    vaccine-id:
+                      type: string
+                    attestation-data:
+                      type: object
+                      properties:
+                        dose-nr:
+                          type: integer
+                        vaccinator:
+                          type: string
+                        administer-date:
+                          type: string
+                          x-allOf:
+                          - type: string
+                          - {}
+                        manufacturer:
+                          enum:
+                          - Pfizer
+                          - Novavax
+                          - Johnson & Johnson
+                          - AstraZeneca
+                          - Moderna
+                          - Other
+                          type: string
+                      required:
+                      - dose-nr
+                      - vaccinator
+                      title: grdn.specs.document/attestation-data
+                    description:
+                      type: string
+                    lot-number:
+                      type: string
+                  required:
+                  - administration-date
+                  - status
+                  - vaccinator
+                  - vaccine-id
+                  title: grdn.specs.document/vaccine
+            required:
+            - vaccines
+            title: grdn.specs.document/get-vaccines-response-spec
+  /v2/patient/{patient-id}/document/vaccine/{vaccine-id}:
+    get:
+      summary: get-vaccine-document-handler
+      description: ''
+      tags:
+      - grdn.routes.impl.document
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: '
+        required: null
+      - in: path
+        name: vaccine-id
+        description: 'origin spec: '
+        required: null
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /v2/patient/{patient-id}/order:
+    get:
+      summary: get-orders-handler
+      description: Returns all handlers associated with a patient
+      tags:
+      - grdn.routes.impl.document
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.document/get-orders-spec'
+        required: true
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                created-date-time: {}
+                order-type:
+                  enum:
+                  - LAB
+                  - PRESCRIPTION
+                  - IMAGING
+                  type: string
+                order-status:
+                  enum:
+                  - COMPLETED
+                  - CREATED
+                  type: string
+                document-description:
+                  type: string
+              required:
+              - id
+              - created-date-time
+              - order-type
+              - order-status
+              - document-description
+              title: grdn.specs.document/order

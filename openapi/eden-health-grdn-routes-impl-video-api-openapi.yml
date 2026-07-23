@@ -1,0 +1,247 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.video API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.video
+  description: Scheduling calls and querying call metadata
+paths:
+  /v2/meeting/{meeting-id}:
+    get:
+      summary: get-meeting-handler
+      description: Gets zoom video meeting data by id.
+      tags:
+      - grdn.routes.impl.video
+      parameters:
+      - in: path
+        name: meeting-id
+        description: 'origin spec: grdn.specs.video/get-meeting-params'
+        required: true
+        type: string
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              start-time:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              timezone:
+                type: string
+              assistant-id:
+                type: string
+              id:
+                type: number
+                format: double
+              uuid:
+                type: string
+              status:
+                type: string
+              created-at:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              duration:
+                type: integer
+                format: int64
+              join-url:
+                type: string
+              type:
+                type: integer
+                format: int64
+              host-id:
+                type: string
+              agenda:
+                type: string
+              host-email:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              topic:
+                type: string
+            required:
+            - join-url
+            - timezone
+            - host-email
+            - start-time
+            - type
+            - duration
+            - topic
+            - status
+            - id
+            - host-id
+            - uuid
+            - created-at
+            - assistant-id
+            - agenda
+            title: grdn.specs.video/get-meeting-response
+  /v2/schedule-meeting:
+    post:
+      summary: schedule-meeting-handler
+      description: Schedules a video meeting using provider zoom id.
+      tags:
+      - grdn.routes.impl.video
+      parameters:
+      - in: body
+        name: grdn.specs.video/schedule-meeting-params
+        description: 'origin spec: grdn.specs.video/schedule-meeting-params'
+        schema:
+          type: object
+          properties:
+            patient-id:
+              type: string
+              format: uuid
+            appointment-id:
+              type: string
+            email:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+          title: grdn.specs.video/schedule-meeting-params
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              start-time:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              timezone:
+                type: string
+              id:
+                type: number
+                format: double
+              uuid:
+                type: string
+              status:
+                type: string
+              created-at:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              duration:
+                type: integer
+                format: int64
+              join-url:
+                type: string
+              type:
+                type: integer
+                format: int64
+              host-id:
+                type: string
+              host-email:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              topic:
+                type: string
+            required:
+            - join-url
+            - timezone
+            - host-email
+            - start-time
+            - type
+            - duration
+            - topic
+            - status
+            - id
+            - host-id
+            - uuid
+            - created-at
+            title: grdn.specs.video/schedule-meeting-response
+  /v2/start-meeting:
+    post:
+      summary: start-meeting-handler
+      description: ''
+      tags:
+      - grdn.routes.impl.video
+      parameters:
+      - in: body
+        name: grdn.specs.video/start-meeting-params
+        description: 'origin spec: grdn.specs.video/start-meeting-params'
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+              x-allOf:
+              - type: string
+              - {}
+            patient-id:
+              type: string
+              format: uuid
+            zoom-meeting-id:
+              type: string
+          title: grdn.specs.video/start-meeting-params
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              start-time:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              timezone:
+                type: string
+              id:
+                type: number
+                format: double
+              uuid:
+                type: string
+              status:
+                type: string
+              created-at:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              duration:
+                type: integer
+                format: int64
+              join-url:
+                type: string
+              type:
+                type: integer
+                format: int64
+              host-id:
+                type: string
+              host-email:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              topic:
+                type: string
+            required:
+            - join-url
+            - timezone
+            - host-email
+            - start-time
+            - type
+            - duration
+            - topic
+            - status
+            - id
+            - host-id
+            - uuid
+            - created-at
+            title: grdn.specs.video/start-meeting-response

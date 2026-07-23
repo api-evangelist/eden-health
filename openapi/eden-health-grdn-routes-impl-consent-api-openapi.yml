@@ -1,0 +1,139 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.consent API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.consent
+  description: null
+paths:
+  /v2/patient/{patient-id}/consent:
+    get:
+      summary: get-patient-consent
+      description: "Given a consent name, depending on feature flags, gets latest version of the consent form or the\n   sponsor-specific covid consent version."
+      tags:
+      - grdn.routes.impl.consent
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.consent/get-patient-consent-params'
+        required: true
+        type: string
+        format: uuid
+      - in: query
+        name: name
+        description: 'origin spec: grdn.specs.consent/get-patient-consent-params'
+        required: true
+        type: string
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              name:
+                type: string
+              version:
+                type: string
+              url:
+                type: string
+              patient-id:
+                type: string
+                format: uuid
+                x-nullable: true
+              consented-at:
+                x-nullable: true
+              expires-at:
+                x-nullable: true
+            required:
+            - id
+            - name
+            - version
+            - url
+            - patient-id
+            - consented-at
+            title: grdn.specs.consent/consent
+    post:
+      summary: accept-patient-consent
+      description: ''
+      tags:
+      - grdn.routes.impl.consent
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.consent/accept-patient-consent-params'
+        required: true
+        type: string
+        format: uuid
+      - in: body
+        name: grdn.specs.consent/accept-patient-consent-params
+        description: 'origin spec: grdn.specs.consent/accept-patient-consent-params'
+        schema:
+          type: object
+          properties:
+            consent-id:
+              type: string
+              format: uuid
+          required:
+          - consent-id
+          title: grdn.specs.consent/accept-patient-consent-params
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            maxItems: 0
+            minItems: 0
+  /v2/patient/{patient-id}/expired-consents:
+    get:
+      summary: get-expired-consents
+      description: "Given a patient ID, gets each most recently expired consent that does not have a non-expired consent\n   for that consent ID.\n\n   As COVID consents are the only type of consent where the expected version for each patient depends\n   on their sponsor (as determined by the `sponsor-covid-consent-version` feature flag), COVID consents\n   are handled separately with specific logic detailed in APP-7188."
+      tags:
+      - grdn.routes.impl.consent
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.consent/get-expired-consents-params'
+        required: true
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                name:
+                  type: string
+                version:
+                  type: string
+                url:
+                  type: string
+                patient-id:
+                  type: string
+                  format: uuid
+                  x-nullable: true
+                consented-at:
+                  x-nullable: true
+                expires-at:
+                  x-nullable: true
+              required:
+              - id
+              - name
+              - version
+              - url
+              - patient-id
+              - consented-at
+              title: grdn.specs.consent/consent

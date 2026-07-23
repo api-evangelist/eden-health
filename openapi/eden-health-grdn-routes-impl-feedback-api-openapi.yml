@@ -1,0 +1,368 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.feedback API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.feedback
+  description: Contains handlers for routes related to Appointments, Cases, Encounters etc.
+paths:
+  /v2/case/{case-id}/feedback:
+    post:
+      summary: case-feedback-handler
+      description: Creates a requested feedback entry for a given patient case.
+      tags:
+      - grdn.routes.impl.feedback
+      parameters:
+      - in: path
+        name: case-id
+        description: 'origin spec: grdn.specs.feedback/case-feedback-handler-params'
+        required: true
+        type: number
+        format: double
+      - in: body
+        name: grdn.specs.feedback/case-feedback-handler-params
+        description: 'origin spec: grdn.specs.feedback/case-feedback-handler-params'
+        schema:
+          type: object
+          properties:
+            patient-id:
+              type: string
+              format: uuid
+          required:
+          - patient-id
+          title: grdn.specs.feedback/case-feedback-handler-params
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              feedback:
+                type: object
+                properties:
+                  type-id:
+                    type: string
+                  patient-id:
+                    type: string
+                    format: uuid
+                  id:
+                    type: string
+                    format: uuid
+                    x-anyOf:
+                    - type: string
+                      format: uuid
+                    - type: number
+                      format: double
+                  updated-at: {}
+                  submitted-at:
+                    x-nullable: true
+                  status:
+                    type: string
+                  created-at: {}
+                  type:
+                    enum:
+                    - case
+                    - appointment
+                    - pediatrics
+                    type: string
+                  mrn:
+                    type: number
+                    format: double
+                    x-nullable: true
+                  comment:
+                    type: string
+                    x-nullable: true
+                  rating:
+                    type: number
+                    format: double
+                    x-nullable: true
+                required:
+                - patient-id
+                - type
+                - type-id
+                - mrn
+                - updated-at
+                - status
+                - submitted-at
+                - id
+                - comment
+                - created-at
+                - rating
+                title: grdn.specs.feedback/feedback
+              event:
+                type: object
+                properties:
+                  provider-id:
+                    type: string
+                    format: uuid
+                    x-nullable: true
+                  patient-id:
+                    type: string
+                    format: uuid
+                    x-nullable: true
+                  id:
+                    type: string
+                    format: uuid
+                  ops-user-id:
+                    type: string
+                    format: uuid
+                    x-nullable: true
+                  updated-at: {}
+                  event-group:
+                    type: string
+                  event-data:
+                    type: object
+                  created-at: {}
+                  event-name:
+                    type: string
+                required:
+                - id
+                - created-at
+                - updated-at
+                - event-data
+                - event-group
+                - event-name
+                - ops-user-id
+                - provider-id
+                - patient-id
+                title: grdn.specs.event/event
+            required:
+            - feedback
+            - event
+            title: grdn.specs.feedback/case-feedback-handler-response
+  /v2/feedback:
+    post:
+      summary: send-feedback-handler
+      description: Sends feedback to all patients with a recent visit
+      tags:
+      - grdn.routes.impl.feedback
+      parameters: []
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /v2/patient/{patient-id}/feedback:
+    get:
+      summary: get-feedback-handler
+      description: Gets requested feedback survey for a patient
+      tags:
+      - grdn.routes.impl.feedback
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: true
+        type: string
+        format: uuid
+      - in: query
+        name: funnel-id
+        description: 'origin spec: grdn.specs/patient-id-params'
+        required: false
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              date:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+              department-id:
+                type: string
+                x-anyOf:
+                - type: string
+                - type: integer
+                  format: int64
+              feedback-id:
+                type: string
+                format: uuid
+                x-anyOf:
+                - type: string
+                  format: uuid
+                - type: number
+                  format: double
+              email:
+                type: string
+                x-allOf:
+                - type: string
+                - {}
+                x-nullable: true
+              feedback-reasons:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      x-anyOf:
+                      - type: string
+                        format: uuid
+                      - type: number
+                        format: double
+                    label:
+                      type: string
+                    created-at: {}
+                    updated-at: {}
+                    department-id:
+                      type: string
+                      x-anyOf:
+                      - type: string
+                      - type: integer
+                        format: int64
+                  required:
+                  - id
+                  - label
+                  - created-at
+                  - updated-at
+                  - department-id
+                  title: grdn.specs.feedback/feedback-reason
+              type:
+                enum:
+                - case
+                - appointment
+                - pediatrics
+                type: string
+              type-id:
+                type: string
+            required:
+            - date
+            - department-id
+            - feedback-id
+            - email
+            - feedback-reasons
+            - type
+            - type-id
+            title: grdn.specs.feedback/get-feedback-handler-response
+    put:
+      summary: submit-feedback-handler
+      description: Write patient feedback to db and send low rating alert if needed.
+      tags:
+      - grdn.routes.impl.feedback
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.feedback/submit-feedback-handler-params'
+        required: true
+        type: string
+        format: uuid
+      - in: body
+        name: grdn.specs.feedback/submit-feedback-handler-params
+        description: 'origin spec: grdn.specs.feedback/submit-feedback-handler-params'
+        schema:
+          type: object
+          properties:
+            feedback-id:
+              type: string
+              format: uuid
+              x-anyOf:
+              - type: string
+                format: uuid
+              - type: number
+                format: double
+            comment:
+              type: string
+              allowEmptyValue: true
+            deescalation-answer:
+              type: string
+              allowEmptyValue: true
+            rating:
+              type: number
+              format: double
+              allowEmptyValue: true
+            reason-ids:
+              type: array
+              items:
+                type: string
+                format: uuid
+          required:
+          - feedback-id
+          title: grdn.specs.feedback/submit-feedback-handler-params
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              feedback:
+                type: number
+                format: double
+              reasons:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      x-anyOf:
+                      - type: string
+                        format: uuid
+                      - type: number
+                        format: double
+                    created-at: {}
+                    updated-at: {}
+                    patient-feedback-id:
+                      type: string
+                      format: uuid
+                    patient-feedback-reason-id:
+                      type: string
+                      format: uuid
+                  required:
+                  - id
+                  - created-at
+                  - updated-at
+                  - patient-feedback-id
+                  - patient-feedback-reason-id
+                  title: grdn.specs.feedback/reason
+              event:
+                type: object
+                properties:
+                  provider-id:
+                    type: string
+                    format: uuid
+                    x-nullable: true
+                  patient-id:
+                    type: string
+                    format: uuid
+                    x-nullable: true
+                  id:
+                    type: string
+                    format: uuid
+                  ops-user-id:
+                    type: string
+                    format: uuid
+                    x-nullable: true
+                  updated-at: {}
+                  event-group:
+                    type: string
+                  event-data:
+                    type: object
+                  created-at: {}
+                  event-name:
+                    type: string
+                required:
+                - id
+                - created-at
+                - updated-at
+                - event-data
+                - event-group
+                - event-name
+                - ops-user-id
+                - provider-id
+                - patient-id
+                title: grdn.specs.event/event
+            required:
+            - feedback
+            - reasons
+            - event
+            title: grdn.specs.feedback/submit-feedback-handler-response

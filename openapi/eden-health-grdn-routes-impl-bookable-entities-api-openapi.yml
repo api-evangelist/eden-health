@@ -1,0 +1,248 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.bookable-entities API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.bookable-entities
+  description: null
+paths:
+  /v2/bookable-entities:
+    get:
+      summary: get-bookable-entities-handler
+      description: Gets all departments and appointment reasons.
+      tags:
+      - grdn.routes.impl.bookable-entities
+      parameters: []
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              patientappointmentreasons:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    schedulingminhours:
+                      type: number
+                      format: double
+                    reasontype:
+                      type: string
+                    reason:
+                      type: string
+                    description:
+                      type: string
+                    reason-id:
+                      type: number
+                      format: double
+                    schedulingmaxdays:
+                      type: number
+                      format: double
+                    department-ids:
+                      type: array
+                      items:
+                        type: number
+                        format: double
+                  required:
+                  - schedulingminhours
+                  - reasontype
+                  - reason
+                  - description
+                  - reason-id
+                  - schedulingmaxdays
+                  - department-ids
+                  title: grdn.specs.bookable-entities/patientappointmentreason
+              departments:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    city:
+                      type: string
+                    address-1:
+                      type: string
+                      x-allOf:
+                      - type: string
+                      - {}
+                    longitude:
+                      type: string
+                    id:
+                      type: number
+                      format: double
+                    time-zone-offset:
+                      type: number
+                      format: double
+                    latitude:
+                      type: string
+                    short-name:
+                      type: string
+                      x-nullable: true
+                    name:
+                      type: string
+                      x-nullable: true
+                    time-zone-name:
+                      type: string
+                    time-zone:
+                      type: number
+                      format: double
+                    address:
+                      type: string
+                    address-2:
+                      type: string
+                      x-nullable: true
+                    state:
+                      type: string
+                    zip:
+                      type: string
+                    provider-list:
+                      type: array
+                      items:
+                        type: integer
+                        format: int64
+                  required:
+                  - id
+                  - name
+                  title: grdn.specs.bookable-entities/department
+              popups:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    end-date: {}
+                    end-time:
+                      type: string
+                      x-nullable: true
+                    start-time:
+                      type: string
+                      x-nullable: true
+                    athena-reason-id:
+                      type: integer
+                      format: int64
+                    city:
+                      type: string
+                      x-allOf:
+                      - type: string
+                      - {}
+                      x-nullable: true
+                    address-1:
+                      type: string
+                      x-allOf:
+                      - type: string
+                      - {}
+                      x-nullable: true
+                    id:
+                      type: string
+                      format: uuid
+                    athena-scheduling-provider-id:
+                      type: integer
+                      format: int64
+                      x-nullable: true
+                    updated-at: {}
+                    popup-state:
+                      enum:
+                      - draft
+                      - active
+                      type: string
+                    name:
+                      type: string
+                    created-at: {}
+                    instructions:
+                      type: string
+                      x-nullable: true
+                    eligible-members:
+                      enum:
+                      - employees_and_dependents
+                      - employees_only
+                      type: string
+                    sponsor-id:
+                      type: string
+                      format: uuid
+                    address-2:
+                      type: string
+                      x-nullable: true
+                    state:
+                      type: string
+                      x-allOf:
+                      - type: string
+                      - {}
+                      x-nullable: true
+                    time-zone-id:
+                      type: string
+                    date: {}
+                    division-ids:
+                      type: array
+                      items:
+                        type: string
+                        format: uuid
+                        x-nullable: true
+                    zip:
+                      type: string
+                      x-allOf:
+                      - type: string
+                      - {}
+                      x-nullable: true
+                  required:
+                  - sponsor-id
+                  - date
+                  - name
+                  - athena-reason-id
+                  - athena-scheduling-provider-id
+                  - address-1
+                  - city
+                  - state
+                  - zip
+                  - popup-state
+                  - created-at
+                  - updated-at
+                  - id
+                  - instructions
+                  - address-2
+                  - time-zone-id
+                  title: grdn.specs.popup/popup
+              reasongroups:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    athena-reason-ids:
+                      type: array
+                      items:
+                        type: number
+                        format: double
+                    display-order:
+                      type: number
+                      format: double
+                    skip-reason-selection:
+                      type: boolean
+                  required:
+                  - id
+                  - name
+                  - description
+                  - athena-reason-ids
+                  - display-order
+                  - skip-reason-selection
+                  title: grdn.specs.reason-group/group
+              departmentgroups:
+                type: array
+                items:
+                  type: string
+            required:
+            - patientappointmentreasons
+            - departments
+            - popups
+            - reasongroups
+            - departmentgroups
+            title: grdn.specs.bookable-entities/get-bookable-entities-response

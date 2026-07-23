@@ -1,0 +1,75 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.images API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.images
+  description: Handlers for image upload and download.
+paths:
+  /v2/image/{patient-id}:
+    post:
+      summary: post-image-handler
+      description: Posts an image to s3, then sends a sendbird message on behalf of the user.
+      tags:
+      - grdn.routes.impl.images
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.images/post-image-params'
+        required: true
+        type: string
+        format: uuid
+      - in: body
+        name: grdn.specs.images/post-image-params
+        description: 'origin spec: grdn.specs.images/post-image-params'
+        schema:
+          type: object
+          properties:
+            channel-id:
+              type: string
+              format: uuid
+            image:
+              type: string
+          required:
+          - channel-id
+          - image
+          title: grdn.specs.images/post-image-params
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
+  /v2/image/{patient-id}/{image-id}:
+    get:
+      summary: get-image-handler
+      description: Gets an image from s3.
+      tags:
+      - grdn.routes.impl.images
+      parameters:
+      - in: path
+        name: patient-id
+        description: 'origin spec: grdn.specs.images/get-image-params'
+        required: true
+        type: string
+        format: uuid
+      - in: path
+        name: image-id
+        description: 'origin spec: grdn.specs.images/get-image-params'
+        required: true
+        type: string
+        format: uuid
+      responses:
+        default:
+          description: Default success response.
+          schema:
+            type: object
+            properties:
+              image:
+                type: string
+            required:
+            - image
+            title: grdn.specs.images/get-image-response

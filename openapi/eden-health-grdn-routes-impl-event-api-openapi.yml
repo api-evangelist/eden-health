@@ -1,0 +1,79 @@
+swagger: '2.0'
+info:
+  version: null
+  title: Grdn grdn.handler grdn.routes.impl.event API
+  description: Eden Health Inc. primary backend API service.
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: grdn.routes.impl.event
+  description: Route implementation for our various event posting endpoints.
+paths:
+  /v2/event:
+    post:
+      summary: create-event-handler
+      description: "Creates an Event.\n   Determines the caller from the request identity,\n   then dispatches the post-event multimethod accordingly."
+      tags:
+      - grdn.routes.impl.event
+      parameters:
+      - in: body
+        name: null
+        description: 'origin spec: '
+        schema:
+          type: object
+          properties:
+            event-data:
+              type: object
+            event-group:
+              type: string
+            event-name:
+              type: string
+          required:
+          - event-data
+          - event-group
+          - event-name
+          x-anyOf:
+          - type: object
+            properties:
+              event-data:
+                type: object
+              event-group:
+                type: string
+              event-name:
+                type: string
+            required:
+            - event-data
+            - event-group
+            - event-name
+          - type: object
+            properties:
+              email:
+                type: string
+              eventName:
+                type: string
+              dataFields:
+                type: object
+            required:
+            - email
+            - eventName
+            - dataFields
+          - type: object
+            properties: {}
+          - type: object
+            properties:
+              event:
+                type: string
+              payload:
+                type: object
+              authtoken:
+                type: string
+            required:
+            - event
+            - payload
+            - authtoken
+      responses:
+        default:
+          description: Default success response.
+          schema: {}
