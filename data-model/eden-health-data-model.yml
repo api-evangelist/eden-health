@@ -1,0 +1,102 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/eden-health-grdn-openapi-original.json
+# Entity graph DERIVED from the Grdn Swagger 2.0 path structure and id path-parameters.
+# The spec declares NO components/definitions schemas, so relationships are inferred from
+# nested resource paths (e.g. /v2/patient/{patient-id}/encounter/{encounter-id}) and id
+# path-params only — field-level $ref links are unavailable. No id-prefix/domain data.
+entities:
+  - name: patient
+    id_param: patient-id
+  - name: pediatric-patient
+    id_param: pediatric-patient-id
+  - name: member
+    id_param: member-id
+  - name: membership
+    id_param: patient-id
+  - name: sponsor
+    id_param: sponsor-id
+  - name: appointment
+    id_param: appointment-id
+  - name: encounter
+    id_param: encounter-id
+  - name: document
+    id_param: patient-document-id
+  - name: lab-result
+    id_param: lab-result-id
+  - name: vaccine
+    id_param: vaccine-id
+  - name: image
+    id_param: image-id
+  - name: insurance
+    id_param: insurance-id
+  - name: channel
+    id_param: channel-id
+  - name: message
+    id_param: message-id
+  - name: next-step
+    id_param: next-step-id
+  - name: macro
+    id_param: macro-id
+  - name: careteam
+  - name: care-pod
+  - name: addon
+    id_param: external-addon-id
+  - name: tickler
+    id_param: tickler-athena-id
+relationships:
+  - from: patient
+    type: has_many
+    to: encounter
+    via: patient-id
+    evidence: /v2/patient/{patient-id}/encounter/{encounter-id}
+  - from: patient
+    type: has_many
+    to: document
+    via: patient-id
+    evidence: /v2/patient/{patient-id}/document/...
+  - from: patient
+    type: has_many
+    to: lab-result
+    via: patient-id
+    evidence: /v2/patient/{patient-id}/document/lab-result/{lab-result-id}
+  - from: patient
+    type: has_many
+    to: vaccine
+    via: patient-id
+    evidence: /v2/patient/{patient-id}/document/vaccine/{vaccine-id}
+  - from: patient
+    type: has_many
+    to: next-step
+    via: patient-id
+    evidence: /v2/patient/{patient-id}/next-steps/{next-step-id}
+  - from: patient
+    type: has_many
+    to: insurance
+    via: patient-id
+    evidence: /v2/patient/{patient-id}/insurance/{insurance-id}/eligibility
+  - from: patient
+    type: has_many
+    to: image
+    via: patient-id
+    evidence: /v2/image/{patient-id}/{image-id}
+  - from: membership
+    type: belongs_to
+    to: patient
+    via: patient-id
+    evidence: /v2/membership/{patient-id}/family
+  - from: member
+    type: has_many
+    to: document
+    via: member-id
+    evidence: /v2/member/{member-id}/document/vaccine/{document-id}
+  - from: channel
+    type: has_many
+    to: message
+    via: channel-id
+    evidence: /v2/channel/{channel-id}/message/{message-id}/delete
+  - from: appointment
+    type: belongs_to
+    to: patient
+    via: patient-id
+    evidence: appointment/booking operations are patient-scoped

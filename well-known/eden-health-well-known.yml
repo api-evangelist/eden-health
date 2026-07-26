@@ -1,0 +1,23 @@
+generated: '2026-07-19'
+method: searched
+# Live probe of /.well-known/ and common discovery paths on the reachable Eden Health API
+# host. edenhealth.com (marketing) is unreachable over TLS (handshake internal error). All
+# probed discovery documents returned 404 — recorded for auditability; no 200s, so no raw
+# files were saved and no WellKnown/SecurityTxt pointer is wired.
+host: https://api.edenhealth.com
+documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /swagger.json
+    status: 200
+    note: harvested to openapi/eden-health-grdn-openapi-original.json (Swagger 2.0)

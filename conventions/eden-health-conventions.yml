@@ -1,0 +1,43 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/eden-health-grdn-openapi-original.json
+api: openapi/eden-health-grdn-openapi-original.json
+# Cross-cutting request/response semantics derived from the harvested Grdn (Guardian)
+# Swagger 2.0. DERIVED from the spec only — the provider publishes no developer docs to
+# confirm these, so unstated semantics are recorded as "undocumented" rather than invented.
+conventions:
+  media_types:
+    request: [application/json]
+    response: [application/json]
+  versioning:
+    style: uri-path
+    current: v2
+    evidence: all product paths are prefixed /v2/...
+  identifiers:
+    style: kebab-case path/query parameters
+    examples: [patient-id, appointment-id, member-id, funnel-id, encounter-id]
+  authentication:
+    documented: false
+    note: >-
+      A POST /v2/auth endpoint exists, but the spec declares no securitySchemes and no
+      security[] requirements, so the token model is undocumented. Not asserted here to
+      avoid fabrication.
+  idempotency:
+    supported: false
+    note: No Idempotency-Key header or idempotent-retry contract is documented in the spec.
+  pagination:
+    style: undocumented
+    sort_params: [sort-by, sort-direction]
+    note: >-
+      A few list endpoints accept sort-by / sort-direction query params; no cursor/offset
+      pagination parameters or response envelope are declared in the spec.
+  error_envelope:
+    format: undocumented
+    note: All operations declare a single "default" response with no schema; no RFC 9457
+      problem+json is present. See errors/ (not derivable from this spec).
+  rate_limit_signaling:
+    documented: false
+cross_links:
+  lifecycle: lifecycle/eden-health-lifecycle.yml
+  data_model: data-model/eden-health-data-model.yml
+  agentic_access: agentic-access/eden-health-agentic-access.yml

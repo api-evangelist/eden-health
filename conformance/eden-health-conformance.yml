@@ -1,0 +1,36 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/eden-health-grdn-openapi-original.json
+# Cross-cutting standards conformance DERIVED from the harvested Grdn Swagger 2.0.
+# No published compliance program was found (marketing/trust site unreachable), so NO
+# type: Compliance pointer is emitted — this asserts technical standards only.
+standards:
+  - id: rest
+    conforms: true
+    evidence: resource-oriented HTTP paths with GET/POST/PUT/DELETE over JSON
+  - id: json-media-type
+    conforms: true
+    evidence: produces/consumes application/json
+  - id: uri-path-versioning
+    conforms: true
+    evidence: all product paths prefixed /v2/
+  - id: oauth2
+    conforms: false
+    evidence: no oauth2 securityScheme declared in spec
+  - id: oidc
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: responses declared "default" only; no application/problem+json
+  - id: fhir-r4
+    conforms: false
+    evidence: bespoke resource model, not FHIR resource shapes
+  - id: scim
+    conforms: false
+  - id: odata
+    conforms: false
+  - id: json-api
+    conforms: false
+  - id: asyncapi
+    conforms: false
+    evidence: no published event/streaming surface (only an inbound sendbird-webhook receiver)

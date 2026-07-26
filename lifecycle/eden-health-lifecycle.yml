@@ -1,0 +1,23 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/eden-health-grdn-openapi-original.json
+# DERIVED from the harvested Grdn Swagger 2.0. Eden Health publishes no public versioning /
+# deprecation policy, SLA, or status page (the marketing site is unreachable over TLS), so
+# only what the spec evidences is recorded. No StatusPage / Deprecation pointer is emitted
+# because no policy page or Sunset-header support was found.
+versioning:
+  scheme: uri-path
+  current: v2
+  evidence: all product paths are prefixed /v2/...
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    A legacy GET /appdata operation (summary "app-data-deprecated-handler") is superseded by
+    GET /v2/app-data, but no operation carries a deprecated:true flag and there is no published
+    deprecation policy.
+  observed_deprecated_operations:
+    - "GET /appdata"
+sla:
+  url: null
+status_page: null
