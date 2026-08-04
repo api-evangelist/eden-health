@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  version: null
+  version: "1.0"
   title: Grdn grdn.handler grdn.routes.impl.sendbird API
   description: Eden Health Inc. primary backend API service.
 consumes:
