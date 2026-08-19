@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.macros API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.macros",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get-macro-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/macro"
+          },
+          "docs": "Returns all macros"
+        },
+        {
+          "info": {
+            "name": "post-macro-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/macro"
+          },
+          "docs": "Creates a new macro."
+        },
+        {
+          "info": {
+            "name": "put-macro-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/macro/:macro-id",
+            "params": [
+              {
+                "name": "macro-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.macros/put-macro-params"
+              }
+            ]
+          },
+          "docs": "Updates the given macro"
+        },
+        {
+          "info": {
+            "name": "delete-macro-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v2/macro/:macro-id",
+            "params": [
+              {
+                "name": "macro-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.macros/delete-macro-params"
+              }
+            ]
+          },
+          "docs": "Deletes the given macro"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

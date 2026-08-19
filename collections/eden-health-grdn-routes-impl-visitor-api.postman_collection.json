@@ -1,0 +1,327 @@
+{
+  "item": [
+    {
+      "id": "ca18422a-f432-4653-bef2-9d0426d737af",
+      "name": "grdn.routes.impl.visitor",
+      "description": {
+        "content": "Handlers for sponsor visitors",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9e426e1e-c1b3-437c-be5e-23a54cea6d20",
+          "name": "get-visitors",
+          "request": {
+            "name": "get-visitors",
+            "description": {
+              "content": "GET handler",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "visitor"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "day",
+                  "value": "<string>",
+                  "description": "origin spec: grdn.specs.visitor/get-visitors-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "triage-status",
+                  "value": "<string>",
+                  "description": "origin spec: grdn.specs.visitor/get-visitors-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort-by",
+                  "value": "<string>",
+                  "description": "origin spec: grdn.specs.visitor/get-visitors-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort-direction",
+                  "value": "<string>",
+                  "description": "origin spec: grdn.specs.visitor/get-visitors-params"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0661fdb-726b-40db-b7bb-54e653c9f03c",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "visitor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "day",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "triage-status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort-by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort-direction",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"081f00a5-5dc6-740d-7950-56113533d2ed\",\n    \"first-name\": \"string\",\n    \"last-name\": \"string\",\n    \"email\": \"string\",\n    \"contact-name\": \"string\",\n    \"contact-email\": \"string\",\n    \"last-triage-at\": \"\",\n    \"triage-status\": \"triage-status/incomplete\"\n  },\n  {\n    \"id\": \"0cba5617-68b8-568a-edc1-a112fb5f07ca\",\n    \"first-name\": \"string\",\n    \"last-name\": \"string\",\n    \"email\": \"string\",\n    \"contact-name\": \"string\",\n    \"contact-email\": \"string\",\n    \"last-triage-at\": \"\",\n    \"triage-status\": \"triage-status/never-taken\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "032c4526-7481-420a-91f9-5fd3dfe78d76",
+          "name": "get-sponsor-screener",
+          "request": {
+            "name": "get-sponsor-screener",
+            "description": {
+              "content": "Get sponsor name and screener by visitor code",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "visitor",
+                "screener"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "link-id",
+                  "value": "<string>",
+                  "description": "(Required) origin spec: grdn.specs.visitor/get-sponsor-screener-params"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1b1d9e81-7e58-43f4-bc9b-7dd137de8caa",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "visitor",
+                    "screener"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "link-id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sponsor-name\": \"string\",\n  \"screener-id\": \"1f133137-5f3e-4d1a-1b3f-e08938efca98\",\n  \"screener\": {\n    \"id\": \"6da954e6-45b7-f1be-a4e3-768b4cbfdff3\",\n    \"description\": \"string\",\n    \"scoring-status\": \"UNSCORED\",\n    \"name\": \"string\",\n    \"encounter-id\": \"string\",\n    \"questionnaire-id\": 8166,\n    \"sections\": [\n      {\n        \"key\": \"string\",\n        \"question-list\": [\n          {\n            \"key\": \"string\",\n            \"question-id\": \"string\",\n            \"question\": \"string\",\n            \"question-type\": \"MultipleChoice\",\n            \"prompt\": \"string\",\n            \"preamble\": \"string\",\n            \"answer\": 8977\n          },\n          {\n            \"key\": \"string\",\n            \"question-id\": \"string\",\n            \"question\": \"string\",\n            \"question-type\": \"MultipleSelect\",\n            \"prompt\": \"string\",\n            \"preamble\": \"string\",\n            \"answer\": 842\n          }\n        ],\n        \"header-text\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"question-list\": [\n          {\n            \"key\": \"string\",\n            \"question-id\": \"string\",\n            \"question\": \"string\",\n            \"question-type\": \"ThermoImageUpload\",\n            \"prompt\": \"string\",\n            \"preamble\": \"string\",\n            \"answer\": 3427\n          },\n          {\n            \"key\": \"string\",\n            \"question-id\": \"string\",\n            \"question\": \"string\",\n            \"question-type\": \"MultipleChoice\",\n            \"prompt\": \"string\",\n            \"preamble\": \"string\",\n            \"answer\": 9723\n          }\n        ],\n        \"header-text\": \"string\"\n      }\n    ],\n    \"screener-override-id\": \"c032c6bf-4dcd-01af-879b-051bfbf4f954\",\n    \"version\": \"string\"\n  },\n  \"override\": {\n    \"sections\": [\n      {\n        \"key\": \"string\",\n        \"question-list\": [\n          {\n            \"key\": \"string\",\n            \"question-id\": \"string\",\n            \"question\": \"string\",\n            \"question-type\": \"MultipleSelect\",\n            \"prompt\": \"string\",\n            \"preamble\": \"string\",\n            \"answer\": 9028\n          },\n          {\n            \"key\": \"string\",\n            \"question-id\": \"string\",\n            \"question\": \"string\",\n            \"question-type\": \"MultipleSelect\",\n            \"prompt\": \"string\",\n            \"preamble\": \"string\",\n            \"answer\": 2934\n          }\n        ],\n        \"header-text\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"question-list\": [\n          {\n            \"key\": \"string\",\n            \"question-id\": \"string\",\n            \"question\": \"string\",\n            \"question-type\": \"ThermoImageUpload\",\n            \"prompt\": \"string\",\n            \"preamble\": \"string\",\n            \"answer\": 2673\n          },\n          {\n            \"key\": \"string\",\n            \"question-id\": \"string\",\n            \"question\": \"string\",\n            \"question-type\": \"MultipleChoice\",\n            \"prompt\": \"string\",\n            \"preamble\": \"string\",\n            \"answer\": 3131\n          }\n        ],\n        \"header-text\": \"string\"\n      }\n    ],\n    \"id\": \"9be9b08e-d392-f647-7a6d-4af7be362dff\",\n    \"screener-override-id\": \"3303f425-88a2-40e5-dc3e-b4de29db9985\",\n    \"name\": \"string\",\n    \"encounter-id\": \"string\",\n    \"questionnaire-id\": 4590,\n    \"version\": \"string\",\n    \"scoring-status\": \"UNSCORED\",\n    \"description\": \"string\"\n  },\n  \"screener-override-id\": \"09f39596-2b22-2604-7068-958e83e9511f\",\n  \"vaccine-required\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c88e995d-ee71-4fad-b400-7ecc55a10664",
+          "name": "post-visitor-covid-19-screener",
+          "request": {
+            "name": "post-visitor-covid-19-screener",
+            "description": {
+              "content": "Handler for visitor COVID-19 screener",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "visitor",
+                "screener-response"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first-name\": \"<string>\",\n  \"last-name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"screener\": {\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"scoring-status\": \"<string>\",\n    \"name\": \"<string>\",\n    \"encounter-id\": \"<string>\",\n    \"questionnaire-id\": \"<long>\",\n    \"sections\": [\n      {\n        \"key\": \"<string>\",\n        \"question-list\": [\n          {\n            \"key\": \"<string>\",\n            \"question-id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"question-type\": \"<string>\",\n            \"prompt\": \"<string>\",\n            \"preamble\": \"<string>\",\n            \"answer\": \"<long>\"\n          },\n          {\n            \"key\": \"<string>\",\n            \"question-id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"question-type\": \"<string>\",\n            \"prompt\": \"<string>\",\n            \"preamble\": \"<string>\",\n            \"answer\": \"<long>\"\n          }\n        ],\n        \"header-text\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"question-list\": [\n          {\n            \"key\": \"<string>\",\n            \"question-id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"question-type\": \"<string>\",\n            \"prompt\": \"<string>\",\n            \"preamble\": \"<string>\",\n            \"answer\": \"<long>\"\n          },\n          {\n            \"key\": \"<string>\",\n            \"question-id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"question-type\": \"<string>\",\n            \"prompt\": \"<string>\",\n            \"preamble\": \"<string>\",\n            \"answer\": \"<long>\"\n          }\n        ],\n        \"header-text\": \"<string>\"\n      }\n    ],\n    \"screener-override-id\": \"<uuid>\",\n    \"version\": \"<string>\"\n  },\n  \"link-id\": \"<string>\",\n  \"contact-name\": \"<string>\",\n  \"contact-email\": \"<string>\",\n  \"is-vaccinated\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "370b92e6-e447-4d40-8943-bd0ec938bbc4",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "visitor",
+                    "screener-response"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first-name\": \"<string>\",\n  \"last-name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"screener\": {\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"scoring-status\": \"<string>\",\n    \"name\": \"<string>\",\n    \"encounter-id\": \"<string>\",\n    \"questionnaire-id\": \"<long>\",\n    \"sections\": [\n      {\n        \"key\": \"<string>\",\n        \"question-list\": [\n          {\n            \"key\": \"<string>\",\n            \"question-id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"question-type\": \"<string>\",\n            \"prompt\": \"<string>\",\n            \"preamble\": \"<string>\",\n            \"answer\": \"<long>\"\n          },\n          {\n            \"key\": \"<string>\",\n            \"question-id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"question-type\": \"<string>\",\n            \"prompt\": \"<string>\",\n            \"preamble\": \"<string>\",\n            \"answer\": \"<long>\"\n          }\n        ],\n        \"header-text\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"question-list\": [\n          {\n            \"key\": \"<string>\",\n            \"question-id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"question-type\": \"<string>\",\n            \"prompt\": \"<string>\",\n            \"preamble\": \"<string>\",\n            \"answer\": \"<long>\"\n          },\n          {\n            \"key\": \"<string>\",\n            \"question-id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"question-type\": \"<string>\",\n            \"prompt\": \"<string>\",\n            \"preamble\": \"<string>\",\n            \"answer\": \"<long>\"\n          }\n        ],\n        \"header-text\": \"<string>\"\n      }\n    ],\n    \"screener-override-id\": \"<uuid>\",\n    \"version\": \"<string>\"\n  },\n  \"link-id\": \"<string>\",\n  \"contact-name\": \"<string>\",\n  \"contact-email\": \"<string>\",\n  \"is-vaccinated\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"score-data\": {\n    \"screener-name\": \"string\",\n    \"score\": 200\n  },\n  \"covid-status\": \"triage-status/cleared\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ff700162-a93a-41f5-bdfe-8e12dfff8bfe",
+    "name": "Grdn grdn.handler grdn.routes.impl.visitor API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.ticklers API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.ticklers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "patient-ticklers-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/ticklers",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.ticklers/patient-ticklers-params"
+              }
+            ]
+          },
+          "docs": "Returns list of open ticklers for given patient\n  Time box - three months before today to twelve months from today"
+        },
+        {
+          "info": {
+            "name": "create-tickler-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/ticklers"
+          },
+          "docs": "Creates a tickler in Athena"
+        },
+        {
+          "info": {
+            "name": "update-tickler-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/ticklers/:tickler-athena-id",
+            "params": [
+              {
+                "name": "tickler-athena-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.ticklers/update-tickler-params"
+              }
+            ]
+          },
+          "docs": "Updates given tickler in Athena"
+        },
+        {
+          "info": {
+            "name": "complete-tickler-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/ticklers/:tickler-athena-id/complete",
+            "params": [
+              {
+                "name": "tickler-athena-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.ticklers/complete-tickler-params"
+              }
+            ]
+          },
+          "docs": "Completes the given tickler by marking it deleted in Athena"
+        },
+        {
+          "info": {
+            "name": "delete-tickler-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/ticklers/:tickler-athena-id/delete",
+            "params": [
+              {
+                "name": "tickler-athena-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.ticklers/delete-tickler-params"
+              }
+            ]
+          },
+          "docs": "Marks given tickler as deleted in Athena"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

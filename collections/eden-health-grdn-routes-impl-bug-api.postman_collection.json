@@ -1,0 +1,125 @@
+{
+  "item": [
+    {
+      "id": "d87b4aa9-5053-41bc-abf5-cdc3390f6bb4",
+      "name": "grdn.routes.impl.bug",
+      "description": {
+        "content": "Bug Report handler",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9cf58ee1-bc84-4453-aa2b-8ced32fd966e",
+          "name": "report-bug",
+          "request": {
+            "name": "report-bug",
+            "description": {
+              "content": "Reports a bug.\n   Processes media attachment first. On success, sends email to techsupport\n   and sends PagerDuty alert to on call engineer if appropriate.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "bug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"app-version\": \"<string>\",\n  \"chrome-version\": \"<string>\",\n  \"description\": \"<string>\",\n  \"reporter-email\": \"<string>\",\n  \"urgency\": {\n    \"id\": \"<long>\",\n    \"description\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"reporter-athena-id\": \"<long>\",\n  \"reporter-name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "66f43032-f518-40b0-bb01-54abde361ff8",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"app-version\": \"<string>\",\n  \"chrome-version\": \"<string>\",\n  \"description\": \"<string>\",\n  \"reporter-email\": \"<string>\",\n  \"urgency\": {\n    \"id\": \"<long>\",\n    \"description\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"reporter-athena-id\": \"<long>\",\n  \"reporter-name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d39abe1c-faa0-45bf-a46e-4bc552a0d607",
+    "name": "Grdn grdn.handler grdn.routes.impl.bug API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

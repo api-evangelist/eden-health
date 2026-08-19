@@ -1,0 +1,125 @@
+{
+  "item": [
+    {
+      "id": "7f945260-819f-42ec-bd94-e2c8ac39753f",
+      "name": "grdn.routes.impl.event",
+      "description": {
+        "content": "Route implementation for our various event posting endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "91b822c7-13da-4807-8e3d-e7b6b8256749",
+          "name": "create-event-handler",
+          "request": {
+            "name": "create-event-handler",
+            "description": {
+              "content": "Creates an Event.\n   Determines the caller from the request identity,\n   then dispatches the post-event multimethod accordingly.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "event"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event-data\": \"<object>\",\n  \"event-group\": \"<string>\",\n  \"event-name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "712641c8-906f-4e1d-8836-47bda5da98a8",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"event-data\": \"<object>\",\n  \"event-group\": \"<string>\",\n  \"event-name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "71e22f2c-509a-4d5a-8585-576c723bad79",
+    "name": "Grdn grdn.handler grdn.routes.impl.event API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

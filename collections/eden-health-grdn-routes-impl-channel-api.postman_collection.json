@@ -1,0 +1,378 @@
+{
+  "item": [
+    {
+      "id": "97800ef3-a048-4857-acc7-3ac3c6c28f88",
+      "name": "grdn.routes.impl.channel",
+      "description": {
+        "content": "Contains handlers for routes related to Channels.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bd4c8765-bca7-4bd3-8437-6b5498bb58bb",
+          "name": "update-channel-handler",
+          "request": {
+            "name": "update-channel-handler",
+            "description": {
+              "content": "Updates the status of a channel. Used by clinical front end for manual updates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "channel",
+                ":channel-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "channel-id",
+                  "description": "(Required) origin spec: grdn.specs.channel/update-channel-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b57c6ec9-7a80-4241-9295-ec5fafd0a55e",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "channel",
+                    ":channel-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "channel-id",
+                      "description": "(Required) origin spec: grdn.specs.channel/update-channel-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e5e89ab-19f3-491a-830a-8c428c9e762e",
+          "name": "delete-message-handler",
+          "request": {
+            "name": "delete-message-handler",
+            "description": {
+              "content": "Updates a message custom type to deleted and changes content to empty string.\n   If message is an image, deletes the image from S3.\n   If message is a document, soft-deletes the document from our database, while keeping it in S3.\n   If deleting message and image are successful, logs an event about the deleted message to the db.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "channel",
+                ":channel-id",
+                "message",
+                ":message-id",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "channel-id",
+                  "description": "(Required) origin spec: grdn.specs.channel/delete-message-params"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "message-id",
+                  "description": "(Required) origin spec: grdn.specs.channel/delete-message-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"unread\": \"<boolean>\",\n  \"deleted-reason\": \"<string>\",\n  \"document-id\": \"<uuid>\",\n  \"sent-at\": \"<long>\",\n  \"content\": \"<string>\",\n  \"image-id\": \"<uuid>\",\n  \"provider-sender-id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1a0e3a51-b0d7-467f-a435-bc9e8242d3e5",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "channel",
+                    ":channel-id",
+                    "message",
+                    ":message-id",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "channel-id",
+                      "description": "(Required) origin spec: grdn.specs.channel/delete-message-params"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "message-id",
+                      "description": "(Required) origin spec: grdn.specs.channel/delete-message-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"unread\": \"<boolean>\",\n  \"deleted-reason\": \"<string>\",\n  \"document-id\": \"<uuid>\",\n  \"sent-at\": \"<long>\",\n  \"content\": \"<string>\",\n  \"image-id\": \"<uuid>\",\n  \"provider-sender-id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f9d8c6c-b1bd-46b3-a5dd-29bdb6d3e4ec",
+          "name": "get-patient-primary-channel-unread-messages-handler",
+          "request": {
+            "name": "get-patient-primary-channel-unread-messages-handler",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "patient",
+                ":patient-id",
+                "get-unread"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "funnel-id",
+                  "value": "<uuid>",
+                  "description": "origin spec: grdn.specs/patient-id-params"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: grdn.specs/patient-id-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47753143-8a5a-436b-8a1f-2dd03e4f4773",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "patient",
+                    ":patient-id",
+                    "get-unread"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "funnel-id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: grdn.specs/patient-id-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"unread-message-count\": 1954\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "72101354-e5fc-43f7-bf38-4258bbdb88eb",
+    "name": "Grdn grdn.handler grdn.routes.impl.channel API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

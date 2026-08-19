@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.sponsor-user API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.sponsor-user",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get-sponsor-user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/sponsor-user"
+          },
+          "docs": "Returns sponsor user info from the identity loaded by auth middleware"
+        },
+        {
+          "info": {
+            "name": "create-sponsor-user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/sponsor-user"
+          },
+          "docs": "Creates a sponsor user"
+        },
+        {
+          "info": {
+            "name": "delete-sponsor-user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v2/sponsor-user"
+          },
+          "docs": "Deletes a sponsor user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

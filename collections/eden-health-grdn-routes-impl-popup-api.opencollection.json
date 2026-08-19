@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.popup API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.popup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get-popups-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/popup",
+            "params": [
+              {
+                "name": "popup-category",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.popup/get-popup-params"
+              }
+            ]
+          },
+          "docs": "Returns popups depending on the category parameter and populates the start and end dates if possible."
+        },
+        {
+          "info": {
+            "name": "create-popup-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/popup"
+          },
+          "docs": "Creates a new popup."
+        },
+        {
+          "info": {
+            "name": "update-popup-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/popup/:popup-id",
+            "params": [
+              {
+                "name": "popup-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.popup/update-popup-params"
+              }
+            ]
+          },
+          "docs": "Sets popup status to be either draft or bookable, and updates fields."
+        },
+        {
+          "info": {
+            "name": "delete-popup-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v2/popup/:popup-id",
+            "params": [
+              {
+                "name": "popup-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.popup/delete-popup-params"
+              }
+            ]
+          },
+          "docs": "Deletes a popup. Cascade deletes associated popup dates"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

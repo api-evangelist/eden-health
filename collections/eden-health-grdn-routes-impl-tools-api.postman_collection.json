@@ -1,0 +1,127 @@
+{
+  "item": [
+    {
+      "id": "39528192-59b3-4027-8804-2f2629b2629b",
+      "name": "grdn.routes.impl.tools",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3d335137-ac78-47f4-a81e-ad4960d9ee4f",
+          "name": "update-covid-vax-eligibility-handler",
+          "request": {
+            "name": "update-covid-vax-eligibility-handler",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "tools",
+                "covid-vax-eligibility"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mrns\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f474549f-7f9f-4de7-a33e-b1238e963bbb",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "tools",
+                    "covid-vax-eligibility"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mrns\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 7095,\n  \"invalid-mrns\": [\n    6631,\n    7172\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "db671f15-334d-48aa-8968-46fa1dde1a5b",
+    "name": "Grdn grdn.handler grdn.routes.impl.tools API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

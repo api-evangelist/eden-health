@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.video API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.video",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get-meeting-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/meeting/:meeting-id",
+            "params": [
+              {
+                "name": "meeting-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.video/get-meeting-params"
+              }
+            ]
+          },
+          "docs": "Gets zoom video meeting data by id."
+        },
+        {
+          "info": {
+            "name": "schedule-meeting-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/schedule-meeting"
+          },
+          "docs": "Schedules a video meeting using provider zoom id."
+        },
+        {
+          "info": {
+            "name": "start-meeting-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/start-meeting"
+          },
+          "docs": "start-meeting-handler"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

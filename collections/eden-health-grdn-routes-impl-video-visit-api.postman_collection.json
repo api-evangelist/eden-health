@@ -1,0 +1,209 @@
+{
+  "item": [
+    {
+      "id": "90d00d6d-431a-48f5-b0cf-205476ab406f",
+      "name": "grdn.routes.impl.video-visit",
+      "description": {
+        "content": "Handlers for getting and creating Video Visits.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "42e49e85-5315-4432-9b1f-15a7d66067ee",
+          "name": "create-video-visit",
+          "request": {
+            "name": "create-video-visit",
+            "description": {
+              "content": "Creates a video visit record and sends a message requesting a video visit booking\n   to the patient. Does not book an appointment in Athena or schedule a video meeting\n   in zoom. Those actions are performed after this resource is created.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "video-visit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"appointment-reason-id\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c0fa5869-c65b-4093-9485-9ec8ddd34bea",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "video-visit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"appointment-reason-id\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5caa2842-60e1-4462-a513-cae6b844d70d",
+          "name": "get-video-visit",
+          "request": {
+            "name": "get-video-visit",
+            "description": {
+              "content": "Gets a video visit record from postgres.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "video-visit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "video-visit-id",
+                  "value": "<uuid>",
+                  "description": "(Required) origin spec: grdn.specs.video-visit/get-video-visit-params"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2b064aba-7864-4009-b557-75447b56a391",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "video-visit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "video-visit-id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"43f3ee72-3bbb-41e5-dea2-8e8be419d3e0\",\n  \"created_at\": \"\",\n  \"updated_at\": \"\",\n  \"patient_id\": \"4c3c2e89-72ae-2d70-6fa0-2826ccd3fcc6\",\n  \"appointment_id\": 9842.287184837924\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d929b4d6-dc52-4cac-886e-676432e38843",
+    "name": "Grdn grdn.handler grdn.routes.impl.video-visit API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

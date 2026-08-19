@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.validation API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.validation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "validate-emails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/validate-emails"
+          },
+          "docs": "Validates the supplied emails with mailgun. Payload is of form\n  [{:email \"email1@domain.com\" :valid true}\n   {:email \"e@b.cd\"            :valid false}]"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

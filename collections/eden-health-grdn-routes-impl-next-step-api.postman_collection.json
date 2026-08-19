@@ -1,0 +1,436 @@
+{
+  "item": [
+    {
+      "id": "010ebef1-cd64-4fad-a5e3-74298fdf55fb",
+      "name": "grdn.routes.impl.next-step",
+      "description": {
+        "content": "Contains handlers for routes related to Patients.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "30ceb4fb-2cf9-4fd8-b1f6-76965ace8b3e",
+          "name": "create-next-step-handler",
+          "request": {
+            "name": "create-next-step-handler",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "next-steps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"type\": \"<string>\",\n  \"due-date\": \"<string>\",\n  \"visit-reason-id\": \"<long>\",\n  \"provider-id\": \"<long>\",\n  \"in-person-only\": \"<boolean>\",\n  \"note\": \"<string>\",\n  \"send-date\": \"<string>\",\n  \"title\": \"<string>\",\n  \"with-provider-id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "75090598-32a4-42cb-b123-31c89260e268",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "next-steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"type\": \"<string>\",\n  \"due-date\": \"<string>\",\n  \"visit-reason-id\": \"<long>\",\n  \"provider-id\": \"<long>\",\n  \"in-person-only\": \"<boolean>\",\n  \"note\": \"<string>\",\n  \"send-date\": \"<string>\",\n  \"title\": \"<string>\",\n  \"with-provider-id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0d6dba7-28d4-4ba7-90d3-eee7e5b8b1dc",
+          "name": "edit-next-step-handler",
+          "request": {
+            "name": "edit-next-step-handler",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "next-steps",
+                ":next-step-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "next-step-id",
+                  "description": "(Required) origin spec: grdn.specs.patients/edit-next-step-handler-spec"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"due-date\": \"<string>\",\n  \"visit-reason-id\": \"<long>\",\n  \"in-person-only\": \"<boolean>\",\n  \"note\": \"<string>\",\n  \"send-date\": \"<string>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"with-provider-id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e80aa80-f35f-4c56-9529-483c3680e560",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "next-steps",
+                    ":next-step-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "next-step-id",
+                      "description": "(Required) origin spec: grdn.specs.patients/edit-next-step-handler-spec"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"due-date\": \"<string>\",\n  \"visit-reason-id\": \"<long>\",\n  \"in-person-only\": \"<boolean>\",\n  \"note\": \"<string>\",\n  \"send-date\": \"<string>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"with-provider-id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c03958b5-3c73-4ddb-9167-904a3bb36ee7",
+          "name": "get-next-steps-handler",
+          "request": {
+            "name": "get-next-steps-handler",
+            "description": {
+              "content": "Gets next steps for patient. Calls Athena for Quality Measures and upcoming Appts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "patient",
+                ":patient-id",
+                "next-steps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ef95158-cdac-4841-a755-2cda32d95d67",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "patient",
+                    ":patient-id",
+                    "next-steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c1f2854-37f2-4404-ad5b-b23cf6d97000",
+          "name": "respond-next-step-handler",
+          "request": {
+            "name": "respond-next-step-handler",
+            "description": {
+              "content": "Respond to a next step",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "patient",
+                ":patient-id",
+                "next-steps",
+                ":next-step-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "next-step-id",
+                  "description": "(Required) origin spec: "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9a781d54-7323-4fd5-9dda-78b0f96c65aa",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "patient",
+                    ":patient-id",
+                    "next-steps",
+                    ":next-step-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "next-step-id",
+                      "description": "(Required) origin spec: "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"next-step-id\": \"929bb753-0ebe-8c5a-5dd2-0ab01b749f39\",\n  \"reply-type\": \"string\",\n  \"decline-reason-type\": \"string\",\n  \"decline-detail\": \"string\",\n  \"resolved-month\": \"string\",\n  \"delete-reason-type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5bbcc80b-ecb2-4d9e-893b-80737715608e",
+    "name": "Grdn grdn.handler grdn.routes.impl.next-step API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,999 @@
+{
+  "item": [
+    {
+      "id": "bac9c1b9-3bf2-4e67-ba02-9d766757dd09",
+      "name": "grdn.routes.impl.pediatric",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a576c6c3-1d82-4451-9b11-a7792f902812",
+          "name": "create-pediatric-patient",
+          "request": {
+            "name": "create-pediatric-patient",
+            "description": {
+              "content": "Creates a pediatric MyTelemedicine dependent member for the minor to be treated.\n   Creates the MyTelemedicine primary member for the parent/guardian if necessary.\n   The MTM primary member demo info will be taken from the primary Eden patient for the patient membership.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "pediatric-patient"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first-name\": \"<string>\",\n  \"last-name\": \"<string>\",\n  \"dob\": \"<string>\",\n  \"sex\": \"<string>\",\n  \"address1\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"medications\": [\n    {\n      \"foreign-id\": \"<string>\",\n      \"ndc\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"foreign-id\": \"<string>\",\n      \"ndc\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"allergies\": [\n    {\n      \"foreign-id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dam-concept-id\": \"<string>\",\n      \"dam-concept-id-type\": \"<string>\",\n      \"mytelemedicine-id\": \"<double>\"\n    },\n    {\n      \"foreign-id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dam-concept-id\": \"<string>\",\n      \"dam-concept-id-type\": \"<string>\",\n      \"mytelemedicine-id\": \"<double>\"\n    }\n  ],\n  \"medical-conditions\": [\n    {\n      \"name\": \"<string>\",\n      \"mytelemedicine-id\": \"<double>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"mytelemedicine-id\": \"<double>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5c990843-46b9-4721-b59c-c639354bc40e",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "pediatric-patient"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first-name\": \"<string>\",\n  \"last-name\": \"<string>\",\n  \"dob\": \"<string>\",\n  \"sex\": \"<string>\",\n  \"address1\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"medications\": [\n    {\n      \"foreign-id\": \"<string>\",\n      \"ndc\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"foreign-id\": \"<string>\",\n      \"ndc\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"allergies\": [\n    {\n      \"foreign-id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dam-concept-id\": \"<string>\",\n      \"dam-concept-id-type\": \"<string>\",\n      \"mytelemedicine-id\": \"<double>\"\n    },\n    {\n      \"foreign-id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dam-concept-id\": \"<string>\",\n      \"dam-concept-id-type\": \"<string>\",\n      \"mytelemedicine-id\": \"<double>\"\n    }\n  ],\n  \"medical-conditions\": [\n    {\n      \"name\": \"<string>\",\n      \"mytelemedicine-id\": \"<double>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"mytelemedicine-id\": \"<double>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"872b1080-5aff-b0a2-cc8a-28248873111e\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af3d1064-a0fa-4236-a20d-bf207705aeb0",
+          "name": "get-pediatric-patients",
+          "request": {
+            "name": "get-pediatric-patients",
+            "description": {
+              "content": "Retrieves a list of minor dependents for an Eden patient.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "pediatric-patient"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc468263-ad16-48e8-8b42-5b1d6798e423",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "pediatric-patient"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"916c40d5-f800-4e2b-9be2-eb33848a4965\",\n    \"first-name\": \"string\",\n    \"last-name\": \"string\",\n    \"dob\": \"string\"\n  },\n  {\n    \"id\": \"2b62089d-330b-a98d-38b4-aa05f98535c8\",\n    \"first-name\": \"string\",\n    \"last-name\": \"string\",\n    \"dob\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8d567bf-f589-473a-84f9-5f1b1d310296",
+          "name": "get-pending-pediatric-appointments",
+          "request": {
+            "name": "get-pending-pediatric-appointments",
+            "description": {
+              "content": "Returns all pending pediatric appointments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "pediatric-patient",
+                "pending-appointment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "87f15d7a-0874-4b21-9a65-3c55b7f60e50",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "pediatric-patient",
+                    "pending-appointment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"mytelemedicine-id\": 549.2257937232926,\n    \"first-name\": \"string\",\n    \"last-name\": \"string\",\n    \"dob\": \"string\",\n    \"sex\": \"\",\n    \"start-date-time\": \"string\",\n    \"phone\": \"string\"\n  },\n  {\n    \"mytelemedicine-id\": 7083.510412134189,\n    \"first-name\": \"string\",\n    \"last-name\": \"string\",\n    \"dob\": \"string\",\n    \"sex\": \"\",\n    \"start-date-time\": \"string\",\n    \"phone\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f15fdb08-0d7a-4bac-9725-4aab8d797dd7",
+          "name": "search-pharmacies",
+          "request": {
+            "name": "search-pharmacies",
+            "description": {
+              "content": "Returns all pharmacies from MTM for a given zip and/or name.\n  Filters out unwanted keys from MTM's response to only keep a subset of\n  relevant keys, and renames them to match Grdn's internal model.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "pediatric-patient",
+                "pharmacy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "zip",
+                  "value": "<string>",
+                  "description": "(Required) origin spec: grdn.specs.pediatric/search-pharmacies-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "origin spec: grdn.specs.pediatric/search-pharmacies-params"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "90c7d5b7-10a4-4ae7-b9b3-2cec718a0a88",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "pediatric-patient",
+                    "pharmacy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "zip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"address-1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\",\n    \"surescript-id\": 6311.30057412469,\n    \"address-2\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"address-1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\",\n    \"surescript-id\": 2707.323269600378,\n    \"address-2\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7003f4cd-9237-4a66-91f6-0ccef78ff0bf",
+          "name": "get-pediatric-patient",
+          "request": {
+            "name": "get-pediatric-patient",
+            "description": {
+              "content": "Retrieves a pediatric patient's details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "pediatric-patient",
+                ":pediatric-patient-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "pediatric-patient-id",
+                  "description": "(Required) origin spec: grdn.specs.pediatric/get-pediatric-patient-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5cc13b1e-4bb2-41d3-ba59-3a8da6faac5c",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "pediatric-patient",
+                    ":pediatric-patient-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pediatric-patient-id",
+                      "description": "(Required) origin spec: grdn.specs.pediatric/get-pediatric-patient-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address1\": \"string\",\n  \"address2\": \"string\",\n  \"allergies\": [\n    {\n      \"foreign-id\": \"string\",\n      \"name\": \"string\",\n      \"dam-concept-id\": \"string\",\n      \"dam-concept-id-type\": \"string\",\n      \"mytelemedicine-id\": 7634.373776667086\n    },\n    {\n      \"foreign-id\": \"string\",\n      \"name\": \"string\",\n      \"dam-concept-id\": \"string\",\n      \"dam-concept-id-type\": \"string\",\n      \"mytelemedicine-id\": 7051.201970601441\n    }\n  ],\n  \"city\": \"string\",\n  \"dob\": \"string\",\n  \"first-name\": \"string\",\n  \"id\": \"99de7239-aa0e-b31f-ae68-4abc857c5b1d\",\n  \"last-name\": \"string\",\n  \"medical-conditions\": [\n    {\n      \"name\": \"string\",\n      \"mytelemedicine-id\": 9580.930138483074\n    },\n    {\n      \"name\": \"string\",\n      \"mytelemedicine-id\": 2365.0002112313127\n    }\n  ],\n  \"medications\": [\n    {\n      \"foreign-id\": \"string\",\n      \"ndc\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"foreign-id\": \"string\",\n      \"ndc\": \"string\",\n      \"name\": \"string\"\n    }\n  ],\n  \"sex\": \"\",\n  \"state\": \"string\",\n  \"zip\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b847855-9f34-46f6-af09-3cbd96680d3e",
+          "name": "update-pediatric-patient",
+          "request": {
+            "name": "update-pediatric-patient",
+            "description": {
+              "content": "Updates the pediatric patient with the info supplied.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "pediatric-patient",
+                ":pediatric-patient-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "pediatric-patient-id",
+                  "description": "(Required) origin spec: grdn.specs.pediatric/update-pediatric-patient-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first-name\": \"<string>\",\n  \"last-name\": \"<string>\",\n  \"dob\": \"<string>\",\n  \"sex\": \"<string>\",\n  \"address1\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"medications\": [\n    {\n      \"foreign-id\": \"<string>\",\n      \"ndc\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"foreign-id\": \"<string>\",\n      \"ndc\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"allergies\": [\n    {\n      \"foreign-id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dam-concept-id\": \"<string>\",\n      \"dam-concept-id-type\": \"<string>\",\n      \"mytelemedicine-id\": \"<double>\"\n    },\n    {\n      \"foreign-id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dam-concept-id\": \"<string>\",\n      \"dam-concept-id-type\": \"<string>\",\n      \"mytelemedicine-id\": \"<double>\"\n    }\n  ],\n  \"medical-conditions\": [\n    {\n      \"name\": \"<string>\",\n      \"mytelemedicine-id\": \"<double>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"mytelemedicine-id\": \"<double>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "488ee110-0584-4d2d-b376-08029bddc58e",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "pediatric-patient",
+                    ":pediatric-patient-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pediatric-patient-id",
+                      "description": "(Required) origin spec: grdn.specs.pediatric/update-pediatric-patient-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first-name\": \"<string>\",\n  \"last-name\": \"<string>\",\n  \"dob\": \"<string>\",\n  \"sex\": \"<string>\",\n  \"address1\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"medications\": [\n    {\n      \"foreign-id\": \"<string>\",\n      \"ndc\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"foreign-id\": \"<string>\",\n      \"ndc\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"allergies\": [\n    {\n      \"foreign-id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dam-concept-id\": \"<string>\",\n      \"dam-concept-id-type\": \"<string>\",\n      \"mytelemedicine-id\": \"<double>\"\n    },\n    {\n      \"foreign-id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dam-concept-id\": \"<string>\",\n      \"dam-concept-id-type\": \"<string>\",\n      \"mytelemedicine-id\": \"<double>\"\n    }\n  ],\n  \"medical-conditions\": [\n    {\n      \"name\": \"<string>\",\n      \"mytelemedicine-id\": \"<double>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"mytelemedicine-id\": \"<double>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "633121f4-c4a1-4546-b151-e1064b650aee",
+          "name": "create-pediatric-appointment",
+          "request": {
+            "name": "create-pediatric-appointment",
+            "description": {
+              "content": "Creates an appointment for the given pediatric patient. Upon success, creates an event to facilitate feedback and\n  analytics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "pediatric-patient",
+                ":pediatric-patient-id",
+                "appointment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "pediatric-patient-id",
+                  "description": "(Required) origin spec: grdn.specs.pediatric/create-pediatric-appointment-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"<string>\",\n  \"primary-complaint\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b9b0b80b-0cb7-4134-bd0a-6dce39b31e72",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "pediatric-patient",
+                    ":pediatric-patient-id",
+                    "appointment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pediatric-patient-id",
+                      "description": "(Required) origin spec: grdn.specs.pediatric/create-pediatric-appointment-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phone\": \"<string>\",\n  \"primary-complaint\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e36a9fa-d5bf-4278-b701-e2a27a95734e",
+          "name": "add-attachment",
+          "request": {
+            "name": "add-attachment",
+            "description": {
+              "content": "Attaches the provided `document` to the given pediatric patient on MTM's side.\n\n  The attachment is not attached to a specific consultation, but instead appears\n  in the pediatric patient's health records on MTM's dashboard.\n\n  All EXIF metadata are removed from the file before uploading it to MTM.\n  The original filename from the device is dropped for a filename which reflects\n  the pediatric patient's MTM ID and the date the file was uploaded on.\n\n  The provided `document` image must be a valid base64 string.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "pediatric-patient",
+                ":pediatric-patient-id",
+                "image"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "pediatric-patient-id",
+                  "description": "(Required) origin spec: grdn.specs.pediatric/add-attachment-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"document\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "67236f53-b5ed-4c87-8b99-aab511e864d3",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "pediatric-patient",
+                    ":pediatric-patient-id",
+                    "image"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pediatric-patient-id",
+                      "description": "(Required) origin spec: grdn.specs.pediatric/add-attachment-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"document\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0bacd24-a90e-43c5-acb2-33a273a7eb91",
+          "name": "create-pediatric-patient-pharmacy",
+          "request": {
+            "name": "create-pediatric-patient-pharmacy",
+            "description": {
+              "content": "Stores the preferred pharmacy for a pediatric patient.\n  If the pharmacy does not exist in the database, adds a new row.\n  If it already exists, updates the row with same Surescript ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "pediatric-patient",
+                ":pediatric-patient-id",
+                "pharmacy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "pediatric-patient-id",
+                  "description": "(Required) origin spec: "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address-1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"name\": \"<string>\",\n  \"state\": \"<string>\",\n  \"surescript-id\": \"<double>\",\n  \"zip\": \"<string>\",\n  \"address-2\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "811adb78-f4a3-4eb2-8b05-f83d4abb12ca",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "pediatric-patient",
+                    ":pediatric-patient-id",
+                    "pharmacy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pediatric-patient-id",
+                      "description": "(Required) origin spec: "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address-1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"name\": \"<string>\",\n  \"state\": \"<string>\",\n  \"surescript-id\": \"<double>\",\n  \"zip\": \"<string>\",\n  \"address-2\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9c38017-96e0-4f42-aab2-dbe67c778135",
+          "name": "get-pediatric-patient-pharmacy",
+          "request": {
+            "name": "get-pediatric-patient-pharmacy",
+            "description": {
+              "content": "Retrieves a dependent's preferred pharmacy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "pediatric-patient",
+                ":pediatric-patient-id",
+                "pharmacy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "pediatric-patient-id",
+                  "description": "(Required) origin spec: grdn.specs.pediatric/get-pediatric-patient-pharmacy-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c3768e33-6976-43fd-8c38-da06ff2bb46d",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "pediatric-patient",
+                    ":pediatric-patient-id",
+                    "pharmacy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pediatric-patient-id",
+                      "description": "(Required) origin spec: grdn.specs.pediatric/get-pediatric-patient-pharmacy-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"a6e7dc73-b9f8-756a-93cc-61f6303ebae4\",\n  \"name\": \"string\",\n  \"address1\": \"string\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"zip\": \"string\",\n  \"surescript-id\": 4988.495954875301,\n  \"address2\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a664bc31-192b-4862-a881-17cae59b446d",
+    "name": "Grdn grdn.handler grdn.routes.impl.pediatric API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

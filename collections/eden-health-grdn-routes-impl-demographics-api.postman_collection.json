@@ -1,0 +1,106 @@
+{
+  "item": [
+    {
+      "id": "541adb26-b661-456c-afa7-3523fac2daed",
+      "name": "grdn.routes.impl.demographics",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "757a7f11-c4ac-403c-91d7-122ccbca37ce",
+          "name": "supported-demographics-handler",
+          "request": {
+            "name": "supported-demographics-handler",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "demographics",
+                "supported"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e92aabf7-e107-4f7f-a087-b7f4a566d67a",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "demographics",
+                    "supported"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"racesHL7\": [\n    {\n      \"name\": \"string\",\n      \"id\": \"190b4741-ed71-9ad5-47d3-f6b362d248d8\",\n      \"code\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"id\": \"255a3d5c-3215-169f-f77b-117babe57f4b\",\n      \"code\": \"string\"\n    }\n  ],\n  \"languagesHL7\": [\n    {\n      \"name\": \"string\",\n      \"id\": \"1a8548b1-2496-4083-331c-5cf900941044\",\n      \"code\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"id\": \"52fdeb7a-edff-42d5-19b3-5c042bb9a406\",\n      \"code\": \"string\"\n    }\n  ],\n  \"ethnicitiesISO\": [\n    {\n      \"name\": \"string\",\n      \"id\": \"9a760f2b-816a-1982-48e7-72b813f72fd1\",\n      \"code\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"id\": \"659ac30c-b9ac-6a6f-6b66-204a8dfd69b6\",\n      \"code\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "edb30d62-9cd9-489a-b614-d896f97f49be",
+    "name": "Grdn grdn.handler grdn.routes.impl.demographics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

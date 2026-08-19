@@ -1,0 +1,554 @@
+{
+  "item": [
+    {
+      "id": "e3a9d5e2-f24a-4d2b-859a-352e1bf1f9ba",
+      "name": "grdn.routes.impl.ticklers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4e605a02-95f3-4f88-aea3-4045602b6bd6",
+          "name": "patient-ticklers-handler",
+          "request": {
+            "name": "patient-ticklers-handler",
+            "description": {
+              "content": "Returns list of open ticklers for given patient\n  Time box - three months before today to twelve months from today",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "patient",
+                ":patient-id",
+                "ticklers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: grdn.specs.ticklers/patient-ticklers-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe71dd2c-1bce-4449-9ff3-b47627cdda06",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "patient",
+                    ":patient-id",
+                    "ticklers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: grdn.specs.ticklers/patient-ticklers-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ticklers\": [\n    {\n      \"patient-id\": \"88b12b56-15c6-584d-780d-eab56339f1b2\",\n      \"assigned-to\": 9671,\n      \"due-date\": \"string\",\n      \"note\": \"string\",\n      \"tickler-athena-id\": 907,\n      \"department-id\": 8714\n    },\n    {\n      \"patient-id\": \"85c95696-53f5-a25e-3523-a724300125c4\",\n      \"assigned-to\": 1276,\n      \"due-date\": \"string\",\n      \"note\": \"string\",\n      \"tickler-athena-id\": 473,\n      \"department-id\": 3754\n    }\n  ],\n  \"failures\": [\n    897,\n    3356\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61c488b0-3a70-45fc-a43f-18fa3c80c74c",
+          "name": "create-tickler-handler",
+          "request": {
+            "name": "create-tickler-handler",
+            "description": {
+              "content": "Creates a tickler in Athena",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "ticklers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"athena-provider-id\": \"<long>\",\n  \"due-date\": \"<string>\",\n  \"note\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "217b88f5-de05-4ff4-9e82-42e39176df6c",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ticklers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"athena-provider-id\": \"<long>\",\n  \"due-date\": \"<string>\",\n  \"note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patient-id\": \"7e8923d5-ce82-c24c-df87-2de1f9d9c25d\",\n  \"assigned-to\": 7393,\n  \"due-date\": \"string\",\n  \"note\": \"string\",\n  \"tickler-athena-id\": 1391,\n  \"department-id\": 5405\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1250b7fe-eda7-4fbb-bcbd-8e6b022fbbd2",
+          "name": "update-tickler-handler",
+          "request": {
+            "name": "update-tickler-handler",
+            "description": {
+              "content": "Updates given tickler in Athena",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "ticklers",
+                ":tickler-athena-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "tickler-athena-id",
+                  "description": "(Required) origin spec: grdn.specs.ticklers/update-tickler-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"athena-provider-id\": \"<long>\",\n  \"due-date\": \"<string>\",\n  \"note\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8cdc0f58-915d-400e-ad96-b04d547c64d0",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ticklers",
+                    ":tickler-athena-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "tickler-athena-id",
+                      "description": "(Required) origin spec: grdn.specs.ticklers/update-tickler-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"athena-provider-id\": \"<long>\",\n  \"due-date\": \"<string>\",\n  \"note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patient-id\": \"c7ee6b1e-ce99-a1e4-a5a4-fa0820194f89\",\n  \"tickler-athena-id\": 8837,\n  \"assigned-to\": 7596,\n  \"due-date\": \"string\",\n  \"note\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8910b7b3-4441-4510-9f75-9046a7144689",
+          "name": "complete-tickler-handler",
+          "request": {
+            "name": "complete-tickler-handler",
+            "description": {
+              "content": "Completes the given tickler by marking it deleted in Athena",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "ticklers",
+                ":tickler-athena-id",
+                "complete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "tickler-athena-id",
+                  "description": "(Required) origin spec: grdn.specs.ticklers/complete-tickler-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"note\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d9179546-c1ce-41ff-a2c1-ba128329dc51",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ticklers",
+                    ":tickler-athena-id",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "tickler-athena-id",
+                      "description": "(Required) origin spec: grdn.specs.ticklers/complete-tickler-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tickler-athena-id\": 4003\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8604c0f0-0bf6-42cd-8b97-ee7e97ff3964",
+          "name": "delete-tickler-handler",
+          "request": {
+            "name": "delete-tickler-handler",
+            "description": {
+              "content": "Marks given tickler as deleted in Athena",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "ticklers",
+                ":tickler-athena-id",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "tickler-athena-id",
+                  "description": "(Required) origin spec: grdn.specs.ticklers/delete-tickler-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"note\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c770389c-d06d-4596-8c2b-8eff7b430ac9",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ticklers",
+                    ":tickler-athena-id",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "tickler-athena-id",
+                      "description": "(Required) origin spec: grdn.specs.ticklers/delete-tickler-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tickler-athena-id\": 7924\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "827653da-bf15-4d0e-9979-d111538d16be",
+    "name": "Grdn grdn.handler grdn.routes.impl.ticklers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

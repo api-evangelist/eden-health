@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.next-step API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.next-step",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "create-next-step-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/next-steps"
+          },
+          "docs": "create-next-step-handler"
+        },
+        {
+          "info": {
+            "name": "edit-next-step-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/next-steps/:next-step-id",
+            "params": [
+              {
+                "name": "next-step-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.patients/edit-next-step-handler-spec"
+              }
+            ]
+          },
+          "docs": "edit-next-step-handler"
+        },
+        {
+          "info": {
+            "name": "get-next-steps-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/next-steps",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: "
+              }
+            ]
+          },
+          "docs": "Gets next steps for patient. Calls Athena for Quality Measures and upcoming Appts."
+        },
+        {
+          "info": {
+            "name": "respond-next-step-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/next-steps/:next-step-id",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: "
+              },
+              {
+                "name": "next-step-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: "
+              }
+            ]
+          },
+          "docs": "Respond to a next step"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.consent API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.consent",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get-patient-consent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/consent",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.consent/get-patient-consent-params"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.consent/get-patient-consent-params"
+              }
+            ]
+          },
+          "docs": "Given a consent name, depending on feature flags, gets latest version of the consent form or the\n   sponsor-specific covid consent version."
+        },
+        {
+          "info": {
+            "name": "accept-patient-consent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/consent",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.consent/accept-patient-consent-params"
+              }
+            ]
+          },
+          "docs": "accept-patient-consent"
+        },
+        {
+          "info": {
+            "name": "get-expired-consents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/expired-consents",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.consent/get-expired-consents-params"
+              }
+            ]
+          },
+          "docs": "Given a patient ID, gets each most recently expired consent that does not have a non-expired consent\n   for that consent ID.\n\n   As COVID consents are the only type of consent where the expected version for each patient depends\n   on their sponsor (as determined by the `sponsor-covid-consent-version` feature flag), COVID consents\n   are handled separately with specific logic detailed in APP-7188."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

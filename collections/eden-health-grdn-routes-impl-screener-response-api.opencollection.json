@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.screener-response API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.screener-response",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "post-screener-response-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/screener",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.screener-response/post-screener-response-params"
+              }
+            ]
+          },
+          "docs": "Given a patient id and screener, scores and saves the screener in appropriate store."
+        },
+        {
+          "info": {
+            "name": "get-screener-response-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/screener-response",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.screener-response/get-screener-params"
+              },
+              {
+                "name": "completed",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.screener-response/get-screener-params"
+              },
+              {
+                "name": "show-on-load",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.screener-response/get-screener-params"
+              }
+            ]
+          },
+          "docs": "Returns a list of screener responses associated with a patient. Applies to Eden screeners only.\n   If authorization is via patient, will ignore patient-id param and will instead return screeners\n   for that patient. Thin wrapper around multimethod which dispatches based on identity."
+        },
+        {
+          "info": {
+            "name": "put-screener-response-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/screener-response",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.screener-response/put-screener-response-params"
+              }
+            ]
+          },
+          "docs": "Given an outstanding screener response, update the pending screener with the data provided.\n  Applies to Eden screeners only."
+        },
+        {
+          "info": {
+            "name": "delete-screener-response-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/screener-response",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.screener-response/delete-screener-params"
+              }
+            ]
+          },
+          "docs": "Given a an outstanding screener response, delete the pending screener. Applies to Eden screeners\n   only."
+        },
+        {
+          "info": {
+            "name": "send-welcome-message-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/screener-response/welcome",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: "
+              }
+            ]
+          },
+          "docs": "Sends a welcome message when user completes all onboarding screeners."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

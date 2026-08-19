@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.images API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.images",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "post-image-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/image/:patient-id",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.images/post-image-params"
+              }
+            ]
+          },
+          "docs": "Posts an image to s3, then sends a sendbird message on behalf of the user."
+        },
+        {
+          "info": {
+            "name": "get-image-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/image/:patient-id/:image-id",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.images/get-image-params"
+              },
+              {
+                "name": "image-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.images/get-image-params"
+              }
+            ]
+          },
+          "docs": "Gets an image from s3."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,104 @@
+{
+  "item": [
+    {
+      "id": "6cbc682e-dc39-442a-81c9-bd0a6f41629d",
+      "name": "grdn.routes.impl.athena-providers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "41b18c4f-a8f0-4bc4-aaa8-5e5e52dcacce",
+          "name": "get-athena-providers-handler",
+          "request": {
+            "name": "get-athena-providers-handler",
+            "description": {
+              "content": "Returns all Athena providers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "athena-provider"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe51bc52-909e-4c8f-b634-b8bbf47149c8",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "athena-provider"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"display-name\": \"string\",\n    \"entity-type\": \"string\",\n    \"athena-provider-id\": 544,\n    \"provider-group-list\": [\n      8180,\n      1863\n    ]\n  },\n  {\n    \"display-name\": \"string\",\n    \"entity-type\": \"string\",\n    \"athena-provider-id\": 3485,\n    \"provider-group-list\": [\n      7086,\n      2746\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f4e8d1f9-7fb5-43b0-8627-7e061d6f598c",
+    "name": "Grdn grdn.handler grdn.routes.impl.athena-providers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

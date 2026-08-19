@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.bug API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.bug",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "report-bug",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/bug"
+          },
+          "docs": "Reports a bug.\n   Processes media attachment first. On success, sends email to techsupport\n   and sends PagerDuty alert to on call engineer if appropriate."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

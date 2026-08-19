@@ -1,0 +1,104 @@
+{
+  "item": [
+    {
+      "id": "28f8fd9b-a238-4fb1-b301-fb0c1395c2a3",
+      "name": "grdn.routes.impl.provider",
+      "description": {
+        "content": "Handlers to get general info about providers and departments.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e3d6cfc6-465c-4fb4-ad27-c629346ec2f8",
+          "name": "get-provider-details-handler",
+          "request": {
+            "name": "get-provider-details-handler",
+            "description": {
+              "content": "Get all provider details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "clinician-details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9cc06ae-a0f0-412c-bcd0-f34879cd9b3d",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "clinician-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"athena-username\": \"string\",\n    \"id\": \"1825e0aa-c1aa-57b4-e3aa-4467f84014cd\",\n    \"careteam-id\": \"d73a79f8-a0a6-c746-3763-e7b17197b059\",\n    \"channel-user-id\": \"1fe39247-8613-60de-d1ed-492141d5db8a\",\n    \"created-at\": \"\",\n    \"display-name\": \"string\",\n    \"google-id\": \"string\",\n    \"headshot-url\": \"string\",\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"provider-type\": \"string\",\n    \"sendbird-user-id\": \"a2439101-ac2a-2efa-e789-c7082e72855e\",\n    \"updated-at\": \"\",\n    \"zoom-id\": \"string\",\n    \"is-closeknit-credentialed\": false,\n    \"entity-type\": \"string\",\n    \"athena-provider-ids\": [\n      {\n        \"provider-group\": \"string\",\n        \"provider-group-id\": 615,\n        \"provider-id\": 4469\n      },\n      {\n        \"provider-group\": \"string\",\n        \"provider-group-id\": 1788,\n        \"provider-id\": 7254\n      }\n    ]\n  },\n  {\n    \"athena-username\": \"string\",\n    \"id\": \"adca7c88-f8b4-0a5c-e273-2ef6de2635ca\",\n    \"careteam-id\": \"145008b6-a2a2-0b74-bd8f-1ebf179398d7\",\n    \"channel-user-id\": \"87815f6c-9dab-fe49-1714-f3b62dccf851\",\n    \"created-at\": \"\",\n    \"display-name\": \"string\",\n    \"google-id\": \"string\",\n    \"headshot-url\": \"string\",\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"provider-type\": \"string\",\n    \"sendbird-user-id\": \"33058ee7-0723-b209-7f03-29e255ccec95\",\n    \"updated-at\": \"\",\n    \"zoom-id\": \"string\",\n    \"is-closeknit-credentialed\": false,\n    \"entity-type\": \"string\",\n    \"athena-provider-ids\": [\n      {\n        \"provider-group\": \"string\",\n        \"provider-group-id\": 823,\n        \"provider-id\": 2710\n      },\n      {\n        \"provider-group\": \"string\",\n        \"provider-group-id\": 937,\n        \"provider-id\": 5951\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6d9d940c-ad89-4429-8873-f2ad8ed9f3ec",
+    "name": "Grdn grdn.handler grdn.routes.impl.provider API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

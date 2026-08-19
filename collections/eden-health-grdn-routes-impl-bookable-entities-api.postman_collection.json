@@ -1,0 +1,104 @@
+{
+  "item": [
+    {
+      "id": "08d275fd-a18d-446b-9770-6fb04c0625ca",
+      "name": "grdn.routes.impl.bookable-entities",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f6c09e2b-c3d3-48cc-aa06-b28eb8f94605",
+          "name": "get-bookable-entities-handler",
+          "request": {
+            "name": "get-bookable-entities-handler",
+            "description": {
+              "content": "Gets all departments and appointment reasons.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "bookable-entities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7e03205a-d8df-4709-951a-93ba4ab03f9f",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bookable-entities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patientappointmentreasons\": [\n    {\n      \"schedulingminhours\": 6707.300947935006,\n      \"reasontype\": \"string\",\n      \"reason\": \"string\",\n      \"description\": \"string\",\n      \"reason-id\": 1163.0923805457883,\n      \"schedulingmaxdays\": 9584.246841564021,\n      \"department-ids\": [\n        5912.230640730917,\n        76.82882876457242\n      ]\n    },\n    {\n      \"schedulingminhours\": 2736.709355946563,\n      \"reasontype\": \"string\",\n      \"reason\": \"string\",\n      \"description\": \"string\",\n      \"reason-id\": 1125.821489994636,\n      \"schedulingmaxdays\": 7145.141757148379,\n      \"department-ids\": [\n        2181.3779513314003,\n        3184.7059818126113\n      ]\n    }\n  ],\n  \"departments\": [\n    {\n      \"id\": 3571.6190246114356,\n      \"name\": \"string\",\n      \"city\": \"string\",\n      \"address-1\": \"string\",\n      \"longitude\": \"string\",\n      \"time-zone-offset\": 5113.23369230561,\n      \"latitude\": \"string\",\n      \"short-name\": \"string\",\n      \"time-zone-name\": \"string\",\n      \"time-zone\": 6150.775709419495,\n      \"address\": \"string\",\n      \"address-2\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"provider-list\": [\n        3446,\n        4274\n      ]\n    },\n    {\n      \"id\": 1871.5003229396154,\n      \"name\": \"string\",\n      \"city\": \"string\",\n      \"address-1\": \"string\",\n      \"longitude\": \"string\",\n      \"time-zone-offset\": 3173.3555221113875,\n      \"latitude\": \"string\",\n      \"short-name\": \"string\",\n      \"time-zone-name\": \"string\",\n      \"time-zone\": 3824.4239725478024,\n      \"address\": \"string\",\n      \"address-2\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"provider-list\": [\n        5567,\n        5995\n      ]\n    }\n  ],\n  \"popups\": [\n    {\n      \"sponsor-id\": \"eebdeace-a253-e7a2-932f-af14dcc37067\",\n      \"date\": \"\",\n      \"name\": \"string\",\n      \"athena-reason-id\": 3728,\n      \"athena-scheduling-provider-id\": 9955,\n      \"address-1\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"popup-state\": \"active\",\n      \"created-at\": \"\",\n      \"updated-at\": \"\",\n      \"id\": \"6d8791f1-8e17-0c5a-e66f-66023aa191d7\",\n      \"instructions\": \"string\",\n      \"address-2\": \"string\",\n      \"time-zone-id\": \"string\",\n      \"end-date\": \"\",\n      \"end-time\": \"string\",\n      \"start-time\": \"string\",\n      \"eligible-members\": \"employees_and_dependents\",\n      \"division-ids\": [\n        \"34beabe8-2bd8-ad25-d679-422eb4143786\",\n        \"7bfabc0a-5815-dd92-2e21-bb64ecf9b01a\"\n      ]\n    },\n    {\n      \"sponsor-id\": \"dee5e291-af43-0944-2c68-2a14dcc4240e\",\n      \"date\": \"\",\n      \"name\": \"string\",\n      \"athena-reason-id\": 304,\n      \"athena-scheduling-provider-id\": 3196,\n      \"address-1\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"popup-state\": \"draft\",\n      \"created-at\": \"\",\n      \"updated-at\": \"\",\n      \"id\": \"fbbdc756-4cad-53bf-c8b1-7c6da15a96e7\",\n      \"instructions\": \"string\",\n      \"address-2\": \"string\",\n      \"time-zone-id\": \"string\",\n      \"end-date\": \"\",\n      \"end-time\": \"string\",\n      \"start-time\": \"string\",\n      \"eligible-members\": \"employees_only\",\n      \"division-ids\": [\n        \"c94ec458-0047-b871-c245-897fcd42f5f5\",\n        \"844dd137-32ac-95fc-828d-43ba5a50bc84\"\n      ]\n    }\n  ],\n  \"reasongroups\": [\n    {\n      \"id\": \"f6a02aaf-4bb1-1cf7-37e9-dd67a429a614\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"athena-reason-ids\": [\n        4992.463463814628,\n        417.4766389178319\n      ],\n      \"display-order\": 9585.477543871953,\n      \"skip-reason-selection\": true\n    },\n    {\n      \"id\": \"126c229c-7ad9-0c69-7399-50438d8a1101\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"athena-reason-ids\": [\n        2015.9196801401868,\n        1163.0441827676873\n      ],\n      \"display-order\": 9035.176579050136,\n      \"skip-reason-selection\": false\n    }\n  ],\n  \"departmentgroups\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e23c1622-abe0-4f42-a576-3deef35c7ceb",
+    "name": "Grdn grdn.handler grdn.routes.impl.bookable-entities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

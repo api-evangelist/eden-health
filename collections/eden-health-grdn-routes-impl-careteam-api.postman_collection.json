@@ -1,0 +1,309 @@
+{
+  "item": [
+    {
+      "id": "5646d134-4fe6-4bc9-ac2f-64203824b4ce",
+      "name": "grdn.routes.impl.careteam",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a329be63-8440-48b4-8a3a-02968ad9e0ce",
+          "name": "get-all-careteams-handler",
+          "request": {
+            "name": "get-all-careteams-handler",
+            "description": {
+              "content": "Gets the careteams from postgres.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "careteams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7cf9c520-4cf6-40f5-9072-e3e39e11e4d1",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "careteams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"b60515b5-4163-b49c-8472-6a68201ae569\",\n    \"created-at\": \"\",\n    \"updated-at\": \"\",\n    \"name\": \"string\",\n    \"empanelment-status\": \"open\"\n  },\n  {\n    \"id\": \"5bd1a504-4ad7-bcba-8726-46b34202f8df\",\n    \"created-at\": \"\",\n    \"updated-at\": \"\",\n    \"name\": \"string\",\n    \"empanelment-status\": \"closed\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cfeb7f1c-0f45-4f9d-bc13-ce628787ebf3",
+          "name": "update-patient-careteam-handler",
+          "request": {
+            "name": "update-patient-careteam-handler",
+            "description": {
+              "content": "Updates a patient's careteam and/or usual provider in Athena.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "patient",
+                ":patient-id",
+                "careteam"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: grdn.specs.careteam/update-patient-careteam-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"careteam-id\": \"<uuid>\",\n  \"athena-provider-id\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4ca1d2c1-e45e-4c6f-8c85-61dd80a1f078",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "patient",
+                    ":patient-id",
+                    "careteam"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: grdn.specs.careteam/update-patient-careteam-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"careteam-id\": \"<uuid>\",\n  \"athena-provider-id\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd32793b-0bf1-4313-9f12-24f1cf5af55d",
+          "name": "get-patient-careteam-handler",
+          "request": {
+            "name": "get-patient-careteam-handler",
+            "description": {
+              "content": "Gets the patient's careteam id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "patient",
+                ":patient-id",
+                "careteam"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: grdn.specs.careteam/get-patient-careteam"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b1e50f1f-9323-4aee-923a-1068ea79f917",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "patient",
+                    ":patient-id",
+                    "careteam"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: grdn.specs.careteam/get-patient-careteam"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"670a6a82-539c-d24f-d13d-58bd5d260cce\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0f6b0a33-bda4-4ed6-ace9-d1801d8688f6",
+    "name": "Grdn grdn.handler grdn.routes.impl.careteam API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

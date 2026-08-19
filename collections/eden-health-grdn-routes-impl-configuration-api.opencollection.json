@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.configuration API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get-for-current-user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/configuration"
+          },
+          "docs": "Get configuration specific to authenticated user. Currently simply returns the LD feature flags already\n   retrieved by the `wrap-v2-auth` middleware."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

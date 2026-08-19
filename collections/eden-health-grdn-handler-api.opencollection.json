@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.handler",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "swagger-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/swagger.json"
+          },
+          "docs": "swagger-handler"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

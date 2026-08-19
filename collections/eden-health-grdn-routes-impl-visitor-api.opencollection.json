@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.visitor API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.visitor",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get-visitors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/visitor",
+            "params": [
+              {
+                "name": "day",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.visitor/get-visitors-params"
+              },
+              {
+                "name": "triage-status",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.visitor/get-visitors-params"
+              },
+              {
+                "name": "sort-by",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.visitor/get-visitors-params"
+              },
+              {
+                "name": "sort-direction",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.visitor/get-visitors-params"
+              }
+            ]
+          },
+          "docs": "GET handler"
+        },
+        {
+          "info": {
+            "name": "get-sponsor-screener",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/visitor/screener",
+            "params": [
+              {
+                "name": "link-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.visitor/get-sponsor-screener-params"
+              }
+            ]
+          },
+          "docs": "Get sponsor name and screener by visitor code"
+        },
+        {
+          "info": {
+            "name": "post-visitor-covid-19-screener",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/visitor/screener-response"
+          },
+          "docs": "Handler for visitor COVID-19 screener"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1605 @@
+{
+  "item": [
+    {
+      "id": "755869fd-e1a7-4848-a747-94be07ec5a48",
+      "name": "grdn.routes.impl.document",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ddf27622-26e9-4b76-87b1-25d8f86749b1",
+          "name": "post-document-handler",
+          "request": {
+            "name": "post-document-handler",
+            "description": {
+              "content": "Uploads documents to S3 and send to sb channel",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "document"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"channel-id\": \"<uuid>\",\n  \"is-dependent\": {},\n  \"file\": {\n    \"tempfile\": \"\",\n    \"filename\": \"<string>\",\n    \"content-type\": \"<string>\",\n    \"size\": \"<integer>\"\n  },\n  \"title\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"internal-notes\": \"<string>\",\n  \"patient-document-type-id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6071403c-122d-4cae-b94f-4e106124860f",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"channel-id\": \"<uuid>\",\n  \"is-dependent\": {},\n  \"file\": {\n    \"tempfile\": \"\",\n    \"filename\": \"<string>\",\n    \"content-type\": \"<string>\",\n    \"size\": \"<integer>\"\n  },\n  \"title\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"internal-notes\": \"<string>\",\n  \"patient-document-type-id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patient-document-id\": \"0d1644f6-d842-ee47-2905-f4eed4b4a1af\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9e69bcf-7d21-4047-9926-f191d82fac37",
+          "name": "get-documents-handler",
+          "request": {
+            "name": "get-documents-handler",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "document"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "patient-id",
+                  "value": "<uuid>",
+                  "description": "(Required) origin spec: grdn.specs.document/get-documents-spec"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "90b06aa6-c93d-4cde-ac9e-c12e5fe90ddb",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "patient-id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"stats\": {\n    \"count\": 5082,\n    \"latest-uploaded-at\": \"\"\n  },\n  \"documents\": [\n    {\n      \"id\": \"5eb7c074-c971-1f6d-0941-8f3147141f0f\",\n      \"patient-id\": \"3ace941a-9ca0-3fa7-9958-2766c6481eae\",\n      \"provider-id\": \"4b57f415-007f-b6b9-100a-867b3d60bd35\",\n      \"file-path\": \"string\",\n      \"athena-id\": \"string\",\n      \"type\": \"string\",\n      \"patient-document-type-id\": \"0d9e3364-d388-b047-73f5-5563b50fd12c\",\n      \"uploaded-by\": \"provider\",\n      \"created-at\": \"\",\n      \"deleted-at\": \"\",\n      \"deleted-reason\": \"\",\n      \"filename\": \"string\",\n      \"is-dependent\": {},\n      \"mimetype\": \"string\",\n      \"notes\": \"string\",\n      \"internal-notes\": \"string\",\n      \"size\": 5013,\n      \"title\": \"string\",\n      \"uploaded-to-athena-at\": \"\",\n      \"updated-at\": \"\",\n      \"last-updated-by-provider-id\": \"8499c73f-a35e-b487-15ac-cba6849f387d\",\n      \"last-updated-by-provider-name\": \"string\"\n    },\n    {\n      \"id\": \"0af409d9-7111-779e-4d5e-5dea8fcf28cb\",\n      \"patient-id\": \"cd4c8af6-57de-627f-9cee-aa691cde8d55\",\n      \"provider-id\": \"b770f5f2-4743-722f-e17f-a642b273588b\",\n      \"file-path\": \"string\",\n      \"athena-id\": \"string\",\n      \"type\": \"string\",\n      \"patient-document-type-id\": \"789ad844-0d5b-f34f-4b6b-3378f939f01f\",\n      \"uploaded-by\": \"patient\",\n      \"created-at\": \"\",\n      \"deleted-at\": \"\",\n      \"deleted-reason\": \"duplicate\",\n      \"filename\": \"string\",\n      \"is-dependent\": {},\n      \"mimetype\": \"string\",\n      \"notes\": \"string\",\n      \"internal-notes\": \"string\",\n      \"size\": 8255,\n      \"title\": \"string\",\n      \"uploaded-to-athena-at\": \"\",\n      \"updated-at\": \"\",\n      \"last-updated-by-provider-id\": \"b3c43c93-06e1-e8ed-3dc6-6d45630bfbbc\",\n      \"last-updated-by-provider-name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bbddc05a-bb8c-4cb6-9a8b-06676c6f6f90",
+          "name": "get-document-types-handler",
+          "request": {
+            "name": "get-document-types-handler",
+            "description": {
+              "content": "Gets list of patient document types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "document",
+                "type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0cfce030-1ec9-43f5-b4ed-407f2bfff786",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "document",
+                    "type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"875b5962-4b71-a76e-e71e-94ac60ba1e4f\",\n    \"created-at\": \"\",\n    \"updated-at\": \"\",\n    \"name\": \"string\",\n    \"identifier\": \"string\",\n    \"description\": \"string\",\n    \"is-athena-upload\": true,\n    \"is-managed\": false\n  },\n  {\n    \"id\": \"6c11abba-ce8c-dfd0-0771-209a456b9f18\",\n    \"created-at\": \"\",\n    \"updated-at\": \"\",\n    \"name\": \"string\",\n    \"identifier\": \"string\",\n    \"description\": \"string\",\n    \"is-athena-upload\": true,\n    \"is-managed\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58cd0914-fc58-4295-afe8-19b016a237ac",
+          "name": "delete-document-handler",
+          "request": {
+            "name": "delete-document-handler",
+            "description": {
+              "content": "Deletes specified patient document.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "document",
+                ":patient-document-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "patient-document-id",
+                  "description": "(Required) origin spec: grdn.specs.document/delete-document-spec"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "67f2517c-5d7a-4f76-950a-e7a9ebe7aa5d",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "document",
+                    ":patient-document-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "patient-document-id",
+                      "description": "(Required) origin spec: grdn.specs.document/delete-document-spec"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "033362bc-09bd-47fb-a066-970333429d15",
+          "name": "update-document-handler",
+          "request": {
+            "name": "update-document-handler",
+            "description": {
+              "content": "Updates specified patient document.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "document",
+                ":patient-document-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patient-document-id",
+                  "description": "(Required) origin spec: "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "58efaa56-9e33-4434-862c-6f4782546ac6",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "document",
+                    ":patient-document-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patient-document-id",
+                      "description": "(Required) origin spec: "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93a304a8-c859-4aa6-8f91-19a400e53065",
+          "name": "get-document-metadata-handler",
+          "request": {
+            "name": "get-document-metadata-handler",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "document",
+                ":patient-document-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "patient-document-id",
+                  "description": "(Required) origin spec: grdn.specs.document/get-document-metadata-spec"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ab2b33a-e31b-4f35-b351-cb6c07f4a254",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "document",
+                    ":patient-document-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "patient-document-id",
+                      "description": "(Required) origin spec: grdn.specs.document/get-document-metadata-spec"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"8622ded1-e76d-21fc-ba8c-cf7e1d925c6c\",\n  \"patient-id\": \"b29e379a-1d36-2621-db30-e858fff2b9cc\",\n  \"provider-id\": \"b9588e3f-a2fb-e00c-b1ed-be9c9e2e47dd\",\n  \"patient-document-type-id\": \"19af494a-a44f-295d-db5b-00a1ce16ab25\",\n  \"uploaded-by\": \"patient\",\n  \"created-at\": \"\",\n  \"deleted-at\": \"\",\n  \"deleted-reason\": \"duplicate\",\n  \"updated-at\": \"\",\n  \"last-updated-by-provider-id\": \"832490dd-7d3d-21c8-9077-d91f158d57aa\",\n  \"last-updated-by-provider-name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc390a8e-6d48-46ad-a0ef-cc9ce36a218b",
+          "name": "get-document-handler",
+          "request": {
+            "name": "get-document-handler",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "document",
+                ":patient-document-id",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "source",
+                  "value": "<string>",
+                  "description": "origin spec: grdn.specs.document/get-document-spec"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "patient-document-id",
+                  "description": "(Required) origin spec: grdn.specs.document/get-document-spec"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0be5ad0f-ed99-4d17-9b59-c7009542d359",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "document",
+                    ":patient-document-id",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "patient-document-id",
+                      "description": "(Required) origin spec: grdn.specs.document/get-document-spec"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1981dad7-0940-4579-8a0d-97fd4b092686",
+          "name": "post-covid-test-result-handler",
+          "request": {
+            "name": "post-covid-test-result-handler",
+            "description": {
+              "content": "Uploads a patient's test result document to Athena and S3.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "patient",
+                ":patient-id",
+                "document",
+                "covid-test-result"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: grdn.specs.document/upload-covid-test-document-spec"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"test-document-type\": \"<string>\",\n  \"document\": \"<string>\",\n  \"test-date\": \"<string>\",\n  \"test-result\": \"<string>\",\n  \"proctored\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dc05f412-7b7d-4210-98d1-1b768c347300",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "patient",
+                    ":patient-id",
+                    "document",
+                    "covid-test-result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: grdn.specs.document/upload-covid-test-document-spec"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"test-document-type\": \"<string>\",\n  \"document\": \"<string>\",\n  \"test-date\": \"<string>\",\n  \"test-result\": \"<string>\",\n  \"proctored\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lab-result-id\": \"string\",\n  \"name\": \"string\",\n  \"administration-date\": \"string\",\n  \"result\": \"string\",\n  \"test-attestation-data\": [\n    {\n      \"test-result\": \"string\",\n      \"proctored\": false\n    },\n    {\n      \"test-result\": \"string\",\n      \"proctored\": false\n    }\n  ],\n  \"description\": \"string\",\n  \"provider-id\": \"ba985fe3-3fbb-90da-30f7-f87940c568a2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "88fc5dc4-48cb-4ea1-84b5-fb963a14f362",
+          "name": "get-lab-results-summary-handler",
+          "request": {
+            "name": "get-lab-results-summary-handler",
+            "description": {
+              "content": "Returns a summary of patient's lab results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "patient",
+                ":patient-id",
+                "document",
+                "lab-result"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: grdn.specs.document/get-lab-results-summary-spec"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fba4ee1f-4895-46e5-a430-b607e6e90ca9",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "patient",
+                    ":patient-id",
+                    "document",
+                    "lab-result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: grdn.specs.document/get-lab-results-summary-spec"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lab-results\": [\n    {\n      \"lab-result-id\": \"string\",\n      \"administration-date\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"document-type-id\": \"string\",\n      \"test-attestation-data\": [\n        {\n          \"test-result\": \"string\",\n          \"proctored\": false\n        },\n        {\n          \"test-result\": \"string\",\n          \"proctored\": true\n        }\n      ],\n      \"result\": \"string\"\n    },\n    {\n      \"lab-result-id\": \"string\",\n      \"administration-date\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"document-type-id\": \"string\",\n      \"test-attestation-data\": [\n        {\n          \"test-result\": \"string\",\n          \"proctored\": true\n        },\n        {\n          \"test-result\": \"string\",\n          \"proctored\": false\n        }\n      ],\n      \"result\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1a5f6e9-07a9-4f86-ac04-3ff9fdd27ea3",
+          "name": "get-lab-result-handler",
+          "request": {
+            "name": "get-lab-result-handler",
+            "description": {
+              "content": "Returns a single detailed lab result.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "patient",
+                ":patient-id",
+                "document",
+                "lab-result",
+                ":lab-result-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: grdn.specs.document/get-lab-result-spec"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lab-result-id",
+                  "description": "(Required) origin spec: grdn.specs.document/get-lab-result-spec"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "592f0927-5685-4db4-9483-a66f69ce6f01",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "patient",
+                    ":patient-id",
+                    "document",
+                    "lab-result",
+                    ":lab-result-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: grdn.specs.document/get-lab-result-spec"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lab-result-id",
+                      "description": "(Required) origin spec: grdn.specs.document/get-lab-result-spec"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lab-result-id\": \"string\",\n  \"name\": \"string\",\n  \"administration-date\": \"string\",\n  \"description\": \"string\",\n  \"result\": \"string\",\n  \"provider-id\": \"f5694b6d-be15-265d-332b-0e8350118692\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "15f030b9-6861-4f7e-a19e-4c5e1945d205",
+          "name": "get-lab-result-file-handler",
+          "request": {
+            "name": "get-lab-result-file-handler",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "patient",
+                ":patient-id",
+                "document",
+                "lab-result",
+                ":lab-result-id",
+                "file"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lab-result-id",
+                  "description": "(Required) origin spec: "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bede8dce-c0ac-4fb0-9e9e-2d462cb6b52f",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "patient",
+                    ":patient-id",
+                    "document",
+                    "lab-result",
+                    ":lab-result-id",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lab-result-id",
+                      "description": "(Required) origin spec: "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "abb8dc28-96ee-4a4b-be69-7360ce3d7e37",
+          "name": "get-primary-insurance-card-handler",
+          "request": {
+            "name": "get-primary-insurance-card-handler",
+            "description": {
+              "content": "Get the member's primary insurance card image.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "patient",
+                ":patient-id",
+                "document",
+                "primary-insurance-card"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "funnel-id",
+                  "value": "<uuid>",
+                  "description": "origin spec: grdn.specs/patient-id-params"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: grdn.specs/patient-id-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "64123885-f054-43cd-bd42-78a90b6ed15b",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "patient",
+                    ":patient-id",
+                    "document",
+                    "primary-insurance-card"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "funnel-id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: grdn.specs/patient-id-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9bc1ce9e-d167-49a5-9eb6-62580ed93308",
+          "name": "post-vaccine-document-handler",
+          "request": {
+            "name": "post-vaccine-document-handler",
+            "description": {
+              "content": "Uploads a patient's vaccine document to Athena and S3.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "patient",
+                ":patient-id",
+                "document",
+                "vaccine"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: grdn.specs.document/upload-vaccine-document-spec"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"document-type\": \"<string>\",\n  \"document\": \"<string>\",\n  \"attestation-data\": {\n    \"dose-nr\": \"<integer>\",\n    \"vaccinator\": \"<string>\",\n    \"administer-date\": \"<string>\",\n    \"manufacturer\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cc6093fa-5aed-4160-9615-d5ff3fc09f33",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "patient",
+                    ":patient-id",
+                    "document",
+                    "vaccine"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: grdn.specs.document/upload-vaccine-document-spec"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"document-type\": \"<string>\",\n  \"document\": \"<string>\",\n  \"attestation-data\": {\n    \"dose-nr\": \"<integer>\",\n    \"vaccinator\": \"<string>\",\n    \"administer-date\": \"<string>\",\n    \"manufacturer\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vaccine\": {\n    \"administration-date\": \"string\",\n    \"status\": \"REFUSED\",\n    \"vaccinator\": \"string\",\n    \"vaccine-id\": \"string\",\n    \"attestation-data\": {\n      \"dose-nr\": 218,\n      \"vaccinator\": \"string\",\n      \"administer-date\": \"string\",\n      \"manufacturer\": \"Novavax\"\n    },\n    \"description\": \"string\",\n    \"lot-number\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d73faea0-57e8-4086-b6fc-24e127c04ce4",
+          "name": "get-vaccines-handler",
+          "request": {
+            "name": "get-vaccines-handler",
+            "description": {
+              "content": "Retrieves the patient's vaccinations. For now, filters for COVID vaccines.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "patient",
+                ":patient-id",
+                "document",
+                "vaccine"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: grdn.specs.document/get-vaccines-spec"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1bd02bcc-d063-4738-8e4d-3e8c39d41364",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "patient",
+                    ":patient-id",
+                    "document",
+                    "vaccine"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: grdn.specs.document/get-vaccines-spec"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vaccines\": [\n    {\n      \"administration-date\": \"string\",\n      \"status\": \"ADMINISTERED\",\n      \"vaccinator\": \"string\",\n      \"vaccine-id\": \"string\",\n      \"attestation-data\": {\n        \"dose-nr\": 9992,\n        \"vaccinator\": \"string\",\n        \"administer-date\": \"string\",\n        \"manufacturer\": \"Other\"\n      },\n      \"description\": \"string\",\n      \"lot-number\": \"string\"\n    },\n    {\n      \"administration-date\": \"string\",\n      \"status\": \"REFUSED\",\n      \"vaccinator\": \"string\",\n      \"vaccine-id\": \"string\",\n      \"attestation-data\": {\n        \"dose-nr\": 9800,\n        \"vaccinator\": \"string\",\n        \"administer-date\": \"string\",\n        \"manufacturer\": \"Johnson & Johnson\"\n      },\n      \"description\": \"string\",\n      \"lot-number\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac9f2456-0168-4105-a9a2-0d443efe107e",
+          "name": "get-vaccine-document-handler",
+          "request": {
+            "name": "get-vaccine-document-handler",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "patient",
+                ":patient-id",
+                "document",
+                "vaccine",
+                ":vaccine-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vaccine-id",
+                  "description": "(Required) origin spec: "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f741c58-d1b8-4f08-9fbc-e69a2fe9eb6b",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "patient",
+                    ":patient-id",
+                    "document",
+                    "vaccine",
+                    ":vaccine-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vaccine-id",
+                      "description": "(Required) origin spec: "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3db9d3c-7a15-4fd4-b5e3-ceff67790902",
+          "name": "get-orders-handler",
+          "request": {
+            "name": "get-orders-handler",
+            "description": {
+              "content": "Returns all handlers associated with a patient",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "patient",
+                ":patient-id",
+                "order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: grdn.specs.document/get-orders-spec"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4a19c72-bd12-4f05-a89b-b81c09ce2783",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "patient",
+                    ":patient-id",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: grdn.specs.document/get-orders-spec"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"created-date-time\": \"\",\n    \"order-type\": \"PRESCRIPTION\",\n    \"order-status\": \"CREATED\",\n    \"document-description\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"created-date-time\": \"\",\n    \"order-type\": \"PRESCRIPTION\",\n    \"order-status\": \"CREATED\",\n    \"document-description\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "acfc20b8-7908-4225-b70a-725e9030f54d",
+    "name": "Grdn grdn.handler grdn.routes.impl.document API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

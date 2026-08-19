@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.careteam API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.careteam",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get-all-careteams-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/careteams"
+          },
+          "docs": "Gets the careteams from postgres."
+        },
+        {
+          "info": {
+            "name": "get-patient-careteam-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/careteam",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.careteam/get-patient-careteam"
+              }
+            ]
+          },
+          "docs": "Gets the patient's careteam id."
+        },
+        {
+          "info": {
+            "name": "update-patient-careteam-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/careteam",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.careteam/update-patient-careteam-params"
+              }
+            ]
+          },
+          "docs": "Updates a patient's careteam and/or usual provider in Athena."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

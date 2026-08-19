@@ -1,0 +1,434 @@
+{
+  "item": [
+    {
+      "id": "90beb04f-d6ba-4ea4-93f1-3bf2bc19bd3e",
+      "name": "grdn.routes.impl.feedback",
+      "description": {
+        "content": "Contains handlers for routes related to Appointments, Cases, Encounters etc.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d11b9e71-0f62-4b61-8464-5779926bf415",
+          "name": "case-feedback-handler",
+          "request": {
+            "name": "case-feedback-handler",
+            "description": {
+              "content": "Creates a requested feedback entry for a given patient case.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "case",
+                ":case-id",
+                "feedback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<double>",
+                  "key": "case-id",
+                  "description": "(Required) origin spec: grdn.specs.feedback/case-feedback-handler-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient-id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2ae64419-383b-49f6-8ced-0baf80d9e5c7",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "case",
+                    ":case-id",
+                    "feedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "case-id",
+                      "description": "(Required) origin spec: grdn.specs.feedback/case-feedback-handler-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient-id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"feedback\": {\n    \"patient-id\": \"47cfac73-cce9-5e45-d2e4-d9906ea5c1a2\",\n    \"type\": \"pediatrics\",\n    \"type-id\": \"string\",\n    \"mrn\": 6412.866778661617,\n    \"updated-at\": \"\",\n    \"status\": \"string\",\n    \"submitted-at\": {},\n    \"id\": \"01bd644f-b424-f086-e6d3-ab53a06c41c3\",\n    \"comment\": \"string\",\n    \"created-at\": \"\",\n    \"rating\": 2828.0885927494605\n  },\n  \"event\": {\n    \"id\": \"706de8ca-13f2-f07d-3e90-c063e941d7ea\",\n    \"created-at\": \"\",\n    \"updated-at\": \"\",\n    \"event-data\": {},\n    \"event-group\": \"string\",\n    \"event-name\": \"string\",\n    \"ops-user-id\": \"7b124faa-01e9-88e4-baa4-b46029132f36\",\n    \"provider-id\": \"7f3c9dcd-0716-5c7d-d6be-cdd8975295f0\",\n    \"patient-id\": \"fd45a335-b0bd-43f3-5679-6a6c84a196c8\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a15723a2-685c-4c52-a1f0-e23ac2fdf1c8",
+          "name": "send-feedback-handler",
+          "request": {
+            "name": "send-feedback-handler",
+            "description": {
+              "content": "Sends feedback to all patients with a recent visit",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "feedback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3ea4f507-94ba-45f9-b537-12e583dda49e",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "feedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8bb3d480-cd48-46fc-a90a-f8d3b3dbdeae",
+          "name": "get-feedback-handler",
+          "request": {
+            "name": "get-feedback-handler",
+            "description": {
+              "content": "Gets requested feedback survey for a patient",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "patient",
+                ":patient-id",
+                "feedback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "funnel-id",
+                  "value": "<uuid>",
+                  "description": "origin spec: grdn.specs/patient-id-params"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: grdn.specs/patient-id-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c30e6d6f-5f1b-4f95-bc99-838ac601933d",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "patient",
+                    ":patient-id",
+                    "feedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "funnel-id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: grdn.specs/patient-id-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"date\": \"string\",\n  \"department-id\": \"string\",\n  \"feedback-id\": \"fb3591af-c41c-625d-2004-945fce89e789\",\n  \"email\": \"string\",\n  \"feedback-reasons\": [\n    {\n      \"id\": \"e283f4a7-64a2-e2f7-31ac-5494149d9c94\",\n      \"label\": \"string\",\n      \"created-at\": \"\",\n      \"updated-at\": \"\",\n      \"department-id\": \"string\"\n    },\n    {\n      \"id\": \"91b81469-98c1-2bc2-7db9-375e2ec9e7b0\",\n      \"label\": \"string\",\n      \"created-at\": \"\",\n      \"updated-at\": \"\",\n      \"department-id\": \"string\"\n    }\n  ],\n  \"type\": \"appointment\",\n  \"type-id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0633108a-ced3-4600-a66c-5ee1d870dab2",
+          "name": "submit-feedback-handler",
+          "request": {
+            "name": "submit-feedback-handler",
+            "description": {
+              "content": "Write patient feedback to db and send low rating alert if needed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "patient",
+                ":patient-id",
+                "feedback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: grdn.specs.feedback/submit-feedback-handler-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"feedback-id\": \"<uuid>\",\n  \"comment\": \"<string>\",\n  \"deescalation-answer\": \"<string>\",\n  \"rating\": \"<double>\",\n  \"reason-ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "923c06f6-0192-49f4-8298-e0205bf757f7",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "patient",
+                    ":patient-id",
+                    "feedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: grdn.specs.feedback/submit-feedback-handler-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feedback-id\": \"<uuid>\",\n  \"comment\": \"<string>\",\n  \"deescalation-answer\": \"<string>\",\n  \"rating\": \"<double>\",\n  \"reason-ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"feedback\": 5236.830928566331,\n  \"reasons\": [\n    {\n      \"id\": \"50ff710e-28de-04a4-7f10-d4d6cfb893ea\",\n      \"created-at\": \"\",\n      \"updated-at\": \"\",\n      \"patient-feedback-id\": \"28a5c07a-4b43-d32a-666a-b9d5e0a2318f\",\n      \"patient-feedback-reason-id\": \"59f4bc78-c630-0eb4-e2c6-f45e0b984e48\"\n    },\n    {\n      \"id\": \"689d4a37-9094-c8e2-f814-c4930a334e97\",\n      \"created-at\": \"\",\n      \"updated-at\": \"\",\n      \"patient-feedback-id\": \"35431b8e-53c1-33dc-4d39-fe2c583f8099\",\n      \"patient-feedback-reason-id\": \"dd29edc7-2081-e8c2-72cf-1155ab54983e\"\n    }\n  ],\n  \"event\": {\n    \"id\": \"e363582a-830e-284a-61d7-b29f834e07b8\",\n    \"created-at\": \"\",\n    \"updated-at\": \"\",\n    \"event-data\": {},\n    \"event-group\": \"string\",\n    \"event-name\": \"string\",\n    \"ops-user-id\": \"89662e2d-e844-a22b-f573-ad5e55e3a6ce\",\n    \"provider-id\": \"9f9d11d7-8335-2728-56f6-2a45d3e00c25\",\n    \"patient-id\": \"2127ca30-edcc-1d37-386f-1c614159365c\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f160a8d2-f424-4692-9733-a2e268036033",
+    "name": "Grdn grdn.handler grdn.routes.impl.feedback API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.provider-groups API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.provider-groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get-provider-groups-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/provider-groups"
+          },
+          "docs": "Get all provider groups."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

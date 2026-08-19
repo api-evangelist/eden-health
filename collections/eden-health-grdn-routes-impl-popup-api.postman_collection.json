@@ -1,0 +1,410 @@
+{
+  "item": [
+    {
+      "id": "78127c64-a1f0-4100-aeb0-49296c452393",
+      "name": "grdn.routes.impl.popup",
+      "description": {
+        "content": "Simple CRUD operations for popups.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ca844a12-3da1-4896-922a-2f788f8dcc15",
+          "name": "get-popups-handler",
+          "request": {
+            "name": "get-popups-handler",
+            "description": {
+              "content": "Returns popups depending on the category parameter and populates the start and end dates if possible.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "popup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "popup-category",
+                  "value": "<string>",
+                  "description": "origin spec: grdn.specs.popup/get-popup-params"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27720961-4f68-4a7f-b912-9eefc6d43287",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "popup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "popup-category",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"sponsor-id\": \"e6b9d2c0-feac-bbf6-bd2c-a47db247d9db\",\n    \"date\": \"\",\n    \"name\": \"string\",\n    \"athena-reason-id\": 3021,\n    \"athena-scheduling-provider-id\": 2088,\n    \"athena-department-id\": 9997,\n    \"address-1\": \"string\",\n    \"address-2\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\",\n    \"popup-state\": \"active\",\n    \"created-at\": \"\",\n    \"updated-at\": \"\",\n    \"id\": \"dd7eb73f-62dc-83e3-f469-c9531cb994f6\",\n    \"instructions\": \"string\",\n    \"time-zone-id\": \"string\",\n    \"end-date\": \"\",\n    \"end-time\": \"string\",\n    \"start-time\": \"string\",\n    \"eligible-members\": \"employees_only\",\n    \"popup-dates\": [\n      {\n        \"start-time\": \"string\",\n        \"end-time\": \"string\"\n      },\n      {\n        \"start-time\": \"string\",\n        \"end-time\": \"string\"\n      }\n    ],\n    \"division-ids\": [\n      \"c954d739-dfcf-ab67-7d92-5ab54398e3ef\",\n      \"3e930462-f32d-656e-0ed6-cce7b6060477\"\n    ]\n  },\n  {\n    \"sponsor-id\": \"f7d9c5ab-f094-705b-c17e-86d933927398\",\n    \"date\": \"\",\n    \"name\": \"string\",\n    \"athena-reason-id\": 6143,\n    \"athena-scheduling-provider-id\": 9978,\n    \"athena-department-id\": 3041,\n    \"address-1\": \"string\",\n    \"address-2\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\",\n    \"popup-state\": \"active\",\n    \"created-at\": \"\",\n    \"updated-at\": \"\",\n    \"id\": \"848cc2d8-5437-9f9b-67dd-6bf15888009b\",\n    \"instructions\": \"string\",\n    \"time-zone-id\": \"string\",\n    \"end-date\": \"\",\n    \"end-time\": \"string\",\n    \"start-time\": \"string\",\n    \"eligible-members\": \"employees_and_dependents\",\n    \"popup-dates\": [\n      {\n        \"start-time\": \"string\",\n        \"end-time\": \"string\"\n      },\n      {\n        \"start-time\": \"string\",\n        \"end-time\": \"string\"\n      }\n    ],\n    \"division-ids\": [\n      \"7cf6e244-d887-240f-eac6-a5e63e9bbffc\",\n      \"928c348d-dc08-f80b-6937-dd70a7137754\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f8ae0aa9-7c3d-4298-95db-5250473c8608",
+          "name": "create-popup-handler",
+          "request": {
+            "name": "create-popup-handler",
+            "description": {
+              "content": "Creates a new popup.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "popup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sponsor-id\": \"<uuid>\",\n  \"date\": \"<string>\",\n  \"athena-reason-id\": \"<long>\",\n  \"time-zone-id\": \"<string>\",\n  \"end-date\": \"\",\n  \"city\": \"<string>\",\n  \"address-1\": \"<string>\",\n  \"athena-scheduling-provider-id\": \"<long>\",\n  \"instructions\": \"<string>\",\n  \"eligible-members\": \"<string>\",\n  \"address-2\": \"<string>\",\n  \"state\": \"<string>\",\n  \"division-ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"zip\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c86408d3-97c3-40a4-895d-9beaaf6ace1e",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "popup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sponsor-id\": \"<uuid>\",\n  \"date\": \"<string>\",\n  \"athena-reason-id\": \"<long>\",\n  \"time-zone-id\": \"<string>\",\n  \"end-date\": \"\",\n  \"city\": \"<string>\",\n  \"address-1\": \"<string>\",\n  \"athena-scheduling-provider-id\": \"<long>\",\n  \"instructions\": \"<string>\",\n  \"eligible-members\": \"<string>\",\n  \"address-2\": \"<string>\",\n  \"state\": \"<string>\",\n  \"division-ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"zip\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sponsor-id\": \"8a4228b5-8f44-de53-69f9-9e04401a945c\",\n  \"date\": \"\",\n  \"name\": \"string\",\n  \"athena-reason-id\": 9097,\n  \"athena-scheduling-provider-id\": 2363,\n  \"address-1\": \"string\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"zip\": \"string\",\n  \"popup-state\": \"active\",\n  \"created-at\": \"\",\n  \"updated-at\": \"\",\n  \"id\": \"cec24dc3-205e-8d0f-c2d2-47bbb9de0faa\",\n  \"instructions\": \"string\",\n  \"address-2\": \"string\",\n  \"time-zone-id\": \"string\",\n  \"end-date\": \"\",\n  \"end-time\": \"string\",\n  \"start-time\": \"string\",\n  \"eligible-members\": \"employees_and_dependents\",\n  \"division-ids\": [\n    \"8258b4dd-cb53-cc0b-e8cd-f9146a3e47de\",\n    \"1112b080-23e5-577a-d4c2-e457ca80c503\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "794e967d-92ca-4bfa-8775-57b8d88d891e",
+          "name": "delete-popup-handler",
+          "request": {
+            "name": "delete-popup-handler",
+            "description": {
+              "content": "Deletes a popup. Cascade deletes associated popup dates",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "popup",
+                ":popup-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "popup-id",
+                  "description": "(Required) origin spec: grdn.specs.popup/delete-popup-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a2a4a79-ea79-438e-847b-4e4fc568af09",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "popup",
+                    ":popup-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "popup-id",
+                      "description": "(Required) origin spec: grdn.specs.popup/delete-popup-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2197df2d-3cd9-4d12-8b72-37686e7a7927",
+          "name": "update-popup-handler",
+          "request": {
+            "name": "update-popup-handler",
+            "description": {
+              "content": "Sets popup status to be either draft or bookable, and updates fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "popup",
+                ":popup-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "popup-id",
+                  "description": "(Required) origin spec: grdn.specs.popup/update-popup-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"end-date\": \"\",\n  \"athena-reason-id\": \"<long>\",\n  \"city\": \"<string>\",\n  \"address-1\": \"<string>\",\n  \"athena-scheduling-provider-id\": \"<long>\",\n  \"popup-state\": \"<string>\",\n  \"name\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"eligible-members\": \"<string>\",\n  \"address-2\": \"<string>\",\n  \"state\": \"<string>\",\n  \"time-zone-id\": \"<string>\",\n  \"date\": \"<string>\",\n  \"division-ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"zip\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "07300a81-c748-4c56-b328-b5327170012b",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "popup",
+                    ":popup-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "popup-id",
+                      "description": "(Required) origin spec: grdn.specs.popup/update-popup-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"end-date\": \"\",\n  \"athena-reason-id\": \"<long>\",\n  \"city\": \"<string>\",\n  \"address-1\": \"<string>\",\n  \"athena-scheduling-provider-id\": \"<long>\",\n  \"popup-state\": \"<string>\",\n  \"name\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"eligible-members\": \"<string>\",\n  \"address-2\": \"<string>\",\n  \"state\": \"<string>\",\n  \"time-zone-id\": \"<string>\",\n  \"date\": \"<string>\",\n  \"division-ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"zip\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sponsor-id\": \"805baa3d-b6d2-2f63-3ddf-262e5b3b7f16\",\n  \"date\": \"\",\n  \"name\": \"string\",\n  \"athena-reason-id\": 8735,\n  \"athena-scheduling-provider-id\": 5003,\n  \"address-1\": \"string\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"zip\": \"string\",\n  \"popup-state\": \"active\",\n  \"created-at\": \"\",\n  \"updated-at\": \"\",\n  \"id\": \"3e44ac51-0786-c652-ca8b-7a60accb0357\",\n  \"instructions\": \"string\",\n  \"address-2\": \"string\",\n  \"time-zone-id\": \"string\",\n  \"end-date\": \"\",\n  \"end-time\": \"string\",\n  \"start-time\": \"string\",\n  \"eligible-members\": \"employees_and_dependents\",\n  \"division-ids\": [\n    \"cafa8146-9525-c6fe-f3fb-1a7b9fb69026\",\n    \"816cbc7e-f63d-c931-9ece-b68046e5eadd\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b5e2ab70-8ab1-433e-a0f7-7d850a6c962b",
+    "name": "Grdn grdn.handler grdn.routes.impl.popup API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

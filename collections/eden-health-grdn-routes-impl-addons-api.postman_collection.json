@@ -1,0 +1,502 @@
+{
+  "item": [
+    {
+      "id": "84f41bb9-6f97-44c3-ba19-4b9f247ee299",
+      "name": "grdn.routes.impl.addons",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c2ad901f-dab0-4abb-881c-452c1333d68a",
+          "name": "get-categories-handler",
+          "request": {
+            "name": "get-categories-handler",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "addons",
+                "categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f5a2f19e-25ba-4fc8-a7d9-ea9ce8038497",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "addons",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"4f463cec-b87d-703a-dca6-b3648369760d\",\n    \"name\": \"string\",\n    \"image-url\": \"string\"\n  },\n  {\n    \"id\": \"fe9b2de5-a023-b592-6556-823aa4ec00b1\",\n    \"name\": \"string\",\n    \"image-url\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72df8784-19db-4e0a-b625-a0bc8e5889bf",
+          "name": "get-external-addons-handler",
+          "request": {
+            "name": "get-external-addons-handler",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "addons",
+                "external"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "origin spec: grdn.specs.addons/get-external-addons-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "sponsor-id",
+                  "value": "<uuid>",
+                  "description": "origin spec: grdn.specs.addons/get-external-addons-params"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "98752db3-5aba-4a4a-909d-87eed4c9d8fe",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "addons",
+                    "external"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sponsor-id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"ca4e62ed-ef86-d6c0-f541-154579b45bdd\",\n    \"category-id\": \"1e7988dd-3a62-473d-aba0-793ecbeccc0f\",\n    \"benefit-overview\": \"string\",\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"bullet-list\": [\n      \"string\",\n      \"string\"\n    ],\n    \"state\": \"enabled\",\n    \"company-name\": \"string\",\n    \"enrollment-instructions\": \"string\",\n    \"enrollment-url\": \"string\",\n    \"notes\": \"string\"\n  },\n  {\n    \"id\": \"90c87c38-6db4-8561-b673-45fc0bd14373\",\n    \"category-id\": \"a4db8aee-d1af-cf48-6083-07e7b9d15fa0\",\n    \"benefit-overview\": \"string\",\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"bullet-list\": [\n      \"string\",\n      \"string\"\n    ],\n    \"state\": \"archived\",\n    \"company-name\": \"string\",\n    \"enrollment-instructions\": \"string\",\n    \"enrollment-url\": \"string\",\n    \"notes\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "549917fd-5e36-42d3-9798-cf390e7f9f4f",
+          "name": "create-external-addon-handler",
+          "request": {
+            "name": "create-external-addon-handler",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "addons",
+                "external"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sponsor-id\": \"<uuid>\",\n  \"category-id\": \"<uuid>\",\n  \"benefit-overview\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bullet-list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"company-name\": \"<string>\",\n  \"enrollment-instructions\": \"<string>\",\n  \"enrollment-url\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5799d864-f864-44f8-8ccc-31f7f14b3bdb",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "addons",
+                    "external"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sponsor-id\": \"<uuid>\",\n  \"category-id\": \"<uuid>\",\n  \"benefit-overview\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bullet-list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"company-name\": \"<string>\",\n  \"enrollment-instructions\": \"<string>\",\n  \"enrollment-url\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b54c48c-31f9-4d7b-b8f5-ed15fe843eb0",
+          "name": "update-external-addon-handler",
+          "request": {
+            "name": "update-external-addon-handler",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "addons",
+                "external",
+                ":external-addon-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "external-addon-id",
+                  "description": "(Required) origin spec: grdn.specs.addons/update-external-addon-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category-id\": \"<uuid>\",\n  \"benefit-overview\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bullet-list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"company-name\": \"<string>\",\n  \"enrollment-instructions\": \"<string>\",\n  \"enrollment-url\": \"<string>\",\n  \"state\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3a51dc69-d3f5-41ed-96da-4368adf1f028",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "addons",
+                    "external",
+                    ":external-addon-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external-addon-id",
+                      "description": "(Required) origin spec: grdn.specs.addons/update-external-addon-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"category-id\": \"<uuid>\",\n  \"benefit-overview\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bullet-list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"company-name\": \"<string>\",\n  \"enrollment-instructions\": \"<string>\",\n  \"enrollment-url\": \"<string>\",\n  \"state\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8615a78-0140-4714-be05-de88cb65ff05",
+          "name": "get-external-addon-handler",
+          "request": {
+            "name": "get-external-addon-handler",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "addons",
+                "external",
+                ":external-addon-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "external-addon-id",
+                  "description": "(Required) origin spec: grdn.specs.addons/get-external-addon-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "404e4344-7ba3-4882-9fa4-8d24a0e8b4ef",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "addons",
+                    "external",
+                    ":external-addon-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external-addon-id",
+                      "description": "(Required) origin spec: grdn.specs.addons/get-external-addon-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"452875c4-15e8-e71b-8e57-09433504555a\",\n  \"category-id\": \"fdd4cbf8-38c1-a5f9-faf9-2d0c84420ead\",\n  \"benefit-overview\": \"string\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"bullet-list\": [\n    \"string\",\n    \"string\"\n  ],\n  \"state\": \"disabled\",\n  \"company-name\": \"string\",\n  \"enrollment-instructions\": \"string\",\n  \"enrollment-url\": \"string\",\n  \"notes\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "72fec06a-9c7e-405e-aadc-25a838627dfc",
+    "name": "Grdn grdn.handler grdn.routes.impl.addons API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

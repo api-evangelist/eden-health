@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.chat API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.chat",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "summarize-chat",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/chats/summarize"
+          },
+          "docs": "summarize-chat"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

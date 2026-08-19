@@ -1,0 +1,104 @@
+{
+  "item": [
+    {
+      "id": "3828f7ea-072e-4a6a-90d2-eda411dd9caf",
+      "name": "grdn.routes.impl.sendbird",
+      "description": {
+        "content": "Handlers for sendbird webhooks.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f0b67030-101c-4e7a-9bae-18b46daa5b89",
+          "name": "webhook-handler",
+          "request": {
+            "name": "webhook-handler",
+            "description": {
+              "content": "Asynchronously handles sendbird webhook. Always returns a 200 to sendbird immediately.\n  [SEE: https://docs.sendbird.com/platform/webhooks#3_webhook_endpoint_requirements]\n  NOTE: webhook endpoint and event type config is setup in the sendbird dashboard.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "sendbird-webhook"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54fea285-28f5-47b5-b5ba-6a64ae3b8924",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sendbird-webhook"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0449dd76-2b02-4b89-b454-ce3480f3015e",
+    "name": "Grdn grdn.handler grdn.routes.impl.sendbird API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

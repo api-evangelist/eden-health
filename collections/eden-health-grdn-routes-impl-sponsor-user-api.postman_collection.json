@@ -1,0 +1,269 @@
+{
+  "item": [
+    {
+      "id": "d49489bf-e2e4-407c-ab28-21f6684cc55f",
+      "name": "grdn.routes.impl.sponsor-user",
+      "description": {
+        "content": "Handlers for sponsor_user endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "87c68314-6fb0-4593-a200-f26a57ff1405",
+          "name": "delete-sponsor-user",
+          "request": {
+            "name": "delete-sponsor-user",
+            "description": {
+              "content": "Deletes a sponsor user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "sponsor-user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6aa8db96-b264-4490-b48f-c4a406c8c829",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sponsor-user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac6e68ca-f1d4-4795-afcf-d10cc14c0bf1",
+          "name": "get-sponsor-user",
+          "request": {
+            "name": "get-sponsor-user",
+            "description": {
+              "content": "Returns sponsor user info from the identity loaded by auth middleware",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "sponsor-user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ad767d3e-e65f-4cb3-bbc9-453f790eb0fd",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sponsor-user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"first_name\": \"string\",\n  \"schema_name\": \"string\",\n  \"sub\": \"65ed9622-99d0-b8c4-043d-08c553083888\",\n  \"updated_at\": \"\",\n  \"visitor_code\": \"string\",\n  \"id\": \"fe59e8ec-ae0b-3628-3d4c-02ad0658c27d\",\n  \"restricted_dashboard\": false,\n  \"restricted_vax_status\": true,\n  \"last_name\": \"string\",\n  \"sponsor_name\": \"string\",\n  \"sponsor_id\": \"841f9dfe-cf3e-b75d-f5db-7e55debcba0e\",\n  \"created_at\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f409a6d-ce71-46fe-9d7a-6f5a1e2a9982",
+          "name": "create-sponsor-user",
+          "request": {
+            "name": "create-sponsor-user",
+            "description": {
+              "content": "Creates a sponsor user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "sponsor-user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sponsor-id\": \"<uuid>\",\n  \"first-name\": \"<string>\",\n  \"last-name\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2a428767-7ddc-4668-955f-72142a24ca93",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sponsor-user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sponsor-id\": \"<uuid>\",\n  \"first-name\": \"<string>\",\n  \"last-name\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b745e36c-5f0f-4c93-a3b4-a6e05c7746fa",
+    "name": "Grdn grdn.handler grdn.routes.impl.sponsor-user API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

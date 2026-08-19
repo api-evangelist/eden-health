@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.app API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.app",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "app-data-deprecated-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/appdata"
+          },
+          "docs": "app-data-deprecated-handler"
+        },
+        {
+          "info": {
+            "name": "healthcheck-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/healthcheck"
+          },
+          "docs": "Generic healthcheck handler, called by aptible and pingdom."
+        },
+        {
+          "info": {
+            "name": "app-data-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/app-data"
+          },
+          "docs": "app-data-handler"
+        },
+        {
+          "info": {
+            "name": "ping-afterhours-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/ping-afterhours",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Sends an afterhours pagerduty alert."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

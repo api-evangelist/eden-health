@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.auth API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "auth-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/auth"
+          },
+          "docs": "Tries to return a sendbird access token for a user. To do this,\n   we figure out what a user's sendbird-user-id in postgres,\n   and we ask sendbird for a token. If no active ones exist, we\n   create one."
+        },
+        {
+          "info": {
+            "name": "get-launchdarkly-creds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/launchdarkly-creds"
+          },
+          "docs": "Returns the one-way-hashed provider ID and the signed\n   LD hash of that to use as js-secure-mode LD credentials\n   without revealing any of our data/ids to LD."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

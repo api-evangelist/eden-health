@@ -1,0 +1,138 @@
+{
+  "item": [
+    {
+      "id": "65f5e8cc-45e5-4031-a3d2-00233433375c",
+      "name": "grdn.routes.impl.eligibility",
+      "description": {
+        "content": "Route implementation for all things eligibility",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "193f3f0f-0f04-4a82-91d5-f71504c870d1",
+          "name": "validate-eligibility-handler",
+          "request": {
+            "name": "validate-eligibility-handler",
+            "description": {
+              "content": "Provides a means of determining the eligibility of an individual.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "eligibility",
+                "validate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dob",
+                  "value": "<string>",
+                  "description": "(Required) origin spec: grdn.specs.eligibility/validate-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "member-id",
+                  "value": "<string>",
+                  "description": "(Required) origin spec: grdn.specs.eligibility/validate-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "funnel-id",
+                  "value": "<uuid>",
+                  "description": "origin spec: grdn.specs.eligibility/validate-params"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7462aad7-0ff8-42e8-b40c-4c8e8357bf87",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "eligibility",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dob",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "member-id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "funnel-id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5f795f71-789d-4adb-8618-5da8d642c754",
+    "name": "Grdn grdn.handler grdn.routes.impl.eligibility API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

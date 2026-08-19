@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.video-visit API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.video-visit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get-video-visit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/video-visit",
+            "params": [
+              {
+                "name": "video-visit-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.video-visit/get-video-visit-params"
+              }
+            ]
+          },
+          "docs": "Gets a video visit record from postgres."
+        },
+        {
+          "info": {
+            "name": "create-video-visit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/video-visit"
+          },
+          "docs": "Creates a video visit record and sends a message requesting a video visit booking\n   to the patient. Does not book an appointment in Athena or schedule a video meeting\n   in zoom. Those actions are performed after this resource is created."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

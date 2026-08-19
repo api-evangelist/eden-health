@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.eligibility API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.eligibility",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "validate-eligibility-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/eligibility/validate",
+            "params": [
+              {
+                "name": "dob",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.eligibility/validate-params"
+              },
+              {
+                "name": "member-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.eligibility/validate-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.eligibility/validate-params"
+              }
+            ]
+          },
+          "docs": "Provides a means of determining the eligibility of an individual."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

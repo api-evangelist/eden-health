@@ -1,0 +1,1731 @@
+{
+  "item": [
+    {
+      "id": "63129b65-a737-4afe-af4c-760c24d201ce",
+      "name": "grdn.routes.impl.appointments",
+      "description": {
+        "content": "Contains handlers for routes related to Appointments, Cases, Encounters etc.\n\n  On timezones:\n\n  Appointments are tied to Athena departments, and their date and start time are\n  to be interpreted as representing a local datetime in the Athena department's\n  time zone.\n\n  Popups are special in that they have a dedicated department with the New York\n  time zone, but their physical location (and thus time zone) could differ from\n  that.\n\n  To abstract over departments and popups, we introduce the notion of a location\n  time zone, that is equal to the pop-up's time zone for popup appointments, and\n  the department time zone for all others.\n\n  All appointment times for appointments at physical locations are displayed to\n  the user in the location time zone.\n\n  All appointment times for virtual appointments are displayed to the user\n  in their preferred time zone as communicated by the client.\n  ",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "669404c6-a366-4e9b-91f3-76cfe826bf50",
+          "name": "get-digital-visit-handler",
+          "request": {
+            "name": "get-digital-visit-handler",
+            "description": {
+              "content": "Fetches a patients ongoing telehealth appointment. Ignores past ongoing\n  telehealth visits and only checks the most recent visit, if the most\n  recent visit is ongoing we return it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "appointment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "patient-id",
+                  "value": "<uuid>",
+                  "description": "(Required) origin spec: grdn.specs/patient-id-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "funnel-id",
+                  "value": "<uuid>",
+                  "description": "origin spec: grdn.specs/patient-id-params"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3f3a261-6349-423a-b810-42a362341293",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "appointment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "patient-id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "funnel-id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"appointment-id\": 3960,\n  \"date\": \"string\",\n  \"copay\": 2219.972572744041,\n  \"start-time\": \"string\",\n  \"department-id\": \"string\",\n  \"duration\": 6893.593973536976,\n  \"appointment-type\": 551,\n  \"appointment-type-id\": 7210,\n  \"patient-appointment-type-name\": \"string\",\n  \"appointment-status\": 9192.764026615017,\n  \"appointmentcopay\": {\n    \"collectedforother\": 8363.783150579264,\n    \"collectedforappointment\": 6394.196276094597,\n    \"insurancecopay\": 7507.908886828375\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6bce06b7-0d40-4425-abb3-925eb16729d8",
+          "name": "new-digital-visit-handler",
+          "request": {
+            "name": "new-digital-visit-handler",
+            "description": {
+              "content": "Starts by checking for a patient's insurance. If they do not\n   have any, we set their insurance as self pay. Then, we create\n   an open appointment slot, book the patient into it, and check\n   them into it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "appointment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"appointment-type-id\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c143d86f-6a7d-4ffa-bd44-9a7285cb4ea2",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "appointment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"appointment-type-id\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2cb18e68-bc8d-4e95-b9dd-e00620cc53ea",
+          "name": "book-appointments-handler",
+          "request": {
+            "name": "book-appointments-handler",
+            "description": {
+              "content": "Book an appointment, send the confirmation, and then build a response. If a video visit ID\n  is provided, set the appointment ID for that visit in postgres.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "appointment",
+                "book"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointment-ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"department-id\": \"<string>\",\n  \"appointment-type\": \"<long>\",\n  \"primary-complaint\": \"<string>\",\n  \"patient-id\": \"<uuid>\",\n  \"next-step-id\": \"<uuid>\",\n  \"current-user-tz\": \"<string>\",\n  \"popup-id\": \"<uuid>\",\n  \"video-visit-id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f554bf4d-c567-4aa4-876b-792052d66c4a",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "appointment",
+                    "book"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appointment-ids\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"department-id\": \"<string>\",\n  \"appointment-type\": \"<long>\",\n  \"primary-complaint\": \"<string>\",\n  \"patient-id\": \"<uuid>\",\n  \"next-step-id\": \"<uuid>\",\n  \"current-user-tz\": \"<string>\",\n  \"popup-id\": \"<uuid>\",\n  \"video-visit-id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 291.34771230053593,\n  \"start-time\": \"string\",\n  \"time-zone\": \"string\",\n  \"duration\": 4794.39853592823,\n  \"department-id\": \"string\",\n  \"provider-id\": 3649,\n  \"zoom-meeting-id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af3266ba-90ef-4472-8ec2-4fc02be2f063",
+          "name": "booked-appointments-handler",
+          "request": {
+            "name": "booked-appointments-handler",
+            "description": {
+              "content": "Ask for all booked appointments for a patient.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "appointment",
+                "booked"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "patient-id",
+                  "value": "<uuid>",
+                  "description": "(Required) origin spec: grdn.specs/patient-id-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "funnel-id",
+                  "value": "<uuid>",
+                  "description": "origin spec: grdn.specs/patient-id-params"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fbf00c53-b919-4698-9e68-e2ee0a58a0b6",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "appointment",
+                    "booked"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "patient-id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "funnel-id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 5105.986269383474,\n    \"start-time\": \"string\",\n    \"duration\": 2500.6019141711467,\n    \"time-zone\": \"string\",\n    \"department-id\": \"string\",\n    \"provider-id\": 4402,\n    \"location\": {\n      \"name\": \"string\",\n      \"address-1\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"address-2\": \"string\"\n    },\n    \"patient-appointment-type-name\": \"string\",\n    \"rendering-provider-id\": 66,\n    \"after-visit-summary\": {\n      \"status\": \"sent-status\",\n      \"appointment_id\": 3983,\n      \"id\": \"fa4450d9-7732-118a-ab2b-ceb416ba3dfd\",\n      \"patient_id\": \"string\",\n      \"updated-at\": \"\",\n      \"created-at\": \"\",\n      \"content\": \"string\",\n      \"provider_id\": \"string\",\n      \"sending_provider_id\": \"string\",\n      \"encounter_id\": 9407,\n      \"deleted_on\": {},\n      \"message_id\": 2967\n    },\n    \"encounter-id\": 3362\n  },\n  {\n    \"id\": 2069.7284985613383,\n    \"start-time\": \"string\",\n    \"duration\": 8016.724457809301,\n    \"time-zone\": \"string\",\n    \"department-id\": \"string\",\n    \"provider-id\": 3164,\n    \"location\": {\n      \"name\": \"string\",\n      \"address-1\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"address-2\": \"string\"\n    },\n    \"patient-appointment-type-name\": \"string\",\n    \"rendering-provider-id\": 3969,\n    \"after-visit-summary\": {\n      \"status\": \"ready-status\",\n      \"appointment_id\": 5065,\n      \"id\": \"67e37ac4-6abc-33e0-12fa-ad41c7760621\",\n      \"patient_id\": \"string\",\n      \"updated-at\": \"\",\n      \"created-at\": \"\",\n      \"content\": \"string\",\n      \"provider_id\": \"string\",\n      \"sending_provider_id\": \"string\",\n      \"encounter_id\": 6934,\n      \"deleted_on\": {},\n      \"message_id\": 1172\n    },\n    \"encounter-id\": 7193\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "505a2044-f21a-4a4e-b4db-d803197eda82",
+          "name": "booked-appointments-established-handler",
+          "request": {
+            "name": "booked-appointments-established-handler",
+            "description": {
+              "content": "Ask for all booked appointments for a patient and returns\n   a vector of appointments and a boolean saying if the patient is established\n   TDD: https://edenhealth.atlassian.net/wiki/spaces/PE/pages/3350986788/TDD+Filter+Appointment+Reasons+on+Patient+App+depending+on+Patient+Status+New+VS+Established+Patient",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "appointment",
+                "booked-established"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "patient-id",
+                  "value": "<uuid>",
+                  "description": "(Required) origin spec: grdn.specs/patient-id-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "funnel-id",
+                  "value": "<uuid>",
+                  "description": "origin spec: grdn.specs/patient-id-params"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c031c0d8-f3ed-4d8e-bf98-69df030018d2",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "appointment",
+                    "booked-established"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "patient-id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "funnel-id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 5105.986269383474,\n    \"start-time\": \"string\",\n    \"duration\": 2500.6019141711467,\n    \"time-zone\": \"string\",\n    \"department-id\": \"string\",\n    \"provider-id\": 4402,\n    \"location\": {\n      \"name\": \"string\",\n      \"address-1\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"address-2\": \"string\"\n    },\n    \"patient-appointment-type-name\": \"string\",\n    \"rendering-provider-id\": 66,\n    \"after-visit-summary\": {\n      \"status\": \"sent-status\",\n      \"appointment_id\": 3983,\n      \"id\": \"fa4450d9-7732-118a-ab2b-ceb416ba3dfd\",\n      \"patient_id\": \"string\",\n      \"updated-at\": \"\",\n      \"created-at\": \"\",\n      \"content\": \"string\",\n      \"provider_id\": \"string\",\n      \"sending_provider_id\": \"string\",\n      \"encounter_id\": 9407,\n      \"deleted_on\": {},\n      \"message_id\": 2967\n    },\n    \"encounter-id\": 3362\n  },\n  {\n    \"id\": 2069.7284985613383,\n    \"start-time\": \"string\",\n    \"duration\": 8016.724457809301,\n    \"time-zone\": \"string\",\n    \"department-id\": \"string\",\n    \"provider-id\": 3164,\n    \"location\": {\n      \"name\": \"string\",\n      \"address-1\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"address-2\": \"string\"\n    },\n    \"patient-appointment-type-name\": \"string\",\n    \"rendering-provider-id\": 3969,\n    \"after-visit-summary\": {\n      \"status\": \"ready-status\",\n      \"appointment_id\": 5065,\n      \"id\": \"67e37ac4-6abc-33e0-12fa-ad41c7760621\",\n      \"patient_id\": \"string\",\n      \"updated-at\": \"\",\n      \"created-at\": \"\",\n      \"content\": \"string\",\n      \"provider_id\": \"string\",\n      \"sending_provider_id\": \"string\",\n      \"encounter_id\": 6934,\n      \"deleted_on\": {},\n      \"message_id\": 1172\n    },\n    \"encounter-id\": 7193\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "abd2fce9-914e-4b1c-8bb5-cacca9df440b",
+          "name": "checkout-digital-visit-handler",
+          "request": {
+            "name": "checkout-digital-visit-handler",
+            "description": {
+              "content": "Given patient and appointment, checkout the appointment\n  and send the patient a feedback survey. Always sends feedback\n  even if the checkout fails.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "appointment",
+                ":appointment-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "appointment-id",
+                  "description": "(Required) origin spec: grdn.specs.appointments/checkout-digital-visit-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient-id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cc98c10d-1fc5-4053-b142-2b4cb856f902",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "appointment",
+                    ":appointment-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "appointment-id",
+                      "description": "(Required) origin spec: grdn.specs.appointments/checkout-digital-visit-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient-id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f16bde4-3f88-4340-bc3b-a6d40a037293",
+          "name": "delete-after-visit-summary-message-handler",
+          "request": {
+            "name": "delete-after-visit-summary-message-handler",
+            "description": {
+              "content": "Updates an after-visit-summary message custom type to deleted and changes content to empty string.\n   If deleting message and image are successful, logs an event about the deleted message to the db.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "appointment",
+                ":appointment-id",
+                "after-visit-summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "appointment-id",
+                  "description": "(Required) origin spec: grdn.specs.appointments/delete-after-visit-summary-message-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "69e05d9f-47c4-4874-aae1-703428a60d73",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "appointment",
+                    ":appointment-id",
+                    "after-visit-summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "appointment-id",
+                      "description": "(Required) origin spec: grdn.specs.appointments/delete-after-visit-summary-message-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"after-visit-summary\": {\n    \"status\": \"sent-status\",\n    \"appointment_id\": 7795,\n    \"id\": \"baff87bb-678f-9b81-3cf6-6d7b62fb9b1d\",\n    \"patient_id\": \"string\",\n    \"updated-at\": \"\",\n    \"created-at\": \"\",\n    \"content\": \"string\",\n    \"provider_id\": \"string\",\n    \"sending_provider_id\": \"string\",\n    \"encounter_id\": 6136,\n    \"deleted_on\": {},\n    \"message_id\": 7376\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a5cd2e3-a955-49ee-a817-1d6950e8aa86",
+          "name": "send-after-visit-summary-handler",
+          "request": {
+            "name": "send-after-visit-summary-handler",
+            "description": {
+              "content": "Creates an after-visit-summary record in grdn db and sends a message in the patient's chat.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "appointment",
+                ":appointment-id",
+                "after-visit-summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "appointment-id",
+                  "description": "(Required) origin spec: grdn.specs.appointments/send-after-visit-summary-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "961c4018-eeab-4ee2-8dac-6c8c4adc7dfe",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "appointment",
+                    ":appointment-id",
+                    "after-visit-summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "appointment-id",
+                      "description": "(Required) origin spec: grdn.specs.appointments/send-after-visit-summary-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"content\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"after-visit-summary\": {\n    \"status\": \"pending-status\",\n    \"appointment_id\": 6554,\n    \"id\": \"43c81128-7b33-9add-594a-d2ca0f61f201\",\n    \"patient_id\": \"string\",\n    \"updated-at\": \"\",\n    \"created-at\": \"\",\n    \"content\": \"string\",\n    \"provider_id\": \"string\",\n    \"sending_provider_id\": \"string\",\n    \"encounter_id\": 5870,\n    \"deleted_on\": {},\n    \"message_id\": 8667\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79e9b7ae-84cf-4952-afa8-7a880f61508b",
+          "name": "cancel-appointment-handler",
+          "request": {
+            "name": "cancel-appointment-handler",
+            "description": {
+              "content": "Cancels a patients appointment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "appointment",
+                ":appointment-id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "appointment-id",
+                  "description": "(Required) origin spec: grdn.specs.appointments/appointment-id-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5cf1e187-49e3-4bbb-ade5-5d677de27b2f",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "appointment",
+                    ":appointment-id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "appointment-id",
+                      "description": "(Required) origin spec: grdn.specs.appointments/appointment-id-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"appointment-id\": 3528\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26211926-c5b3-4091-9bb8-cd5a54eb7b92",
+          "name": "check-in-appointment-handler",
+          "request": {
+            "name": "check-in-appointment-handler",
+            "description": {
+              "content": "Given an existing appointment, checks the user in and assigns screeners.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "appointment",
+                ":appointment-id",
+                "check-in"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "appointment-id",
+                  "description": "(Required) origin spec: grdn.specs.appointments/check-in-appointment-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"screener-names\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5dc007d7-2010-4f77-b529-b8a9214f5bc1",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "appointment",
+                    ":appointment-id",
+                    "check-in"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "appointment-id",
+                      "description": "(Required) origin spec: grdn.specs.appointments/check-in-appointment-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"screener-names\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "959b2965-de7f-46b9-852c-29f873512494",
+          "name": "get-check-in-screeners-handler",
+          "request": {
+            "name": "get-check-in-screeners-handler",
+            "description": {
+              "content": "Gets the screeners available for an appointment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "appointment",
+                ":appointment-id",
+                "check-in"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "message",
+                  "value": "<string>",
+                  "description": "origin spec: grdn.specs.appointments/appointment-id-params"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "appointment-id",
+                  "description": "(Required) origin spec: grdn.specs.appointments/appointment-id-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db17b027-fb84-4a40-9ab1-111cbd5b0802",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "appointment",
+                    ":appointment-id",
+                    "check-in"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "appointment-id",
+                      "description": "(Required) origin spec: grdn.specs.appointments/appointment-id-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"appointment-id\": 1378,\n  \"screener-names\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "965abbf3-6302-44cd-8614-8a5f886ba0eb",
+          "name": "get-appointment-note-handler",
+          "request": {
+            "name": "get-appointment-note-handler",
+            "description": {
+              "content": "Fetch the booking note for an appointment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "appointment",
+                ":appointment-id",
+                "note"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "message",
+                  "value": "<string>",
+                  "description": "origin spec: grdn.specs.appointments/appointment-id-params"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "appointment-id",
+                  "description": "(Required) origin spec: grdn.specs.appointments/appointment-id-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b60393d7-1575-452b-8928-274ddea0a55a",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "appointment",
+                    ":appointment-id",
+                    "note"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "message",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "appointment-id",
+                      "description": "(Required) origin spec: grdn.specs.appointments/appointment-id-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"notetext\": \"string\",\n  \"noteid\": \"string\",\n  \"created\": \"string\",\n  \"createdby\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf91bb5f-1ac1-4f07-b7be-5250ebd55027",
+          "name": "appointment-reasons-by-dept-handler",
+          "request": {
+            "name": "appointment-reasons-by-dept-handler",
+            "description": {
+              "content": "Fetch the appointment reasons using the default provider for the provided dept.\n\n  NOTE! As of 8/7/20, we are using a single deprecated department ('Old Mad') for all\n  non-Connell locations to serve the appointment reasons. However, as we bring on departments\n  offering different services, we need to move to a more department-specific model.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "department",
+                ":department-id",
+                "appointment-reasons"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "department-id",
+                  "description": "(Required) origin spec: grdn.specs/department-id-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ecbbde25-203f-420e-8382-cb8ea65d0d77",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "department",
+                    ":department-id",
+                    "appointment-reasons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "department-id",
+                      "description": "(Required) origin spec: grdn.specs/department-id-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total-count\": 4352.122616943953,\n  \"patientappointmentreasons\": [\n    {\n      \"schedulingminhours\": 7779.785305520254,\n      \"reasontype\": \"string\",\n      \"reason\": \"string\",\n      \"description\": \"string\",\n      \"reason-id\": 6187.239715579196,\n      \"schedulingmaxdays\": 8880.687718789231\n    },\n    {\n      \"schedulingminhours\": 4279.615011427289,\n      \"reasontype\": \"string\",\n      \"reason\": \"string\",\n      \"description\": \"string\",\n      \"reason-id\": 2199.4627524446673,\n      \"schedulingmaxdays\": 2426.7943049252203\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "186cb535-ba6e-4186-a470-dc4b4cdd8490",
+          "name": "open-appointments-grouped-handler",
+          "request": {
+            "name": "open-appointments-grouped-handler",
+            "description": {
+              "content": "Requests appointments from eligible providers, filters out the immediate ones,\n  and groups them based on department-id, start-time, and time-zone.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "department",
+                ":department-id",
+                "reason",
+                ":appointment-reason-id",
+                "open-grouped"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "days",
+                  "value": "<long>",
+                  "description": "(Required) origin spec: grdn.specs.appointments/open-appointments-grouped-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "provider-id",
+                  "value": "<long>",
+                  "description": "origin spec: grdn.specs.appointments/open-appointments-grouped-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "start-time",
+                  "value": "<string>",
+                  "description": "origin spec: grdn.specs.appointments/open-appointments-grouped-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "popup-id",
+                  "value": "<uuid>",
+                  "description": "origin spec: grdn.specs.appointments/open-appointments-grouped-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "current-user-tz",
+                  "value": "<string>",
+                  "description": "origin spec: grdn.specs.appointments/open-appointments-grouped-params"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "department-id",
+                  "description": "(Required) origin spec: grdn.specs.appointments/open-appointments-grouped-params"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "appointment-reason-id",
+                  "description": "(Required) origin spec: grdn.specs.appointments/open-appointments-grouped-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "68f73891-64ec-4cc9-9d12-639d754d0e98",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "department",
+                    ":department-id",
+                    "reason",
+                    ":appointment-reason-id",
+                    "open-grouped"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "days",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "provider-id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "start-time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "popup-id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "current-user-tz",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "department-id",
+                      "description": "(Required) origin spec: grdn.specs.appointments/open-appointments-grouped-params"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "appointment-reason-id",
+                      "description": "(Required) origin spec: grdn.specs.appointments/open-appointments-grouped-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"start-time\": \"string\",\n    \"time-zone\": \"string\",\n    \"department-id\": \"string\",\n    \"appointment-ids\": [\n      5578,\n      3220\n    ]\n  },\n  {\n    \"start-time\": \"string\",\n    \"time-zone\": \"string\",\n    \"department-id\": \"string\",\n    \"appointment-ids\": [\n      4285,\n      2991\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11dba720-2b47-4d74-bd03-5fcaefa3099b",
+          "name": "update-after-visit-summary-handler",
+          "request": {
+            "name": "update-after-visit-summary-handler",
+            "description": {
+              "content": "Updates an after-visit-summary message.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "encounter",
+                ":encounter-id",
+                "after-visit-summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "encounter-id",
+                  "description": "(Required) origin spec: grdn.specs.appointments/update-after-visit-summary-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e2455124-e5e2-43ba-af1d-3dada4055e53",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "encounter",
+                    ":encounter-id",
+                    "after-visit-summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "encounter-id",
+                      "description": "(Required) origin spec: grdn.specs.appointments/update-after-visit-summary-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"content\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"after-visit-summary\": {\n    \"status\": \"sent-status\",\n    \"appointment_id\": 8973,\n    \"id\": \"16a8f65f-e8fa-ce96-96e5-0563233551c6\",\n    \"patient_id\": \"string\",\n    \"updated-at\": \"\",\n    \"created-at\": \"\",\n    \"content\": \"string\",\n    \"provider_id\": \"string\",\n    \"sending_provider_id\": \"string\",\n    \"encounter_id\": 8333,\n    \"deleted_on\": {},\n    \"message_id\": 8143\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "745eb37c-2f4a-4304-9fb7-1f8aa97d8e40",
+          "name": "get-encounter-handler",
+          "request": {
+            "name": "get-encounter-handler",
+            "description": {
+              "content": "Given an encounter id, return the encounter details, including associated orders and the after visit summary.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "patient",
+                ":patient-id",
+                "encounter",
+                ":encounter-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: grdn.specs.appointments/get-encounter-params"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "encounter-id",
+                  "description": "(Required) origin spec: grdn.specs.appointments/get-encounter-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3ecfc0eb-f996-4032-a356-11b8b956d5fd",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "patient",
+                    ":patient-id",
+                    "encounter",
+                    ":encounter-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: grdn.specs.appointments/get-encounter-params"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "encounter-id",
+                      "description": "(Required) origin spec: grdn.specs.appointments/get-encounter-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"department-id\": \"string\",\n  \"patient-status\": \"string\",\n  \"encounter-type\": \"string\",\n  \"encounter-date\": \"string\",\n  \"provider-last-name\": \"string\",\n  \"provider-id\": 2152,\n  \"patient-status-id\": 4555,\n  \"diagnoses\": [\n    {\n      \"diagnosis-id\": 7947,\n      \"icd-codes\": [\n        {\n          \"code-set\": \"string\",\n          \"description\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"code-set\": \"string\",\n          \"description\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"snomed-code\": 5199,\n      \"description\": \"string\"\n    },\n    {\n      \"diagnosis-id\": 1696,\n      \"icd-codes\": [\n        {\n          \"code-set\": \"string\",\n          \"description\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"code-set\": \"string\",\n          \"description\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"snomed-code\": 6614,\n      \"description\": \"string\"\n    }\n  ],\n  \"appointment-start-date\": \"string\",\n  \"provider-first-name\": \"string\",\n  \"encounter-id\": 4708,\n  \"appointment-id\": 4303,\n  \"status\": \"string\",\n  \"provider-phone\": \"string\",\n  \"encounter-visit-name\": \"string\",\n  \"last-updated\": \"string\",\n  \"after-visit-summary\": {\n    \"status\": \"ready-status\",\n    \"appointment_id\": 3669,\n    \"id\": \"8a079b3e-2a72-f7c5-3a27-4dbd08175a2e\",\n    \"patient_id\": \"string\",\n    \"updated-at\": \"\",\n    \"created-at\": \"\",\n    \"content\": \"string\",\n    \"provider_id\": \"string\",\n    \"sending_provider_id\": \"string\",\n    \"encounter_id\": 9359,\n    \"deleted_on\": {},\n    \"message_id\": 167\n  },\n  \"patient-location\": \"string\",\n  \"patient-location-id\": 9768,\n  \"orders\": [\n    {\n      \"status\": \"string\",\n      \"description\": \"string\",\n      \"class\": \"string\"\n    },\n    {\n      \"status\": \"string\",\n      \"description\": \"string\",\n      \"class\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6983d27c-6980-4fd9-a769-157e64e2fbd6",
+    "name": "Grdn grdn.handler grdn.routes.impl.appointments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

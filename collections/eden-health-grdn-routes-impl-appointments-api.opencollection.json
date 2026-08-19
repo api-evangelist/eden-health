@@ -1,0 +1,378 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.appointments API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.appointments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get-digital-visit-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/appointment",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Fetches a patients ongoing telehealth appointment. Ignores past ongoing\n  telehealth visits and only checks the most recent visit, if the most\n  recent visit is ongoing we return it."
+        },
+        {
+          "info": {
+            "name": "new-digital-visit-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/appointment"
+          },
+          "docs": "Starts by checking for a patient's insurance. If they do not\n   have any, we set their insurance as self pay. Then, we create\n   an open appointment slot, book the patient into it, and check\n   them into it."
+        },
+        {
+          "info": {
+            "name": "book-appointments-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/appointment/book"
+          },
+          "docs": "Book an appointment, send the confirmation, and then build a response. If a video visit ID\n  is provided, set the appointment ID for that visit in postgres."
+        },
+        {
+          "info": {
+            "name": "booked-appointments-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/appointment/booked",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Ask for all booked appointments for a patient."
+        },
+        {
+          "info": {
+            "name": "booked-appointments-established-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/appointment/booked-established",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Ask for all booked appointments for a patient and returns\n   a vector of appointments and a boolean saying if the patient is established\n   TDD: https://edenhealth.atlassian.net/wiki/spaces/PE/pages/3350986788/TDD+Filter+Appointment+Reasons+on+Patient+App+depending+on+Patient+Status+New+VS+Established+Patient"
+        },
+        {
+          "info": {
+            "name": "checkout-digital-visit-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/appointment/:appointment-id",
+            "params": [
+              {
+                "name": "appointment-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.appointments/checkout-digital-visit-params"
+              }
+            ]
+          },
+          "docs": "Given patient and appointment, checkout the appointment\n  and send the patient a feedback survey. Always sends feedback\n  even if the checkout fails."
+        },
+        {
+          "info": {
+            "name": "send-after-visit-summary-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/appointment/:appointment-id/after-visit-summary",
+            "params": [
+              {
+                "name": "appointment-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.appointments/send-after-visit-summary-params"
+              }
+            ]
+          },
+          "docs": "Creates an after-visit-summary record in grdn db and sends a message in the patient's chat."
+        },
+        {
+          "info": {
+            "name": "delete-after-visit-summary-message-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v2/appointment/:appointment-id/after-visit-summary",
+            "params": [
+              {
+                "name": "appointment-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.appointments/delete-after-visit-summary-message-params"
+              }
+            ]
+          },
+          "docs": "Updates an after-visit-summary message custom type to deleted and changes content to empty string.\n   If deleting message and image are successful, logs an event about the deleted message to the db."
+        },
+        {
+          "info": {
+            "name": "cancel-appointment-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/appointment/:appointment-id/cancel",
+            "params": [
+              {
+                "name": "appointment-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.appointments/appointment-id-params"
+              }
+            ]
+          },
+          "docs": "Cancels a patients appointment."
+        },
+        {
+          "info": {
+            "name": "get-check-in-screeners-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/appointment/:appointment-id/check-in",
+            "params": [
+              {
+                "name": "appointment-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.appointments/appointment-id-params"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.appointments/appointment-id-params"
+              }
+            ]
+          },
+          "docs": "Gets the screeners available for an appointment."
+        },
+        {
+          "info": {
+            "name": "check-in-appointment-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/appointment/:appointment-id/check-in",
+            "params": [
+              {
+                "name": "appointment-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.appointments/check-in-appointment-params"
+              }
+            ]
+          },
+          "docs": "Given an existing appointment, checks the user in and assigns screeners."
+        },
+        {
+          "info": {
+            "name": "get-appointment-note-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/appointment/:appointment-id/note",
+            "params": [
+              {
+                "name": "appointment-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.appointments/appointment-id-params"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.appointments/appointment-id-params"
+              }
+            ]
+          },
+          "docs": "Fetch the booking note for an appointment."
+        },
+        {
+          "info": {
+            "name": "appointment-reasons-by-dept-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/department/:department-id/appointment-reasons",
+            "params": [
+              {
+                "name": "department-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/department-id-params"
+              }
+            ]
+          },
+          "docs": "Fetch the appointment reasons using the default provider for the provided dept.\n\n  NOTE! As of 8/7/20, we are using a single deprecated department ('Old Mad') for all\n  non-Connell locations to serve the appointment reasons. However, as we bring on departments\n  offering different services, we need to move to a more department-specific model."
+        },
+        {
+          "info": {
+            "name": "open-appointments-grouped-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/department/:department-id/reason/:appointment-reason-id/open-grouped",
+            "params": [
+              {
+                "name": "department-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.appointments/open-appointments-grouped-params"
+              },
+              {
+                "name": "appointment-reason-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.appointments/open-appointments-grouped-params"
+              },
+              {
+                "name": "days",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.appointments/open-appointments-grouped-params"
+              },
+              {
+                "name": "provider-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.appointments/open-appointments-grouped-params"
+              },
+              {
+                "name": "start-time",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.appointments/open-appointments-grouped-params"
+              },
+              {
+                "name": "popup-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.appointments/open-appointments-grouped-params"
+              },
+              {
+                "name": "current-user-tz",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.appointments/open-appointments-grouped-params"
+              }
+            ]
+          },
+          "docs": "Requests appointments from eligible providers, filters out the immediate ones,\n  and groups them based on department-id, start-time, and time-zone."
+        },
+        {
+          "info": {
+            "name": "update-after-visit-summary-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/encounter/:encounter-id/after-visit-summary",
+            "params": [
+              {
+                "name": "encounter-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.appointments/update-after-visit-summary-params"
+              }
+            ]
+          },
+          "docs": "Updates an after-visit-summary message."
+        },
+        {
+          "info": {
+            "name": "get-encounter-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/encounter/:encounter-id",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.appointments/get-encounter-params"
+              },
+              {
+                "name": "encounter-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.appointments/get-encounter-params"
+              }
+            ]
+          },
+          "docs": "Given an encounter id, return the encounter details, including associated orders and the after visit summary."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

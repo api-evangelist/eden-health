@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.channel API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.channel",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "update-channel-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/channel/:channel-id",
+            "params": [
+              {
+                "name": "channel-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.channel/update-channel-params"
+              }
+            ]
+          },
+          "docs": "Updates the status of a channel. Used by clinical front end for manual updates."
+        },
+        {
+          "info": {
+            "name": "delete-message-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/channel/:channel-id/message/:message-id/delete",
+            "params": [
+              {
+                "name": "channel-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.channel/delete-message-params"
+              },
+              {
+                "name": "message-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.channel/delete-message-params"
+              }
+            ]
+          },
+          "docs": "Updates a message custom type to deleted and changes content to empty string.\n   If message is an image, deletes the image from S3.\n   If message is a document, soft-deletes the document from our database, while keeping it in S3.\n   If deleting message and image are successful, logs an event about the deleted message to the db."
+        },
+        {
+          "info": {
+            "name": "get-patient-primary-channel-unread-messages-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/get-unread",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "get-patient-primary-channel-unread-messages-handler"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,659 @@
+{
+  "item": [
+    {
+      "id": "2548e8a3-4c2f-410c-b1cd-7269cbad46fd",
+      "name": "grdn.routes.impl.membership",
+      "description": {
+        "content": "Handlers for membership, invites, codes",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3c6a019f-e354-4039-8d4d-994fdd3f4e52",
+          "name": "send-code-handler-deprecated",
+          "request": {
+            "name": "send-code-handler-deprecated",
+            "description": {
+              "content": "Sends a registration code email.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "membership",
+                "code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"work-email\": \"<string>\",\n  \"invite-email\": \"<string>\",\n  \"funnel-id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9ac0fb91-870a-46da-9cc1-cfdc3ebd06cd",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "membership",
+                    "code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"work-email\": \"<string>\",\n  \"invite-email\": \"<string>\",\n  \"funnel-id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "74a54270-9748-4124-97b9-17c9348111b8",
+          "name": "validate-code-handler",
+          "request": {
+            "name": "validate-code-handler",
+            "description": {
+              "content": "Validates a registration code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "membership",
+                "validate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "member-code",
+                  "value": "<string>",
+                  "description": "(Required) origin spec: grdn.specs/validate-code-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>",
+                  "description": "(Required) origin spec: grdn.specs/validate-code-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "invite-code",
+                  "value": "<string>",
+                  "description": "(Required) origin spec: grdn.specs/validate-code-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "promo-code",
+                  "value": "<string>",
+                  "description": "(Required) origin spec: grdn.specs/validate-code-params"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4175d42c-5a94-4b52-a415-ceaf1f7a61df",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "membership",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "member-code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "invite-code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "promo-code",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac4e4f8e-e831-4729-9fac-dc2b829d0f53",
+          "name": "validate-membership-handler",
+          "request": {
+            "name": "validate-membership-handler",
+            "description": {
+              "content": "Validates a membership.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "membership",
+                "validate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"work-email\": \"<string>\",\n  \"last-name\": \"<string>\",\n  \"dob\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"invite-email\": \"<string>\",\n  \"funnel-id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "808a18ab-d1be-46d4-a15c-6cd79b17550a",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "membership",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"work-email\": \"<string>\",\n  \"last-name\": \"<string>\",\n  \"dob\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"invite-email\": \"<string>\",\n  \"funnel-id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cfe75a7d-d78d-433a-9bb9-d345c9e1dfea",
+          "name": "get-family-handler",
+          "request": {
+            "name": "get-family-handler",
+            "description": {
+              "content": "Gets a patient's family members who are also patients as an array of\n  maps of form {:first-name 'Bob' :last-name 'Dobalina' :email 'a@b.c'};\n  the family is filtered using the `-filter-family` function above",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "membership",
+                ":patient-id",
+                "family"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "funnel-id",
+                  "value": "<uuid>",
+                  "description": "origin spec: grdn.specs/patient-id-params"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: grdn.specs/patient-id-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "09719193-eba1-49b4-b6a0-4591fa50d560",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "membership",
+                    ":patient-id",
+                    "family"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "funnel-id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: grdn.specs/patient-id-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"first-name\": \"string\",\n    \"last-name\": \"string\",\n    \"email\": \"string\"\n  },\n  {\n    \"first-name\": \"string\",\n    \"last-name\": \"string\",\n    \"email\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6d12339-dd46-4219-97e8-d4eeb6bb22dc",
+          "name": "invite-dependents-handler",
+          "request": {
+            "name": "invite-dependents-handler",
+            "description": {
+              "content": "Given a primary patient and a list of emails to invite, first validates the emails and,\n  if they are all valid, creates a patient invite with the given email address and a unique code for each\n  and sends each email address the invitation email with code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "membership",
+                ":patient-id",
+                "invite"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: grdn.specs/patient-id-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"funnel-id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "84318467-cdf3-4e03-93e9-273fae8e0e77",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "membership",
+                    ":patient-id",
+                    "invite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: grdn.specs/patient-id-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"funnel-id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce1f2707-2e56-4e77-83bb-2cbd405e124c",
+          "name": "get-pending-invites-handler",
+          "request": {
+            "name": "get-pending-invites-handler",
+            "description": {
+              "content": "Gets a patient's invites as an array of email addresses",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "membership",
+                ":patient-id",
+                "pending-invites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "funnel-id",
+                  "value": "<uuid>",
+                  "description": "origin spec: grdn.specs/patient-id-params"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "patient-id",
+                  "description": "(Required) origin spec: grdn.specs/patient-id-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c59009e3-68c2-43c6-8282-9988991e80ad",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "membership",
+                    ":patient-id",
+                    "pending-invites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "funnel-id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "patient-id",
+                      "description": "(Required) origin spec: grdn.specs/patient-id-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"email\": \"string\"\n  },\n  {\n    \"email\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0ebd8c1a-75cf-47d2-83c0-40faa2e8dc10",
+    "name": "Grdn grdn.handler grdn.routes.impl.membership API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

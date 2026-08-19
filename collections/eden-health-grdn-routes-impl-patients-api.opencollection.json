@@ -1,0 +1,549 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.patients API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.patients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "search-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient",
+            "params": [
+              {
+                "name": "mrn",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-search-params"
+              },
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-search-params"
+              },
+              {
+                "name": "sub",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-search-params"
+              }
+            ]
+          },
+          "docs": "Searches for a patient given search params."
+        },
+        {
+          "info": {
+            "name": "create-patient-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/patient"
+          },
+          "docs": "Adjusts how we handle the act of registration of a patient."
+        },
+        {
+          "info": {
+            "name": "get-patient-app-data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/patient-app-data"
+          },
+          "docs": "Gets patient-specific data relevant to app state. Called on app foreground."
+        },
+        {
+          "info": {
+            "name": "validate-patient-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/validate",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/validate-patient-params"
+              },
+              {
+                "name": "phone",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/validate-patient-params"
+              }
+            ]
+          },
+          "docs": "validates patient account credentials in cognito during registration."
+        },
+        {
+          "info": {
+            "name": "get-patient-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: "
+              }
+            ]
+          },
+          "docs": "Given a patient-id, hydrate all patient data."
+        },
+        {
+          "info": {
+            "name": "update-patient-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/patient/:patient-id",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/update-patient-params"
+              }
+            ]
+          },
+          "docs": "Updates patient data (i.e. Athena, Cognito).\n  Requires PUT operations to be idempotent.\n  Sends the user an email letting them know their profile changed."
+        },
+        {
+          "info": {
+            "name": "get-patient-account-info-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/account-info",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Given a patient id, return patient account info from Athena, Cognito and Postgres."
+        },
+        {
+          "info": {
+            "name": "put-patient-account-info-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/account-info",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.patients/patient-account-info-specs"
+              }
+            ]
+          },
+          "docs": "Update patient account info in Athena, Cognito and Postgres for a given patient id."
+        },
+        {
+          "info": {
+            "name": "ai-chat-suggestion",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/ai-chat-suggestion",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.patients/co-pilot-handler-params"
+              }
+            ]
+          },
+          "docs": "ai-chat-suggestion"
+        },
+        {
+          "info": {
+            "name": "put-patient-app-language-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/app-language",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.patients/put-patient-app-language-params-spec"
+              }
+            ]
+          },
+          "docs": "Updates the patient's preferred app language"
+        },
+        {
+          "info": {
+            "name": "post-patient-case",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/case",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.patients/post-patient-case-params-spec"
+              }
+            ]
+          },
+          "docs": "Creates a patient case on athena"
+        },
+        {
+          "info": {
+            "name": "get-chart-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/chart",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Given a Patient ID, fetch patient chart info.\n  Gathers Allergies, Medications, and Problems"
+        },
+        {
+          "info": {
+            "name": "deactivate-patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/deactivate",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: "
+              }
+            ]
+          },
+          "docs": "Deactivates the patient. Deletes their cognito user."
+        },
+        {
+          "info": {
+            "name": "get-headshot-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/headshot",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Gets patient headshot."
+        },
+        {
+          "info": {
+            "name": "join-channels-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/join",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "For a given patient-id, if a clinician has permission to join a patient's channels,\n   join those channels."
+        },
+        {
+          "info": {
+            "name": "location-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/location",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/location-params"
+              }
+            ]
+          },
+          "docs": "Updates a patients location given state and time zone or lat/lng."
+        },
+        {
+          "info": {
+            "name": "get-pharmacy-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/pharmacy",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Given a patient id, fetch their default pharmacy."
+        },
+        {
+          "info": {
+            "name": "get-prescriptions-medications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/prescription",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Get the member's prescriptions medications details."
+        },
+        {
+          "info": {
+            "name": "get-patient-profile-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/profile",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Given a patient id, return additional profile data."
+        },
+        {
+          "info": {
+            "name": "get-triage-status-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/triage-status",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Gets triage status for patient."
+        },
+        {
+          "info": {
+            "name": "post-triage-status-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/triage-status",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.patients/triage-status-params"
+              }
+            ]
+          },
+          "docs": "Creates manual triage status updates by providers."
+        },
+        {
+          "info": {
+            "name": "get-vaccination-status-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/vaccination-status",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Return patient vaccination status"
+        },
+        {
+          "info": {
+            "name": "patient-has-had-video-visits-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/video-messages",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/has-had-video-visits-params"
+              }
+            ]
+          },
+          "docs": "Given a patient ID, return a boolean indicating whether the patient has had\n   a video visit."
+        },
+        {
+          "info": {
+            "name": "get-visits-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/visits",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Gets a patient's visits."
+        },
+        {
+          "info": {
+            "name": "get-sidebar-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/sidebar",
+            "params": [
+              {
+                "name": "prev-last-updated-at-in-ms",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/get-sidebar-params"
+              }
+            ]
+          },
+          "docs": "List all patients and their channels to populate the messenger sidebar.\n  If a prev-last-updated-at-in-ms timestamp is provided, only return channels which have\n  been updated since then."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,308 @@
+{
+  "item": [
+    {
+      "id": "23c41022-e45b-4026-9abd-3eeefa4eeff2",
+      "name": "grdn.routes.impl.video",
+      "description": {
+        "content": "Scheduling calls and querying call metadata",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "add4fd10-cc9d-40f5-bfdd-b9dabb2b9e25",
+          "name": "get-meeting-handler",
+          "request": {
+            "name": "get-meeting-handler",
+            "description": {
+              "content": "Gets zoom video meeting data by id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "meeting",
+                ":meeting-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "meeting-id",
+                  "description": "(Required) origin spec: grdn.specs.video/get-meeting-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "30df10d1-ed6e-48d5-86d6-caae9771344a",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "meeting",
+                    ":meeting-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "meeting-id",
+                      "description": "(Required) origin spec: grdn.specs.video/get-meeting-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"join-url\": \"string\",\n  \"timezone\": \"string\",\n  \"host-email\": \"string\",\n  \"start-time\": \"string\",\n  \"type\": 4721,\n  \"duration\": 4681,\n  \"topic\": \"string\",\n  \"status\": \"string\",\n  \"id\": 1386.9116197200126,\n  \"host-id\": \"string\",\n  \"uuid\": \"string\",\n  \"created-at\": \"string\",\n  \"assistant-id\": \"string\",\n  \"agenda\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ba9ee42-43f0-4f4c-938a-5c0e1982e31f",
+          "name": "schedule-meeting-handler",
+          "request": {
+            "name": "schedule-meeting-handler",
+            "description": {
+              "content": "Schedules a video meeting using provider zoom id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "schedule-meeting"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"appointment-id\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "114f7b3f-61c2-4c1e-af22-068939fa1f53",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "schedule-meeting"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient-id\": \"<uuid>\",\n  \"appointment-id\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"join-url\": \"string\",\n  \"timezone\": \"string\",\n  \"host-email\": \"string\",\n  \"start-time\": \"string\",\n  \"type\": 7946,\n  \"duration\": 7767,\n  \"topic\": \"string\",\n  \"status\": \"string\",\n  \"id\": 2280.2341571284237,\n  \"host-id\": \"string\",\n  \"uuid\": \"string\",\n  \"created-at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68d20d91-1938-4ab6-9712-e57e22238943",
+          "name": "start-meeting-handler",
+          "request": {
+            "name": "start-meeting-handler",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "start-meeting"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"patient-id\": \"<uuid>\",\n  \"zoom-meeting-id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a5ce26f5-29db-425d-babe-b57ed7944f90",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "start-meeting"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"patient-id\": \"<uuid>\",\n  \"zoom-meeting-id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"join-url\": \"string\",\n  \"timezone\": \"string\",\n  \"host-email\": \"string\",\n  \"start-time\": \"string\",\n  \"type\": 8296,\n  \"duration\": 636,\n  \"topic\": \"string\",\n  \"status\": \"string\",\n  \"id\": 2265.85866994472,\n  \"host-id\": \"string\",\n  \"uuid\": \"string\",\n  \"created-at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "292269cd-1688-4f0f-8806-d4cd4378c646",
+    "name": "Grdn grdn.handler grdn.routes.impl.video API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

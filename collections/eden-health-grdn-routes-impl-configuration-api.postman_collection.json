@@ -1,0 +1,104 @@
+{
+  "item": [
+    {
+      "id": "86cc2448-2587-46f6-9ccf-0d5aa10f053c",
+      "name": "grdn.routes.impl.configuration",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6d2e7e01-0140-4fe0-8ebe-129b8261dccf",
+          "name": "get-for-current-user",
+          "request": {
+            "name": "get-for-current-user",
+            "description": {
+              "content": "Get configuration specific to authenticated user. Currently simply returns the LD feature flags already\n   retrieved by the `wrap-v2-auth` middleware.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bb3771f8-df5c-4169-9ca8-2c28a8d999fd",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"feature-flags\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0fe2204f-5562-4778-8138-058504c52122",
+    "name": "Grdn grdn.handler grdn.routes.impl.configuration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

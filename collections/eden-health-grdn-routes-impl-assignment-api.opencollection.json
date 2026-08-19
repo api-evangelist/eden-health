@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.assignment API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.assignment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "assign-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/assign",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.assignment/assign-params"
+              }
+            ]
+          },
+          "docs": "Assigns providers to a patient. If channel is archived, updates status to pending."
+        },
+        {
+          "info": {
+            "name": "unassign-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/unassign",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.assignment/unassign-params"
+              }
+            ]
+          },
+          "docs": "Un-assigns providers from a patient."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

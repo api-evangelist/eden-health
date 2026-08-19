@@ -1,0 +1,336 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.document API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.document",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get-documents-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/document",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.document/get-documents-spec"
+              }
+            ]
+          },
+          "docs": "get-documents-handler"
+        },
+        {
+          "info": {
+            "name": "post-document-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/document"
+          },
+          "docs": "Uploads documents to S3 and send to sb channel"
+        },
+        {
+          "info": {
+            "name": "get-document-types-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/document/type"
+          },
+          "docs": "Gets list of patient document types."
+        },
+        {
+          "info": {
+            "name": "get-document-metadata-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/document/:patient-document-id",
+            "params": [
+              {
+                "name": "patient-document-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.document/get-document-metadata-spec"
+              }
+            ]
+          },
+          "docs": "get-document-metadata-handler"
+        },
+        {
+          "info": {
+            "name": "update-document-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/document/:patient-document-id",
+            "params": [
+              {
+                "name": "patient-document-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: "
+              }
+            ]
+          },
+          "docs": "Updates specified patient document."
+        },
+        {
+          "info": {
+            "name": "delete-document-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v2/document/:patient-document-id",
+            "params": [
+              {
+                "name": "patient-document-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.document/delete-document-spec"
+              }
+            ]
+          },
+          "docs": "Deletes specified patient document."
+        },
+        {
+          "info": {
+            "name": "get-document-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/document/:patient-document-id/download",
+            "params": [
+              {
+                "name": "patient-document-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.document/get-document-spec"
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.document/get-document-spec"
+              }
+            ]
+          },
+          "docs": "get-document-handler"
+        },
+        {
+          "info": {
+            "name": "post-covid-test-result-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/document/covid-test-result",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.document/upload-covid-test-document-spec"
+              }
+            ]
+          },
+          "docs": "Uploads a patient's test result document to Athena and S3."
+        },
+        {
+          "info": {
+            "name": "get-lab-results-summary-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/document/lab-result",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.document/get-lab-results-summary-spec"
+              }
+            ]
+          },
+          "docs": "Returns a summary of patient's lab results."
+        },
+        {
+          "info": {
+            "name": "get-lab-result-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/document/lab-result/:lab-result-id",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.document/get-lab-result-spec"
+              },
+              {
+                "name": "lab-result-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.document/get-lab-result-spec"
+              }
+            ]
+          },
+          "docs": "Returns a single detailed lab result."
+        },
+        {
+          "info": {
+            "name": "get-lab-result-file-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/document/lab-result/:lab-result-id/file",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: "
+              },
+              {
+                "name": "lab-result-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: "
+              }
+            ]
+          },
+          "docs": "get-lab-result-file-handler"
+        },
+        {
+          "info": {
+            "name": "get-primary-insurance-card-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/document/primary-insurance-card",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Get the member's primary insurance card image."
+        },
+        {
+          "info": {
+            "name": "get-vaccines-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/document/vaccine",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.document/get-vaccines-spec"
+              }
+            ]
+          },
+          "docs": "Retrieves the patient's vaccinations. For now, filters for COVID vaccines."
+        },
+        {
+          "info": {
+            "name": "post-vaccine-document-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/document/vaccine",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.document/upload-vaccine-document-spec"
+              }
+            ]
+          },
+          "docs": "Uploads a patient's vaccine document to Athena and S3."
+        },
+        {
+          "info": {
+            "name": "get-vaccine-document-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/document/vaccine/:vaccine-id",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: "
+              },
+              {
+                "name": "vaccine-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: "
+              }
+            ]
+          },
+          "docs": "get-vaccine-document-handler"
+        },
+        {
+          "info": {
+            "name": "get-orders-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/order",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.document/get-orders-spec"
+              }
+            ]
+          },
+          "docs": "Returns all handlers associated with a patient"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

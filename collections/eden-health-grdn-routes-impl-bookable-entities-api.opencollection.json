@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.bookable-entities API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.bookable-entities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get-bookable-entities-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/bookable-entities"
+          },
+          "docs": "Gets all departments and appointment reasons."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

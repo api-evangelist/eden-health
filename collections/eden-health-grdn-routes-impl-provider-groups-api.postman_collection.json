@@ -1,0 +1,104 @@
+{
+  "item": [
+    {
+      "id": "2b656fc5-4604-4d00-8caf-4b3125730010",
+      "name": "grdn.routes.impl.provider-groups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e8ab27a2-19a1-4fda-86bf-0187df5c5357",
+          "name": "get-provider-groups-handler",
+          "request": {
+            "name": "get-provider-groups-handler",
+            "description": {
+              "content": "Get all provider groups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "provider-groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a0b7a39-d4f9-4c6a-b780-e53493174d69",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "provider-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"athena-id\": 1205,\n    \"name\": \"string\"\n  },\n  {\n    \"athena-id\": 1180,\n    \"name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "61251b69-3b96-4e55-afac-7f4a935fddab",
+    "name": "Grdn grdn.handler grdn.routes.impl.provider-groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

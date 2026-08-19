@@ -1,0 +1,190 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.pediatric API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.pediatric",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get-pediatric-patients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/pediatric-patient"
+          },
+          "docs": "Retrieves a list of minor dependents for an Eden patient."
+        },
+        {
+          "info": {
+            "name": "create-pediatric-patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/pediatric-patient"
+          },
+          "docs": "Creates a pediatric MyTelemedicine dependent member for the minor to be treated.\n   Creates the MyTelemedicine primary member for the parent/guardian if necessary.\n   The MTM primary member demo info will be taken from the primary Eden patient for the patient membership."
+        },
+        {
+          "info": {
+            "name": "get-pending-pediatric-appointments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/pediatric-patient/pending-appointment"
+          },
+          "docs": "Returns all pending pediatric appointments."
+        },
+        {
+          "info": {
+            "name": "search-pharmacies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/pediatric-patient/pharmacy",
+            "params": [
+              {
+                "name": "zip",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.pediatric/search-pharmacies-params"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.pediatric/search-pharmacies-params"
+              }
+            ]
+          },
+          "docs": "Returns all pharmacies from MTM for a given zip and/or name.\n  Filters out unwanted keys from MTM's response to only keep a subset of\n  relevant keys, and renames them to match Grdn's internal model."
+        },
+        {
+          "info": {
+            "name": "get-pediatric-patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/pediatric-patient/:pediatric-patient-id",
+            "params": [
+              {
+                "name": "pediatric-patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.pediatric/get-pediatric-patient-params"
+              }
+            ]
+          },
+          "docs": "Retrieves a pediatric patient's details."
+        },
+        {
+          "info": {
+            "name": "update-pediatric-patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/pediatric-patient/:pediatric-patient-id",
+            "params": [
+              {
+                "name": "pediatric-patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.pediatric/update-pediatric-patient-params"
+              }
+            ]
+          },
+          "docs": "Updates the pediatric patient with the info supplied."
+        },
+        {
+          "info": {
+            "name": "create-pediatric-appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/pediatric-patient/:pediatric-patient-id/appointment",
+            "params": [
+              {
+                "name": "pediatric-patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.pediatric/create-pediatric-appointment-params"
+              }
+            ]
+          },
+          "docs": "Creates an appointment for the given pediatric patient. Upon success, creates an event to facilitate feedback and\n  analytics."
+        },
+        {
+          "info": {
+            "name": "add-attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/pediatric-patient/:pediatric-patient-id/image",
+            "params": [
+              {
+                "name": "pediatric-patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.pediatric/add-attachment-params"
+              }
+            ]
+          },
+          "docs": "Attaches the provided `document` to the given pediatric patient on MTM's side.\n\n  The attachment is not attached to a specific consultation, but instead appears\n  in the pediatric patient's health records on MTM's dashboard.\n\n  All EXIF metadata are removed from the file before uploading it to MTM.\n  The original filename from the device is dropped for a filename which reflects\n  the pediatric patient's MTM ID and the date the file was uploaded on.\n\n  The provided `document` image must be a vali"
+        },
+        {
+          "info": {
+            "name": "get-pediatric-patient-pharmacy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/pediatric-patient/:pediatric-patient-id/pharmacy",
+            "params": [
+              {
+                "name": "pediatric-patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.pediatric/get-pediatric-patient-pharmacy-params"
+              }
+            ]
+          },
+          "docs": "Retrieves a dependent's preferred pharmacy."
+        },
+        {
+          "info": {
+            "name": "create-pediatric-patient-pharmacy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/pediatric-patient/:pediatric-patient-id/pharmacy",
+            "params": [
+              {
+                "name": "pediatric-patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: "
+              }
+            ]
+          },
+          "docs": "Stores the preferred pharmacy for a pediatric patient.\n  If the pharmacy does not exist in the database, adds a new row.\n  If it already exists, updates the row with same Surescript ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

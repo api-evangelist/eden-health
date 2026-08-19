@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.screeners API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.screeners",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get-screener-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/screener",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Given a patient id, return all active (unscored) screeners for that patient.\n  Filters the screeners and enriches the data per the `eden-screeners` athena\n  config entry.\n  Prepends any custom screeners from our dB."
+        },
+        {
+          "info": {
+            "name": "get-screener-status-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/screener-status",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/get-screener-status-params"
+              },
+              {
+                "name": "screener-groups",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/get-screener-status-params"
+              }
+            ]
+          },
+          "docs": "Gets all screeners completed by the patient, and filters the list based on screener-group."
+        },
+        {
+          "info": {
+            "name": "get-vax-location-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/vax-location",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Gets location from latest COVID vaccine survey response completed by the patient."
+        },
+        {
+          "info": {
+            "name": "get-screener-card-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/screener-card",
+            "params": [
+              {
+                "name": "screener-response-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/screener-card-response-params"
+              },
+              {
+                "name": "covid-screener-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/screener-card-response-params"
+              }
+            ]
+          },
+          "docs": "Given a screener ID return sorted question list"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

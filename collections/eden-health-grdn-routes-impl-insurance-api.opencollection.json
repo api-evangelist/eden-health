@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.insurance API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.insurance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get-insurance-packages-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/insurance-packages",
+            "params": [
+              {
+                "name": "search-term",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.insurance/get-insurance-packages-params"
+              },
+              {
+                "name": "insurance-zip",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.insurance/get-insurance-packages-params"
+              }
+            ]
+          },
+          "docs": "Search for insurance packages given a search term and an optional zip code."
+        },
+        {
+          "info": {
+            "name": "get-insurance-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/insurance",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Gets a patients primary insurance."
+        },
+        {
+          "info": {
+            "name": "post-insurance-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/insurance",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.insurance/post-insurance-params"
+              }
+            ]
+          },
+          "docs": "post-insurance-handler"
+        },
+        {
+          "info": {
+            "name": "delete-primary-insurance-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/insurance",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.insurance/delete-insurance-params"
+              }
+            ]
+          },
+          "docs": "Deletes a patient's primary insurance"
+        },
+        {
+          "info": {
+            "name": "queue-eligibility-check-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/insurance/:insurance-id/eligibility",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "insurance-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Queue an eligibility check for the patient's insurance in Athena."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.sendbird API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.sendbird",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "webhook-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/sendbird-webhook"
+          },
+          "docs": "Asynchronously handles sendbird webhook. Always returns a 200 to sendbird immediately.\n  [SEE: https://docs.sendbird.com/platform/webhooks#3_webhook_endpoint_requirements]\n  NOTE: webhook endpoint and event type config is setup in the sendbird dashboard."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

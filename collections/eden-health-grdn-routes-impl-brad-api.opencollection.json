@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.brad API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.brad",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get-status-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/brad/status"
+          },
+          "docs": "Indicates BRAD state"
+        },
+        {
+          "info": {
+            "name": "set-status-active-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/brad/status/active"
+          },
+          "docs": "Sets BRAD state to active (enabled)"
+        },
+        {
+          "info": {
+            "name": "set-status-inactive-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/brad/status/inactive"
+          },
+          "docs": "Sets BRAD state to inactive (disabled)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

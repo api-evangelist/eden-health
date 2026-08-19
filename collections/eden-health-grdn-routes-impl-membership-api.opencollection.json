@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.membership API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.membership",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "send-code-handler-deprecated",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/membership/code"
+          },
+          "docs": "Sends a registration code email."
+        },
+        {
+          "info": {
+            "name": "validate-code-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/membership/validate",
+            "params": [
+              {
+                "name": "member-code",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/validate-code-params"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/validate-code-params"
+              },
+              {
+                "name": "invite-code",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/validate-code-params"
+              },
+              {
+                "name": "promo-code",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/validate-code-params"
+              }
+            ]
+          },
+          "docs": "Validates a registration code."
+        },
+        {
+          "info": {
+            "name": "validate-membership-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/membership/validate"
+          },
+          "docs": "Validates a membership."
+        },
+        {
+          "info": {
+            "name": "get-family-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/membership/:patient-id/family",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Gets a patient's family members who are also patients as an array of\n  maps of form {:first-name 'Bob' :last-name 'Dobalina' :email 'a@b.c'};\n  the family is filtered using the `-filter-family` function above"
+        },
+        {
+          "info": {
+            "name": "invite-dependents-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/membership/:patient-id/invite",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Given a primary patient and a list of emails to invite, first validates the emails and,\n  if they are all valid, creates a patient invite with the given email address and a unique code for each\n  and sends each email address the invitation email with code."
+        },
+        {
+          "info": {
+            "name": "get-pending-invites-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/membership/:patient-id/pending-invites",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Gets a patient's invites as an array of email addresses"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

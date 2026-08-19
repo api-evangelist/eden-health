@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.tools API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.tools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "update-covid-vax-eligibility-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/tools/covid-vax-eligibility"
+          },
+          "docs": "update-covid-vax-eligibility-handler"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

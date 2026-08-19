@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.sponsor API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.sponsor",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get-sponsor-divisions-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/sponsor/:sponsor-id/divisions",
+            "params": [
+              {
+                "name": "sponsor-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.sponsor/get-sponsor-divisions-params"
+              }
+            ]
+          },
+          "docs": "Get all divisions for a sponsor."
+        },
+        {
+          "info": {
+            "name": "post-roster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/sponsor/:sponsor-id/roster",
+            "params": [
+              {
+                "name": "sponsor-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.sponsor/post-roster-params"
+              }
+            ]
+          },
+          "docs": "Uploads a roster to S3 and logs the event."
+        },
+        {
+          "info": {
+            "name": "get-roster-ingestion-statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/sponsor/:sponsor-id/roster-statuses",
+            "params": [
+              {
+                "name": "sponsor-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.sponsor/get-roster-ingestion-status"
+              }
+            ]
+          },
+          "docs": "Returns the last roster ingestion status records for the sponsor; limit can be set in environment (default 10)."
+        },
+        {
+          "info": {
+            "name": "get-sponsors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/sponsors"
+          },
+          "docs": "Get all sponsor data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

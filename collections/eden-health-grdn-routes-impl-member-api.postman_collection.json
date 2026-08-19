@@ -1,0 +1,819 @@
+{
+  "item": [
+    {
+      "id": "286e23b3-e159-4379-9b85-f6ded4cfe56f",
+      "name": "grdn.routes.impl.member",
+      "description": {
+        "content": "Handlers for sponsor roster members",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ee66adc2-79c2-40d9-bdad-e5414c601b6d",
+          "name": "delete-member",
+          "request": {
+            "name": "delete-member",
+            "description": {
+              "content": "Deletes a member record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "member"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21aacadb-e4bb-4c39-b386-4c324e29e848",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "member"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "456688ae-9b7c-44ac-908f-3a6f5896da32",
+          "name": "get-members",
+          "request": {
+            "name": "get-members",
+            "description": {
+              "content": "Paginated GET handler for rostered patients. Enriches results with isolation reasons and,\n  if the sponsor is so entitled, vaccination status. Also adds shared-vaccination-card flag.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "member"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "day",
+                  "value": "<string>",
+                  "description": "origin spec: grdn.specs.member/get-members-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "triage-status",
+                  "value": "<string>",
+                  "description": "origin spec: grdn.specs.member/get-members-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "worksite",
+                  "value": "<string>",
+                  "description": "origin spec: grdn.specs.member/get-members-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "page-size",
+                  "value": "<long>",
+                  "description": "origin spec: grdn.specs.member/get-members-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<long>",
+                  "description": "origin spec: grdn.specs.member/get-members-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort-by",
+                  "value": "<string>",
+                  "description": "origin spec: grdn.specs.member/get-members-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort-direction",
+                  "value": "<string>",
+                  "description": "origin spec: grdn.specs.member/get-members-params"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "[object Object],[object Object]",
+                  "description": "origin spec: grdn.specs.member/get-members-params"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4aa8d6e-946e-40d3-9d2a-84792f0cc974",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "member"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "day",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "triage-status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "worksite",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page-size",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "sort-by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort-direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "[object Object],[object Object]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"9d918726-f166-5540-9982-1c7b8ace00b6\",\n    \"created-at\": \"\",\n    \"email\": \"string\",\n    \"employee-id\": \"string\",\n    \"first-name\": \"string\",\n    \"last-name\": \"string\",\n    \"mrn\": 755,\n    \"return-to-work-date\": \"string\",\n    \"updated-at\": \"\",\n    \"worksite\": \"string\",\n    \"consent-status\": \"string\",\n    \"dob\": \"\",\n    \"ingested-version\": \"string\",\n    \"last-consent-at\": {},\n    \"last-test\": {\n      \"type\": \"unknown\",\n      \"result\": \"negative\",\n      \"date-time\": {},\n      \"verified\": false\n    },\n    \"last-triage-at\": {},\n    \"phone\": \"string\",\n    \"triage-status\": \"triage-status/incomplete\",\n    \"athena-document-id\": 9581,\n    \"vaccination-status\": \"string\",\n    \"isolate-reasons\": \"string\",\n    \"newest-vaccinated-at\": \"string\"\n  },\n  {\n    \"id\": \"4148c572-75ba-dd55-4252-8844b9f2ba99\",\n    \"created-at\": \"\",\n    \"email\": \"string\",\n    \"employee-id\": \"string\",\n    \"first-name\": \"string\",\n    \"last-name\": \"string\",\n    \"mrn\": 6120,\n    \"return-to-work-date\": \"string\",\n    \"updated-at\": \"\",\n    \"worksite\": \"string\",\n    \"consent-status\": \"string\",\n    \"dob\": \"\",\n    \"ingested-version\": \"string\",\n    \"last-consent-at\": {},\n    \"last-test\": {\n      \"type\": \"rapid_molecular\",\n      \"result\": \"positive\",\n      \"date-time\": {},\n      \"verified\": true\n    },\n    \"last-triage-at\": {},\n    \"phone\": \"string\",\n    \"triage-status\": \"triage-status/cleared\",\n    \"athena-document-id\": 5897,\n    \"vaccination-status\": \"string\",\n    \"isolate-reasons\": \"string\",\n    \"newest-vaccinated-at\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d891f408-eda2-4d6b-8338-9409578bed91",
+          "name": "update-member",
+          "request": {
+            "name": "update-member",
+            "description": {
+              "content": "Updates a member record with the given patient ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "member"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sponsor-id\": \"<uuid>\",\n  \"employee-id\": \"<string>\",\n  \"patient-id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0f745bfa-3e51-479f-b4bb-e1c18693ac47",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "member"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sponsor-id\": \"<uuid>\",\n  \"employee-id\": \"<string>\",\n  \"patient-id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20a6ddc3-619d-4630-8f51-b058c38579af",
+          "name": "get-member",
+          "request": {
+            "name": "get-member",
+            "description": {
+              "content": "GET handler for specific member. Returns the member record enriched with the following:\n  - patient MRN\n  - patient creation time\n  - any covid_registry records' creation time & triage status\n  - isolate reasons and vaccination status, if the sponsor is so entitled\n  - shared-vaccination-card flag",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "member",
+                ":member-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "member-id",
+                  "description": "(Required) origin spec: grdn.specs.member/get-member-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fc047776-f09b-49cd-bd87-a05d3ca083cd",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "member",
+                    ":member-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "member-id",
+                      "description": "(Required) origin spec: grdn.specs.member/get-member-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ingested-version\": \"string\",\n  \"id\": \"41fa8011-de97-6de9-a443-1fc8c3018194\",\n  \"updated-at\": \"\",\n  \"created-at\": \"\",\n  \"email\": \"string\",\n  \"last-name\": \"string\",\n  \"first-name\": \"string\",\n  \"phone\": \"string\",\n  \"worksite\": \"string\",\n  \"employee-id\": \"string\",\n  \"patient-id\": \"8d7c764b-8312-9bad-8db2-527659f4614c\",\n  \"personal-email\": \"string\",\n  \"personal-phone\": \"string\",\n  \"dob\": \"\",\n  \"covid-registry\": [\n    {\n      \"created-at\": {},\n      \"triage-status\": \"triage-status/isolate\",\n      \"isolate-reasons\": \"string\"\n    },\n    {\n      \"created-at\": {},\n      \"triage-status\": \"triage-status/never-taken\",\n      \"isolate-reasons\": \"string\"\n    }\n  ],\n  \"vaccine-details\": [\n    {\n      \"vaccine-id\": \"string\",\n      \"manufacturer\": \"JSN\",\n      \"lot-number\": \"string\",\n      \"vaccinated-at\": \"\",\n      \"athena-document-id\": 247,\n      \"dose\": 7240\n    },\n    {\n      \"vaccine-id\": \"string\",\n      \"manufacturer\": \"PFR\",\n      \"lot-number\": \"string\",\n      \"vaccinated-at\": \"\",\n      \"athena-document-id\": 4996,\n      \"dose\": 1655\n    }\n  ],\n  \"vaccination-status\": \"string\",\n  \"isolate-reasons\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4e51668-3397-434e-892b-6359bd67e0a3",
+          "name": "get-covid-testing-results-handler",
+          "request": {
+            "name": "get-covid-testing-results-handler",
+            "description": {
+              "content": "Gets a member's COVID testing results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "member",
+                ":member-id",
+                "covid-testing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "member-id",
+                  "description": "(Required) origin spec: grdn.specs/get-covid-testing-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5692fc45-202d-4ba9-9c73-9fd1490fe1d3",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "member",
+                    ":member-id",
+                    "covid-testing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "member-id",
+                      "description": "(Required) origin spec: grdn.specs/get-covid-testing-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d113bc4-2733-40ec-8168-dace345fe7db",
+          "name": "get-member-vaccine-document-handler",
+          "request": {
+            "name": "get-member-vaccine-document-handler",
+            "description": {
+              "content": "Gets a members vaccine document/card image.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "member",
+                ":member-id",
+                "document",
+                "vaccine",
+                ":document-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "member-id",
+                  "description": "(Required) origin spec: grdn.specs/get-covid-testing-params"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "document-id",
+                  "description": "(Required) origin spec: grdn.specs/get-covid-testing-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "24e2f10e-7ff2-45a4-a528-cbc94d433f8a",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "member",
+                    ":member-id",
+                    "document",
+                    "vaccine",
+                    ":document-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "member-id",
+                      "description": "(Required) origin spec: grdn.specs/get-covid-testing-params"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "document-id",
+                      "description": "(Required) origin spec: grdn.specs/get-covid-testing-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "50fad9c2-c359-4ed5-99cf-40312a87f4c6",
+          "name": "get-sponsor-members",
+          "request": {
+            "name": "get-sponsor-members",
+            "description": {
+              "content": "GET handler for use by Dataz to retrieve a sponsor's members.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "sponsor",
+                ":sponsor-id",
+                "members"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "day",
+                  "value": "<string>",
+                  "description": "origin spec: grdn.specs.member/get-sponsor-members-params"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "sponsor-id",
+                  "description": "(Required) origin spec: grdn.specs.member/get-sponsor-members-params"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "154202dc-dbba-49fc-80f9-f2c0b619ffc6",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "sponsor",
+                    ":sponsor-id",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "day",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "sponsor-id",
+                      "description": "(Required) origin spec: grdn.specs.member/get-sponsor-members-params"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"9d918726-f166-5540-9982-1c7b8ace00b6\",\n    \"created-at\": \"\",\n    \"email\": \"string\",\n    \"employee-id\": \"string\",\n    \"first-name\": \"string\",\n    \"last-name\": \"string\",\n    \"mrn\": 755,\n    \"return-to-work-date\": \"string\",\n    \"updated-at\": \"\",\n    \"worksite\": \"string\",\n    \"consent-status\": \"string\",\n    \"dob\": \"\",\n    \"ingested-version\": \"string\",\n    \"last-consent-at\": {},\n    \"last-test\": {\n      \"type\": \"unknown\",\n      \"result\": \"negative\",\n      \"date-time\": {},\n      \"verified\": false\n    },\n    \"last-triage-at\": {},\n    \"phone\": \"string\",\n    \"triage-status\": \"triage-status/incomplete\",\n    \"athena-document-id\": 9581,\n    \"vaccination-status\": \"string\",\n    \"isolate-reasons\": \"string\",\n    \"newest-vaccinated-at\": \"string\"\n  },\n  {\n    \"id\": \"4148c572-75ba-dd55-4252-8844b9f2ba99\",\n    \"created-at\": \"\",\n    \"email\": \"string\",\n    \"employee-id\": \"string\",\n    \"first-name\": \"string\",\n    \"last-name\": \"string\",\n    \"mrn\": 6120,\n    \"return-to-work-date\": \"string\",\n    \"updated-at\": \"\",\n    \"worksite\": \"string\",\n    \"consent-status\": \"string\",\n    \"dob\": \"\",\n    \"ingested-version\": \"string\",\n    \"last-consent-at\": {},\n    \"last-test\": {\n      \"type\": \"rapid_molecular\",\n      \"result\": \"positive\",\n      \"date-time\": {},\n      \"verified\": true\n    },\n    \"last-triage-at\": {},\n    \"phone\": \"string\",\n    \"triage-status\": \"triage-status/cleared\",\n    \"athena-document-id\": 5897,\n    \"vaccination-status\": \"string\",\n    \"isolate-reasons\": \"string\",\n    \"newest-vaccinated-at\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ceec9375-7f14-4bdc-96fc-0af7fbc78348",
+          "name": "get-unconsented",
+          "request": {
+            "name": "get-unconsented",
+            "description": {
+              "content": "GET handler",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "unconsented"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "171f920c-e4b2-413f-ad5f-2a60c77e40aa",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "unconsented"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"updated-at\": \"\",\n    \"email\": \"string\",\n    \"last-name\": \"string\",\n    \"first-name\": \"string\",\n    \"worksite\": \"string\",\n    \"phone\": \"string\",\n    \"dob\": \"\",\n    \"id\": \"01ab86d1-b689-9795-6c79-ebf597b09b71\",\n    \"employee-id\": \"string\",\n    \"created-at\": \"\"\n  },\n  {\n    \"updated-at\": \"\",\n    \"email\": \"string\",\n    \"last-name\": \"string\",\n    \"first-name\": \"string\",\n    \"worksite\": \"string\",\n    \"phone\": \"string\",\n    \"dob\": \"\",\n    \"id\": \"8c9a24f7-1ea6-02fb-f196-46d6ee25c00a\",\n    \"employee-id\": \"string\",\n    \"created-at\": \"\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a317f68e-a720-427c-8fb7-c8480e35483a",
+    "name": "Grdn grdn.handler grdn.routes.impl.member API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}

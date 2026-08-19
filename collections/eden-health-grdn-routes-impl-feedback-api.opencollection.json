@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.feedback API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.feedback",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "case-feedback-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/case/:case-id/feedback",
+            "params": [
+              {
+                "name": "case-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.feedback/case-feedback-handler-params"
+              }
+            ]
+          },
+          "docs": "Creates a requested feedback entry for a given patient case."
+        },
+        {
+          "info": {
+            "name": "send-feedback-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/feedback"
+          },
+          "docs": "Sends feedback to all patients with a recent visit"
+        },
+        {
+          "info": {
+            "name": "get-feedback-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/feedback",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              },
+              {
+                "name": "funnel-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs/patient-id-params"
+              }
+            ]
+          },
+          "docs": "Gets requested feedback survey for a patient"
+        },
+        {
+          "info": {
+            "name": "submit-feedback-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/patient/:patient-id/feedback",
+            "params": [
+              {
+                "name": "patient-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.feedback/submit-feedback-handler-params"
+              }
+            ]
+          },
+          "docs": "Write patient feedback to db and send low rating alert if needed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

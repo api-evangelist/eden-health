@@ -1,0 +1,200 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.member API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.member",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get-members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/member",
+            "params": [
+              {
+                "name": "day",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.member/get-members-params"
+              },
+              {
+                "name": "triage-status",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.member/get-members-params"
+              },
+              {
+                "name": "worksite",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.member/get-members-params"
+              },
+              {
+                "name": "page-size",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.member/get-members-params"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.member/get-members-params"
+              },
+              {
+                "name": "sort-by",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.member/get-members-params"
+              },
+              {
+                "name": "sort-direction",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.member/get-members-params"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.member/get-members-params"
+              }
+            ]
+          },
+          "docs": "Paginated GET handler for rostered patients. Enriches results with isolation reasons and,\n  if the sponsor is so entitled, vaccination status. Also adds shared-vaccination-card flag."
+        },
+        {
+          "info": {
+            "name": "update-member",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/member"
+          },
+          "docs": "Updates a member record with the given patient ID."
+        },
+        {
+          "info": {
+            "name": "delete-member",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v2/member"
+          },
+          "docs": "Deletes a member record."
+        },
+        {
+          "info": {
+            "name": "get-member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/member/:member-id",
+            "params": [
+              {
+                "name": "member-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.member/get-member-params"
+              }
+            ]
+          },
+          "docs": "GET handler for specific member. Returns the member record enriched with the following:\n  - patient MRN\n  - patient creation time\n  - any covid_registry records' creation time & triage status\n  - isolate reasons and vaccination status, if the sponsor is so entitled\n  - shared-vaccination-card flag"
+        },
+        {
+          "info": {
+            "name": "get-covid-testing-results-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/member/:member-id/covid-testing",
+            "params": [
+              {
+                "name": "member-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/get-covid-testing-params"
+              }
+            ]
+          },
+          "docs": "Gets a member's COVID testing results."
+        },
+        {
+          "info": {
+            "name": "get-member-vaccine-document-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/member/:member-id/document/vaccine/:document-id",
+            "params": [
+              {
+                "name": "member-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/get-covid-testing-params"
+              },
+              {
+                "name": "document-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs/get-covid-testing-params"
+              }
+            ]
+          },
+          "docs": "Gets a members vaccine document/card image."
+        },
+        {
+          "info": {
+            "name": "get-sponsor-members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/sponsor/:sponsor-id/members",
+            "params": [
+              {
+                "name": "sponsor-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.member/get-sponsor-members-params"
+              },
+              {
+                "name": "day",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.member/get-sponsor-members-params"
+              }
+            ]
+          },
+          "docs": "GET handler for use by Dataz to retrieve a sponsor's members."
+        },
+        {
+          "info": {
+            "name": "get-unconsented",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/unconsented"
+          },
+          "docs": "GET handler"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

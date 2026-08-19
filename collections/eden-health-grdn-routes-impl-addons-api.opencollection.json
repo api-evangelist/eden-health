@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Grdn grdn.handler grdn.routes.impl.addons API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grdn.routes.impl.addons",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get-categories-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/addons/categories"
+          },
+          "docs": "get-categories-handler"
+        },
+        {
+          "info": {
+            "name": "get-external-addons-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/addons/external",
+            "params": [
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.addons/get-external-addons-params"
+              },
+              {
+                "name": "sponsor-id",
+                "value": "",
+                "type": "query",
+                "description": "origin spec: grdn.specs.addons/get-external-addons-params"
+              }
+            ]
+          },
+          "docs": "get-external-addons-handler"
+        },
+        {
+          "info": {
+            "name": "create-external-addon-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/addons/external"
+          },
+          "docs": "create-external-addon-handler"
+        },
+        {
+          "info": {
+            "name": "get-external-addon-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/addons/external/:external-addon-id",
+            "params": [
+              {
+                "name": "external-addon-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.addons/get-external-addon-params"
+              }
+            ]
+          },
+          "docs": "get-external-addon-handler"
+        },
+        {
+          "info": {
+            "name": "update-external-addon-handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v2/addons/external/:external-addon-id",
+            "params": [
+              {
+                "name": "external-addon-id",
+                "value": "",
+                "type": "path",
+                "description": "origin spec: grdn.specs.addons/update-external-addon-params"
+              }
+            ]
+          },
+          "docs": "update-external-addon-handler"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

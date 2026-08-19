@@ -1,0 +1,176 @@
+{
+  "item": [
+    {
+      "id": "88fe783b-cc41-4da8-86ba-6324f2d662ed",
+      "name": "grdn.routes.impl.auth",
+      "description": {
+        "content": "Direct authentication handlers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "db0dbfaf-4432-43b3-9961-ce594ead4916",
+          "name": "auth-handler",
+          "request": {
+            "name": "auth-handler",
+            "description": {
+              "content": "Tries to return a sendbird access token for a user. To do this,\n   we figure out what a user's sendbird-user-id in postgres,\n   and we ask sendbird for a token. If no active ones exist, we\n   create one.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "auth"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a4f0de5-4aa5-47b1-8c52-5ad703233ad1",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "auth"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sendbird-user-id\": \"e74d072c-15b1-42ae-9ed3-b9685b4543ab\",\n  \"sendbird-session-token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7015464f-ea4e-444c-a305-93b6a81181af",
+          "name": "get-launchdarkly-creds",
+          "request": {
+            "name": "get-launchdarkly-creds",
+            "description": {
+              "content": "Returns the one-way-hashed provider ID and the signed\n   LD hash of that to use as js-secure-mode LD credentials\n   without revealing any of our data/ids to LD.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "launchdarkly-creds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "523eec02-f89a-4f88-bf42-abac7bc80bb5",
+              "name": "Default success response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "launchdarkly-creds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b3d13e25-b752-4a33-abe7-cb80a37d2651",
+    "name": "Grdn grdn.handler grdn.routes.impl.auth API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Eden Health Inc. primary backend API service.",
+      "type": "text/plain"
+    }
+  }
+}
