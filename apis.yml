@@ -47,7 +47,8 @@ apis:
   description: Configures routes, handlers, and global middleware.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.handler
   properties:
   - type: OpenAPI
@@ -58,7 +59,8 @@ apis:
     The grdn.routes.impl.addons API from Eden Health — 3 operation(s) for grdn.routes.impl.addons.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.addons
   properties:
   - type: OpenAPI
@@ -68,7 +70,8 @@ apis:
   description: Generic application handlers.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.app
   properties:
   - type: OpenAPI
@@ -99,7 +102,8 @@ apis:
       in their preferred time zone as communicated by the client.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.appointments
   properties:
   - type: OpenAPI
@@ -109,7 +113,8 @@ apis:
   description: Contains handlers for routes related to provider patient assignments.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.assignment
   properties:
   - type: OpenAPI
@@ -130,7 +135,8 @@ apis:
   description: Direct authentication handlers
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.auth
   properties:
   - type: OpenAPI
@@ -152,7 +158,8 @@ apis:
     The grdn.routes.impl.brad API from Eden Health — 3 operation(s) for grdn.routes.impl.brad.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.brad
   properties:
   - type: OpenAPI
@@ -162,7 +169,8 @@ apis:
   description: Bug Report handler
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.bug
   properties:
   - type: OpenAPI
@@ -184,7 +192,8 @@ apis:
     The grdn.routes.impl.careteam API from Eden Health — 2 operation(s) for grdn.routes.impl.careteam.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.careteam
   properties:
   - type: OpenAPI
@@ -194,7 +203,8 @@ apis:
   description: Contains handlers for routes related to Channels.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.channel
   properties:
   - type: OpenAPI
@@ -205,7 +215,8 @@ apis:
     The grdn.routes.impl.chat API from Eden Health — 1 operation(s) for grdn.routes.impl.chat.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.chat
   properties:
   - type: OpenAPI
@@ -216,7 +227,8 @@ apis:
     The grdn.routes.impl.configuration API from Eden Health — 1 operation(s) for grdn.routes.impl.configuration.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.configuration
   properties:
   - type: OpenAPI
@@ -227,7 +239,8 @@ apis:
     The grdn.routes.impl.consent API from Eden Health — 2 operation(s) for grdn.routes.impl.consent.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.consent
   properties:
   - type: OpenAPI
@@ -238,7 +251,8 @@ apis:
     The grdn.routes.impl.demographics API from Eden Health — 1 operation(s) for grdn.routes.impl.demographics.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.demographics
   properties:
   - type: OpenAPI
@@ -249,7 +263,8 @@ apis:
     The grdn.routes.impl.document API from Eden Health — 12 operation(s) for grdn.routes.impl.document.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.document
   properties:
   - type: OpenAPI
@@ -259,7 +274,8 @@ apis:
   description: Route implementation for all things eligibility
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.eligibility
   properties:
   - type: OpenAPI
@@ -269,7 +285,8 @@ apis:
   description: Route implementation for our various event posting endpoints.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.event
   properties:
   - type: OpenAPI
@@ -279,7 +296,8 @@ apis:
   description: Contains handlers for routes related to Appointments, Cases, Encounters etc.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.feedback
   properties:
   - type: OpenAPI
@@ -289,7 +307,8 @@ apis:
   description: Handlers for image upload and download.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.images
   properties:
   - type: OpenAPI
@@ -300,7 +319,8 @@ apis:
     The grdn.routes.impl.insurance API from Eden Health — 3 operation(s) for grdn.routes.impl.insurance.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.insurance
   properties:
   - type: OpenAPI
@@ -310,7 +330,8 @@ apis:
   description: Simple CRUD operations for macros.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.macros
   properties:
   - type: OpenAPI
@@ -320,7 +341,8 @@ apis:
   description: Handlers for sponsor roster members
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.member
   properties:
   - type: OpenAPI
@@ -330,7 +352,8 @@ apis:
   description: Handlers for membership, invites, codes
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.membership
   properties:
   - type: OpenAPI
@@ -350,7 +373,8 @@ apis:
   description: Contains handlers for routes related to Patients.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.patients
   properties:
   - type: OpenAPI
@@ -361,7 +385,8 @@ apis:
     The grdn.routes.impl.pediatric API from Eden Health — 7 operation(s) for grdn.routes.impl.pediatric.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.pediatric
   properties:
   - type: OpenAPI
@@ -371,7 +396,8 @@ apis:
   description: Simple CRUD operations for popups.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.popup
   properties:
   - type: OpenAPI
@@ -381,7 +407,8 @@ apis:
   description: Handlers to get general info about providers and departments.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.provider
   properties:
   - type: OpenAPI
@@ -412,7 +439,8 @@ apis:
   description: Handlers for screener fetching and submission.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.screeners
   properties:
   - type: OpenAPI
@@ -422,7 +450,8 @@ apis:
   description: Handlers for sendbird webhooks.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.sendbird
   properties:
   - type: OpenAPI
@@ -432,7 +461,8 @@ apis:
   description: Handlers for sponsor data.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.sponsor
   properties:
   - type: OpenAPI
@@ -453,7 +483,8 @@ apis:
     The grdn.routes.impl.ticklers API from Eden Health — 5 operation(s) for grdn.routes.impl.ticklers.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.ticklers
   properties:
   - type: OpenAPI
@@ -464,7 +495,8 @@ apis:
     The grdn.routes.impl.tools API from Eden Health — 1 operation(s) for grdn.routes.impl.tools.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.tools
   properties:
   - type: OpenAPI
@@ -475,7 +507,8 @@ apis:
     The grdn.routes.impl.validation API from Eden Health — 1 operation(s) for grdn.routes.impl.validation.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.validation
   properties:
   - type: OpenAPI
@@ -485,7 +518,8 @@ apis:
   description: Scheduling calls and querying call metadata
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.video
   properties:
   - type: OpenAPI
@@ -505,7 +539,8 @@ apis:
   description: Handlers for sponsor visitors
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
-  tags:
+  tags: []
+  tags_raw:
   - grdn.routes.impl.visitor
   properties:
   - type: OpenAPI
