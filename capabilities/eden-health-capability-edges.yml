@@ -11,45 +11,38 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 4
+edge_count: 3
 edges:
 - tag: grdn.routes.impl.appointments
   spec_file: eden-health-grdn-routes-impl-appointments-api-openapi.yml
   capability_id: BC-2800.10
   capability_id_l1: BC-2800
   capability_name: Scheduling & Appointment Management
-  confidence: 0.93
-  evidence: POST /v2/appointment/book book-appointments-handler; PUT /v2/appointment/{appointment-id}/cancel
-    cancel-appointment-handler; POST /v2/appointment/{appointment-id}/check-in
-  reason: Operations plainly book, list, cancel and check in patient appointments (including digital visits),
-    which is provider-side appointment scheduling and patient access.
+  confidence: 0.85
+  evidence: POST /v2/appointment/book    book-appointments-handler; PUT /v2/appointment/{appointment-id}/cancel    cancel-appointment-handler;
+    POST /v2/appointment/{appointment-id}/check-in
+  reason: Operations book, list, cancel and check in patient appointments (digital visits) for a primary/virtual
+    care provider — squarely appointment booking and scheduling under Patient Access Management. Some
+    surface spills into visit documentation ('get-appointment-note-handler', 'send-after-visit-summary-handler'),
+    hence not 0.95.
 - tag: grdn.routes.impl.insurance
   spec_file: eden-health-grdn-routes-impl-insurance-api-openapi.yml
   capability_id: BC-2800.30
   capability_id_l1: BC-2800
   capability_name: Eligibility & Benefits Verification
-  confidence: 0.75
-  evidence: POST /v2/patient/{patient-id}/insurance    post-insurance-handler; PUT /v2/patient/{patient-id}/insurance/{insurance-id}/eligibility    queue-eligibility-check-handler
-  reason: Captures patient insurance coverage and triggers eligibility checks against insurance packages
-    — verification of coverage and benefits ahead of service.
+  confidence: 0.8
+  evidence: GET /v2/insurance-packages, POST /v2/patient/{patient-id}/insurance, PUT /v2/patient/{patient-id}/insurance/{insurance-id}/eligibility
+    — queue-eligibility-check-handler
+  reason: Operations capture and maintain a patient's insurance coverage and explicitly queue eligibility
+    checks against it, which is insurance coverage and benefits verification in the patient access flow.
 - tag: grdn.routes.impl.patients
   spec_file: eden-health-grdn-routes-impl-patients-api-openapi.yml
   capability_id: BC-2800.20
   capability_id_l1: BC-2800
   capability_name: Patient Registration Management
   confidence: 0.7
-  evidence: POST /v2/patient create-patient-handler; PUT /v2/patient/{patient-id} update-patient-handler;
+  evidence: POST /v2/patient — create-patient-handler; PUT /v2/patient/{patient-id} — update-patient-handler;
     GET /v2/patient/{patient-id}/account-info
-  reason: Core CRUD and search over the patient record with demographic/account information is stewardship
-    of patient identity and registration data. Some operations (chart, case, ai-chat-suggestion) reach
-    into clinical/record territory, hence not full confidence.
-- tag: grdn.routes.impl.video-visit
-  spec_file: eden-health-grdn-routes-impl-video-visit-api-openapi.yml
-  capability_id: BC-2810.20
-  capability_id_l1: BC-2810
-  capability_name: Outpatient Care Delivery
-  confidence: 0.7
-  evidence: POST /v2/video-visit  create-video-visit; GET /v2/video-visit  get-video-visit
-  reason: Creation and retrieval of video visits for a virtual primary care provider is telehealth encounter
-    delivery, which BC-2810.20 explicitly covers ('ambulatory, telehealth, and outpatient ... services').
-    Some chance it is better read as appointment scheduling, hence 0.7.
+  reason: Core patient record creation, search, validation and demographic/account maintenance, i.e. patient
+    registration and identity stewardship. The tag also spans chart and case endpoints touching clinical
+    documentation, which tempers confidence in the single sub-capability.
