@@ -562,6 +562,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/eden-health-capability-edges.yml
+  name: Eden Health Business Capability Map
 - type: Overlay
   url: overlays/eden-health-grdn-overlay.yaml
 - type: Website
