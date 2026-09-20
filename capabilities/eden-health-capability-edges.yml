@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 3
+edge_count: 4
 edges:
 - tag: grdn.routes.impl.appointments
   spec_file: eden-health-grdn-routes-impl-appointments-api-openapi.yml
@@ -46,3 +46,14 @@ edges:
   reason: Core patient record creation, search, validation and demographic/account maintenance, i.e. patient
     registration and identity stewardship. The tag also spans chart and case endpoints touching clinical
     documentation, which tempers confidence in the single sub-capability.
+- tag: grdn.routes.impl.video-visit
+  spec_file: eden-health-grdn-routes-impl-video-visit-api-openapi.yml
+  capability_id: BC-2810.20
+  capability_id_l1: BC-2810
+  capability_name: Outpatient Care Delivery
+  confidence: 0.7
+  evidence: POST /v2/video-visit  create-video-visit; GET /v2/video-visit  get-video-visit
+  reason: Creation and retrieval of video visits for a virtual primary care provider is telehealth encounter
+    delivery, which BC-2810.20 explicitly covers ('ambulatory, telehealth, and outpatient ... services').
+    Some chance it is better read as appointment scheduling, hence 0.7.
+  recovered_from: healthcare-vertical-edges.json
