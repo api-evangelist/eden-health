@@ -1,12 +1,8 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
-  version: "1.0"
-  title: Grdn grdn.handler grdn.routes.impl.bug API
+  version: null
+  title: Grdn.routes.impl.bug API
   description: Eden Health Inc. primary backend API service.
-consumes:
-- application/json
-produces:
-- application/json
 tags:
 - name: grdn.routes.impl.bug
   description: Bug Report handler
@@ -14,54 +10,62 @@ paths:
   /v2/bug:
     post:
       summary: report-bug
-      description: "Reports a bug.\n   Processes media attachment first. On success, sends email to techsupport\n   and sends PagerDuty alert to on call engineer if appropriate."
+      description: 'Reports a bug.
+
+        Processes media attachment first. On success, sends email to techsupport
+
+        and sends PagerDuty alert to on call engineer if appropriate.'
       tags:
       - grdn.routes.impl.bug
-      parameters:
-      - in: body
-        name: grdn.specs.bug/create-bug-report-params
-        description: 'origin spec: grdn.specs.bug/create-bug-report-params'
-        schema:
-          type: object
-          properties:
-            app-version:
-              type: string
-            chrome-version:
-              type: string
-            description:
-              type: string
-              allowEmptyValue: true
-            reporter-email:
-              type: string
-            urgency:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  format: int64
-                description:
-                  type: string
-                  allowEmptyValue: true
-                value:
-                  type: string
-              required:
-              - id
-              - description
-              - value
-              title: grdn.specs.bug/urgency
-            reporter-athena-id:
-              type: integer
-              format: int64
-            reporter-name:
-              type: string
-          required:
-          - app-version
-          - chrome-version
-          - description
-          - reporter-email
-          - urgency
-          title: grdn.specs.bug/create-bug-report-params
       responses:
         default:
           description: Default success response.
-          schema: {}
+          content:
+            application/json:
+              schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                app-version:
+                  type: string
+                chrome-version:
+                  type: string
+                description:
+                  type: string
+                  allowEmptyValue: true
+                reporter-email:
+                  type: string
+                urgency:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                    description:
+                      type: string
+                      allowEmptyValue: true
+                    value:
+                      type: string
+                  required:
+                  - id
+                  - description
+                  - value
+                  title: grdn.specs.bug/urgency
+                reporter-athena-id:
+                  type: integer
+                  format: int64
+                reporter-name:
+                  type: string
+              required:
+              - app-version
+              - chrome-version
+              - description
+              - reporter-email
+              - urgency
+              title: grdn.specs.bug/create-bug-report-params
+        description: 'origin spec: grdn.specs.bug/create-bug-report-params'
+      operationId: postV2Bug
+      x-operation-id-source: derived

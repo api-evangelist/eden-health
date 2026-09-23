@@ -1,11 +1,9 @@
 generated: '2026-07-19'
 method: searched
-# Live probe of /.well-known/ and common discovery paths on the reachable Eden Health API
-# host. edenhealth.com (marketing) is unreachable over TLS (handshake internal error). All
-# probed discovery documents returned 404 — recorded for auditability; no 200s, so no raw
-# files were saved and no WellKnown/SecurityTxt pointer is wired.
 host: https://api.edenhealth.com
-documents:
+hosts:
+- host: https://api.edenhealth.com
+  documents:
   - path: /.well-known/security.txt
     status: 404
   - path: /.well-known/openid-configuration
@@ -16,8 +14,8 @@ documents:
     status: 404
   - path: /.well-known/ai-plugin.json
     status: 404
-  - path: /llms.txt
-    status: 404
-  - path: /swagger.json
-    status: 200
-    note: harvested to openapi/eden-health-grdn-openapi-original.json (Swagger 2.0)
+x-shape-fix:
+  converted: '2026-08-20'
+  from: documents
+  note: Rewritten into hosts[] -> documents[], the only shape well_known_docs() in score.rb reads. A served
+    .well-known surface recorded in any other shape scores as absent.

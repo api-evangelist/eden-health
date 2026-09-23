@@ -1,12 +1,8 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
-  version: "1.0"
-  title: Grdn grdn.handler grdn.routes.impl.consent API
+  version: null
+  title: Grdn.routes.impl.consent API
   description: Eden Health Inc. primary backend API service.
-consumes:
-- application/json
-produces:
-- application/json
 tags:
 - name: grdn.routes.impl.consent
   description: null
@@ -14,7 +10,9 @@ paths:
   /v2/patient/{patient-id}/consent:
     get:
       summary: get-patient-consent
-      description: "Given a consent name, depending on feature flags, gets latest version of the consent form or the\n   sponsor-specific covid consent version."
+      description: 'Given a consent name, depending on feature flags, gets latest version of the consent form or the
+
+        sponsor-specific covid consent version.'
       tags:
       - grdn.routes.impl.consent
       parameters:
@@ -22,44 +20,49 @@ paths:
         name: patient-id
         description: 'origin spec: grdn.specs.consent/get-patient-consent-params'
         required: true
-        type: string
-        format: uuid
+        schema:
+          type: string
+          format: uuid
       - in: query
         name: name
         description: 'origin spec: grdn.specs.consent/get-patient-consent-params'
         required: true
-        type: string
+        schema:
+          type: string
       responses:
         default:
           description: Default success response.
-          schema:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-              name:
-                type: string
-              version:
-                type: string
-              url:
-                type: string
-              patient-id:
-                type: string
-                format: uuid
-                x-nullable: true
-              consented-at:
-                x-nullable: true
-              expires-at:
-                x-nullable: true
-            required:
-            - id
-            - name
-            - version
-            - url
-            - patient-id
-            - consented-at
-            title: grdn.specs.consent/consent
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                  version:
+                    type: string
+                  url:
+                    type: string
+                  patient-id:
+                    type:
+                    - string
+                    - 'null'
+                    format: uuid
+                  consented-at: {}
+                  expires-at: {}
+                required:
+                - id
+                - name
+                - version
+                - url
+                - patient-id
+                - consented-at
+                title: grdn.specs.consent/consent
+      operationId: getV2PatientByPatientIdConsent
+      x-operation-id-source: derived
     post:
       summary: accept-patient-consent
       description: ''
@@ -70,31 +73,46 @@ paths:
         name: patient-id
         description: 'origin spec: grdn.specs.consent/accept-patient-consent-params'
         required: true
-        type: string
-        format: uuid
-      - in: body
-        name: grdn.specs.consent/accept-patient-consent-params
-        description: 'origin spec: grdn.specs.consent/accept-patient-consent-params'
         schema:
-          type: object
-          properties:
-            consent-id:
-              type: string
-              format: uuid
-          required:
-          - consent-id
-          title: grdn.specs.consent/accept-patient-consent-params
+          type: string
+          format: uuid
       responses:
         default:
           description: Default success response.
-          schema:
-            type: array
-            maxItems: 0
-            minItems: 0
+          content:
+            application/json:
+              schema:
+                type: array
+                maxItems: 0
+                minItems: 0
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                consent-id:
+                  type: string
+                  format: uuid
+              required:
+              - consent-id
+              title: grdn.specs.consent/accept-patient-consent-params
+        description: 'origin spec: grdn.specs.consent/accept-patient-consent-params'
+      operationId: postV2PatientByPatientIdConsent
+      x-operation-id-source: derived
   /v2/patient/{patient-id}/expired-consents:
     get:
       summary: get-expired-consents
-      description: "Given a patient ID, gets each most recently expired consent that does not have a non-expired consent\n   for that consent ID.\n\n   As COVID consents are the only type of consent where the expected version for each patient depends\n   on their sponsor (as determined by the `sponsor-covid-consent-version` feature flag), COVID consents\n   are handled separately with specific logic detailed in APP-7188."
+      description: 'Given a patient ID, gets each most recently expired consent that does not have a non-expired consent
+
+        for that consent ID.
+
+
+        As COVID consents are the only type of consent where the expected version for each patient depends
+
+        on their sponsor (as determined by the `sponsor-covid-consent-version` feature flag), COVID consents
+
+        are handled separately with specific logic detailed in APP-7188.'
       tags:
       - grdn.routes.impl.consent
       parameters:
@@ -102,38 +120,42 @@ paths:
         name: patient-id
         description: 'origin spec: grdn.specs.consent/get-expired-consents-params'
         required: true
-        type: string
-        format: uuid
+        schema:
+          type: string
+          format: uuid
       responses:
         default:
           description: Default success response.
-          schema:
-            type: array
-            items:
-              type: object
-              properties:
-                id:
-                  type: string
-                  format: uuid
-                name:
-                  type: string
-                version:
-                  type: string
-                url:
-                  type: string
-                patient-id:
-                  type: string
-                  format: uuid
-                  x-nullable: true
-                consented-at:
-                  x-nullable: true
-                expires-at:
-                  x-nullable: true
-              required:
-              - id
-              - name
-              - version
-              - url
-              - patient-id
-              - consented-at
-              title: grdn.specs.consent/consent
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                    version:
+                      type: string
+                    url:
+                      type: string
+                    patient-id:
+                      type:
+                      - string
+                      - 'null'
+                      format: uuid
+                    consented-at: {}
+                    expires-at: {}
+                  required:
+                  - id
+                  - name
+                  - version
+                  - url
+                  - patient-id
+                  - consented-at
+                  title: grdn.specs.consent/consent
+      operationId: getV2PatientByPatientIdExpiredConsents
+      x-operation-id-source: derived

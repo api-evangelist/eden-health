@@ -1,12 +1,8 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
-  version: "1.0"
-  title: Grdn grdn.handler grdn.routes.impl.insurance API
+  version: null
+  title: Grdn.routes.impl.insurance API
   description: Eden Health Inc. primary backend API service.
-consumes:
-- application/json
-produces:
-- application/json
 tags:
 - name: grdn.routes.impl.insurance
   description: null
@@ -22,12 +18,12 @@ paths:
         name: search-term
         description: 'origin spec: grdn.specs.insurance/get-insurance-packages-params'
         required: true
-        type: string
+        schema:
+          type: string
       - in: query
         name: insurance-zip
         description: 'origin spec: grdn.specs.insurance/get-insurance-packages-params'
         required: false
-        type: string
         x-allOf:
         - type: string
         - {}
@@ -42,10 +38,16 @@ paths:
           - {}
         - type: string
           allowEmptyValue: true
+        schema:
+          type: string
       responses:
         default:
           description: Default success response.
-          schema: {}
+          content:
+            application/json:
+              schema: {}
+      operationId: getV2InsurancePackages
+      x-operation-id-source: derived
   /v2/patient/{patient-id}/insurance:
     get:
       summary: get-insurance-handler
@@ -57,18 +59,24 @@ paths:
         name: patient-id
         description: 'origin spec: grdn.specs/patient-id-params'
         required: true
-        type: string
-        format: uuid
+        schema:
+          type: string
+          format: uuid
       - in: query
         name: funnel-id
         description: 'origin spec: grdn.specs/patient-id-params'
         required: false
-        type: string
-        format: uuid
+        schema:
+          type: string
+          format: uuid
       responses:
         default:
           description: Default success response.
-          schema: {}
+          content:
+            application/json:
+              schema: {}
+      operationId: getV2PatientByPatientIdInsurance
+      x-operation-id-source: derived
     post:
       summary: post-insurance-handler
       description: ''
@@ -79,63 +87,69 @@ paths:
         name: patient-id
         description: 'origin spec: grdn.specs.insurance/post-insurance-params'
         required: true
-        type: string
-        format: uuid
-      - in: body
-        name: grdn.specs.insurance/post-insurance-params
-        description: 'origin spec: grdn.specs.insurance/post-insurance-params'
         schema:
-          type: object
-          properties:
-            insurance-card-front-image:
-              type: string
-            insurance-card-back-image:
-              type: string
-            is-self-pay:
-              type: boolean
-            insurance-record:
-              type: object
-              properties:
-                insurance-policy-holder-first-name:
-                  type: string
-                  allowEmptyValue: true
-                insurance-policy-holder-last-name:
-                  type: string
-                  allowEmptyValue: true
-                insurance-policy-holder-sex:
-                  enum:
-                  - M
-                  - F
-                  type: string
-                  allowEmptyValue: true
-                insurance-policy-holder-dob:
-                  type: string
-                  x-allOf:
-                  - type: string
-                  - {}
-                  allowEmptyValue: true
-                insurance-id-number:
-                  type: string
-                insurance-package-id:
-                  type: integer
-                  allowEmptyValue: true
-              required:
-              - insurance-policy-holder-first-name
-              - insurance-policy-holder-last-name
-              - insurance-policy-holder-sex
-              - insurance-policy-holder-dob
-              - insurance-id-number
-              - insurance-package-id
-              allowEmptyValue: true
-          required:
-          - insurance-card-front-image
-          - insurance-card-back-image
-          - is-self-pay
-          title: grdn.specs.insurance/post-insurance-params
+          type: string
+          format: uuid
       responses:
         default:
           description: Default success response.
-          schema: {}
+          content:
+            application/json:
+              schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                insurance-card-front-image:
+                  type: string
+                insurance-card-back-image:
+                  type: string
+                is-self-pay:
+                  type: boolean
+                insurance-record:
+                  type: object
+                  properties:
+                    insurance-policy-holder-first-name:
+                      type: string
+                      allowEmptyValue: true
+                    insurance-policy-holder-last-name:
+                      type: string
+                      allowEmptyValue: true
+                    insurance-policy-holder-sex:
+                      enum:
+                      - M
+                      - F
+                      type: string
+                      allowEmptyValue: true
+                    insurance-policy-holder-dob:
+                      type: string
+                      x-allOf:
+                      - type: string
+                      - {}
+                      allowEmptyValue: true
+                    insurance-id-number:
+                      type: string
+                    insurance-package-id:
+                      type: integer
+                      allowEmptyValue: true
+                  required:
+                  - insurance-policy-holder-first-name
+                  - insurance-policy-holder-last-name
+                  - insurance-policy-holder-sex
+                  - insurance-policy-holder-dob
+                  - insurance-id-number
+                  - insurance-package-id
+                  allowEmptyValue: true
+              required:
+              - insurance-card-front-image
+              - insurance-card-back-image
+              - is-self-pay
+              title: grdn.specs.insurance/post-insurance-params
+        description: 'origin spec: grdn.specs.insurance/post-insurance-params'
+      operationId: postV2PatientByPatientIdInsurance
+      x-operation-id-source: derived
     delete:
       summary: delete-primary-insurance-handler
       description: Deletes a patient's primary insurance
@@ -146,12 +160,17 @@ paths:
         name: patient-id
         description: 'origin spec: grdn.specs.insurance/delete-insurance-params'
         required: true
-        type: string
-        format: uuid
+        schema:
+          type: string
+          format: uuid
       responses:
         default:
           description: Default success response.
-          schema: {}
+          content:
+            application/json:
+              schema: {}
+      operationId: deleteV2PatientByPatientIdInsurance
+      x-operation-id-source: derived
   /v2/patient/{patient-id}/insurance/{insurance-id}/eligibility:
     put:
       summary: queue-eligibility-check-handler
@@ -163,23 +182,29 @@ paths:
         name: patient-id
         description: 'origin spec: grdn.specs/patient-id-params'
         required: true
-        type: string
-        format: uuid
+        schema:
+          type: string
+          format: uuid
       - in: path
         name: insurance-id
         description: 'origin spec: grdn.specs/patient-id-params'
-        required: null
-      - in: body
-        name: grdn.specs/patient-id-params
-        description: 'origin spec: grdn.specs/patient-id-params'
-        schema:
-          type: object
-          properties:
-            funnel-id:
-              type: string
-              format: uuid
-          title: grdn.specs/patient-id-params
+        required: true
       responses:
         default:
           description: Default success response.
-          schema: {}
+          content:
+            application/json:
+              schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                funnel-id:
+                  type: string
+                  format: uuid
+              title: grdn.specs/patient-id-params
+        description: 'origin spec: grdn.specs/patient-id-params'
+      operationId: putV2PatientByPatientIdInsuranceByInsuranceIdEligibility
+      x-operation-id-source: derived

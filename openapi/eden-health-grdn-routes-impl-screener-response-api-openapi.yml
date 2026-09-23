@@ -1,12 +1,8 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
-  version: "1.0"
-  title: Grdn grdn.handler grdn.routes.impl.screener-response API
+  version: null
+  title: Grdn.routes.impl.screener Response API
   description: Eden Health Inc. primary backend API service.
-consumes:
-- application/json
-produces:
-- application/json
 tags:
 - name: grdn.routes.impl.screener-response
   description: Handlers for screener fetching and submission.
@@ -22,87 +18,104 @@ paths:
         name: patient-id
         description: 'origin spec: grdn.specs.screener-response/post-screener-response-params'
         required: true
-        type: string
-        format: uuid
-      - in: body
-        name: grdn.specs.screener-response/post-screener-response-params
-        description: 'origin spec: grdn.specs.screener-response/post-screener-response-params'
         schema:
-          type: object
-          properties:
-            screener:
-              type: object
-          required:
-          - screener
-          title: grdn.specs.screener-response/post-screener-response-params
+          type: string
+          format: uuid
       responses:
         default:
           description: Default success response.
-          schema:
-            type: object
-            properties:
-              score-data:
+          content:
+            application/json:
+              schema:
                 type: object
                 properties:
-                  screener-name:
-                    type: string
-                  score:
-                    type: integer
-                    format: int64
+                  score-data:
+                    type: object
+                    properties:
+                      screener-name:
+                        type: string
+                      score:
+                        type: integer
+                        format: int64
+                    required:
+                    - screener-name
+                    title: grdn.specs.screener-response/score-data
+                  covid-status:
+                    type: object
+                    properties:
+                      current_triage_status:
+                        enum:
+                        - triage-status/isolate
+                        - triage-status/cleared
+                        type: string
+                      latest_registry_created_at: {}
+                      latest_screener_created_at: {}
+                    required:
+                    - current_triage_status
+                    - latest_registry_created_at
+                    - latest_screener_created_at
+                    title: grdn.specs.screeners/covid-status
                 required:
-                - screener-name
-                title: grdn.specs.screener-response/score-data
-              covid-status:
-                type: object
-                properties:
-                  current_triage_status:
-                    enum:
-                    - triage-status/isolate
-                    - triage-status/cleared
-                    type: string
-                  latest_registry_created_at: {}
-                  latest_screener_created_at: {}
-                required:
-                - current_triage_status
-                - latest_registry_created_at
-                - latest_screener_created_at
-                title: grdn.specs.screeners/covid-status
-            required:
-            - score-data
-            title: grdn.specs.screener-response/post-screener-response-response
+                - score-data
+                title: grdn.specs.screener-response/post-screener-response-response
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                screener:
+                  type: object
+              required:
+              - screener
+              title: grdn.specs.screener-response/post-screener-response-params
+        description: 'origin spec: grdn.specs.screener-response/post-screener-response-params'
+      operationId: putV2PatientByPatientIdScreener
+      x-operation-id-source: derived
   /v2/patient/{patient-id}/screener-response:
     put:
       summary: put-screener-response-handler
-      description: "Given an outstanding screener response, update the pending screener with the data provided.\n  Applies to Eden screeners only."
+      description: 'Given an outstanding screener response, update the pending screener with the data provided.
+
+        Applies to Eden screeners only.'
       tags:
       - grdn.routes.impl.screener-response
       parameters:
       - in: path
         name: patient-id
         description: 'origin spec: grdn.specs.screener-response/put-screener-response-params'
-        required: null
-      - in: body
-        name: grdn.specs.screener-response/put-screener-response-params
-        description: 'origin spec: grdn.specs.screener-response/put-screener-response-params'
-        schema:
-          type: object
-          properties:
-            screener-response-id:
-              type: string
-              format: uuid
-            updates:
-              type: object
-          required:
-          - screener-response-id
-          - updates
-          title: grdn.specs.screener-response/put-screener-response-params
+        required: true
       responses:
         default:
           description: Default success response.
-          schema: {}
+          content:
+            application/json:
+              schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                screener-response-id:
+                  type: string
+                  format: uuid
+                updates:
+                  type: object
+              required:
+              - screener-response-id
+              - updates
+              title: grdn.specs.screener-response/put-screener-response-params
+        description: 'origin spec: grdn.specs.screener-response/put-screener-response-params'
+      operationId: putV2PatientByPatientIdScreenerResponse
+      x-operation-id-source: derived
     get:
       summary: get-screener-response-handler
-      description: "Returns a list of screener responses associated with a patient. Applies to Eden screeners only.\n   If authorization is via patient, will ignore patient-id param and will instead return screeners\n   for that patient. Thin wrapper around multimethod which dispatches based on identity."
+      description: 'Returns a list of screener responses associated with a patient. Applies to Eden screeners only.
+
+        If authorization is via patient, will ignore patient-id param and will instead return screeners
+
+        for that patient. Thin wrapper around multimethod which dispatches based on identity.'
       tags:
       - grdn.routes.impl.screener-response
       parameters:
@@ -110,36 +123,49 @@ paths:
         name: patient-id
         description: 'origin spec: grdn.specs.screener-response/get-screener-params'
         required: true
-        type: string
-        format: uuid
+        schema:
+          type: string
+          format: uuid
       - in: query
         name: completed
         description: 'origin spec: grdn.specs.screener-response/get-screener-params'
         required: false
-        type: boolean
+        schema:
+          type: boolean
       - in: query
         name: show-on-load
         description: 'origin spec: grdn.specs.screener-response/get-screener-params'
         required: false
-        type: boolean
+        schema:
+          type: boolean
       responses:
         default:
           description: Default success response.
-          schema: {}
+          content:
+            application/json:
+              schema: {}
+      operationId: getV2PatientByPatientIdScreenerResponse
+      x-operation-id-source: derived
     delete:
       summary: delete-screener-response-handler
-      description: "Given a an outstanding screener response, delete the pending screener. Applies to Eden screeners\n   only."
+      description: 'Given a an outstanding screener response, delete the pending screener. Applies to Eden screeners
+
+        only.'
       tags:
       - grdn.routes.impl.screener-response
       parameters:
       - in: path
         name: patient-id
         description: 'origin spec: grdn.specs.screener-response/delete-screener-params'
-        required: null
+        required: true
       responses:
         default:
           description: Default success response.
-          schema: {}
+          content:
+            application/json:
+              schema: {}
+      operationId: deleteV2PatientByPatientIdScreenerResponse
+      x-operation-id-source: derived
   /v2/patient/{patient-id}/screener-response/welcome:
     post:
       summary: send-welcome-message-handler
@@ -150,8 +176,12 @@ paths:
       - in: path
         name: patient-id
         description: 'origin spec: '
-        required: null
+        required: true
       responses:
         default:
           description: Default success response.
-          schema: {}
+          content:
+            application/json:
+              schema: {}
+      operationId: postV2PatientByPatientIdScreenerResponseWelcome
+      x-operation-id-source: derived

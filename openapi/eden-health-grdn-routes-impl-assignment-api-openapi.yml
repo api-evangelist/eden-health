@@ -1,12 +1,8 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
-  version: "1.0"
-  title: Grdn grdn.handler grdn.routes.impl.assignment API
+  version: null
+  title: Grdn.routes.impl.assignment API
   description: Eden Health Inc. primary backend API service.
-consumes:
-- application/json
-produces:
-- application/json
 tags:
 - name: grdn.routes.impl.assignment
   description: Contains handlers for routes related to provider patient assignments.
@@ -22,26 +18,32 @@ paths:
         name: patient-id
         description: 'origin spec: grdn.specs.assignment/assign-params'
         required: true
-        type: string
-        format: uuid
-      - in: body
-        name: grdn.specs.assignment/assign-params
-        description: 'origin spec: grdn.specs.assignment/assign-params'
         schema:
-          type: object
-          properties:
-            provider-ids:
-              type: array
-              items:
-                type: string
-                format: uuid
-          required:
-          - provider-ids
-          title: grdn.specs.assignment/assign-params
+          type: string
+          format: uuid
       responses:
         default:
           description: Default success response.
-          schema: {}
+          content:
+            application/json:
+              schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                provider-ids:
+                  type: array
+                  items:
+                    type: string
+                    format: uuid
+              required:
+              - provider-ids
+              title: grdn.specs.assignment/assign-params
+        description: 'origin spec: grdn.specs.assignment/assign-params'
+      operationId: postV2PatientByPatientIdAssign
+      x-operation-id-source: derived
   /v2/patient/{patient-id}/unassign:
     post:
       summary: unassign-handler
@@ -53,23 +55,29 @@ paths:
         name: patient-id
         description: 'origin spec: grdn.specs.assignment/unassign-params'
         required: true
-        type: string
-        format: uuid
-      - in: body
-        name: grdn.specs.assignment/unassign-params
-        description: 'origin spec: grdn.specs.assignment/unassign-params'
         schema:
-          type: object
-          properties:
-            provider-ids:
-              type: array
-              items:
-                type: string
-                format: uuid
-          required:
-          - provider-ids
-          title: grdn.specs.assignment/unassign-params
+          type: string
+          format: uuid
       responses:
         default:
           description: Default success response.
-          schema: {}
+          content:
+            application/json:
+              schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                provider-ids:
+                  type: array
+                  items:
+                    type: string
+                    format: uuid
+              required:
+              - provider-ids
+              title: grdn.specs.assignment/unassign-params
+        description: 'origin spec: grdn.specs.assignment/unassign-params'
+      operationId: postV2PatientByPatientIdUnassign
+      x-operation-id-source: derived

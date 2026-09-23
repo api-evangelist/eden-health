@@ -1,12 +1,8 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
-  version: "1.0"
-  title: Grdn grdn.handler grdn.routes.impl.popup API
+  version: null
+  title: Grdn.routes.impl.popup API
   description: Eden Health Inc. primary backend API service.
-consumes:
-- application/json
-produces:
-- application/json
 tags:
 - name: grdn.routes.impl.popup
   description: Simple CRUD operations for popups.
@@ -22,26 +18,269 @@ paths:
         name: popup-category
         description: 'origin spec: grdn.specs.popup/get-popup-params'
         required: false
-        enum:
-        - past
-        - draft
-        - active
-        type: string
+        schema:
+          type: string
+          enum:
+          - past
+          - draft
+          - active
       responses:
         default:
           description: Default success response.
-          schema:
-            type: array
-            items:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    end-date: {}
+                    end-time:
+                      type:
+                      - string
+                      - 'null'
+                    start-time:
+                      type:
+                      - string
+                      - 'null'
+                    athena-reason-id:
+                      type: integer
+                      format: int64
+                    city:
+                      type:
+                      - string
+                      - 'null'
+                      x-allOf:
+                      - type: string
+                      - {}
+                    address-1:
+                      type:
+                      - string
+                      - 'null'
+                      x-allOf:
+                      - type: string
+                      - {}
+                    athena-department-id:
+                      type:
+                      - integer
+                      - 'null'
+                      format: int64
+                    id:
+                      type: string
+                      format: uuid
+                    athena-scheduling-provider-id:
+                      type:
+                      - integer
+                      - 'null'
+                      format: int64
+                    updated-at: {}
+                    popup-state:
+                      enum:
+                      - draft
+                      - active
+                      type: string
+                    name:
+                      type: string
+                    created-at: {}
+                    instructions:
+                      type:
+                      - string
+                      - 'null'
+                    eligible-members:
+                      enum:
+                      - employees_and_dependents
+                      - employees_only
+                      type: string
+                    sponsor-id:
+                      type: string
+                      format: uuid
+                    address-2:
+                      type:
+                      - string
+                      - 'null'
+                    popup-dates:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          start-time:
+                            type:
+                            - string
+                            - 'null'
+                          end-time:
+                            type:
+                            - string
+                            - 'null'
+                        required:
+                        - start-time
+                        - end-time
+                        title: grdn.specs.popup/popup-date
+                    state:
+                      type:
+                      - string
+                      - 'null'
+                      x-allOf:
+                      - type: string
+                      - {}
+                    time-zone-id:
+                      type: string
+                    date: {}
+                    division-ids:
+                      type: array
+                      items:
+                        type:
+                        - string
+                        - 'null'
+                        format: uuid
+                    zip:
+                      type:
+                      - string
+                      - 'null'
+                      x-allOf:
+                      - type: string
+                      - {}
+                  required:
+                  - sponsor-id
+                  - date
+                  - name
+                  - athena-reason-id
+                  - athena-scheduling-provider-id
+                  - athena-department-id
+                  - address-1
+                  - address-2
+                  - city
+                  - state
+                  - zip
+                  - popup-state
+                  - created-at
+                  - updated-at
+                  - id
+                  - instructions
+                  - time-zone-id
+                  title: grdn.specs.popup/get-popup-response
+      operationId: getV2Popup
+      x-operation-id-source: derived
+    post:
+      summary: create-popup-handler
+      description: Creates a new popup.
+      tags:
+      - grdn.routes.impl.popup
+      responses:
+        default:
+          description: Default success response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  end-date: {}
+                  end-time:
+                    type:
+                    - string
+                    - 'null'
+                  start-time:
+                    type:
+                    - string
+                    - 'null'
+                  athena-reason-id:
+                    type: integer
+                    format: int64
+                  city:
+                    type:
+                    - string
+                    - 'null'
+                    x-allOf:
+                    - type: string
+                    - {}
+                  address-1:
+                    type:
+                    - string
+                    - 'null'
+                    x-allOf:
+                    - type: string
+                    - {}
+                  id:
+                    type: string
+                    format: uuid
+                  athena-scheduling-provider-id:
+                    type:
+                    - integer
+                    - 'null'
+                    format: int64
+                  updated-at: {}
+                  popup-state:
+                    enum:
+                    - draft
+                    - active
+                    type: string
+                  name:
+                    type: string
+                  created-at: {}
+                  instructions:
+                    type:
+                    - string
+                    - 'null'
+                  eligible-members:
+                    enum:
+                    - employees_and_dependents
+                    - employees_only
+                    type: string
+                  sponsor-id:
+                    type: string
+                    format: uuid
+                  address-2:
+                    type:
+                    - string
+                    - 'null'
+                  state:
+                    type:
+                    - string
+                    - 'null'
+                    x-allOf:
+                    - type: string
+                    - {}
+                  time-zone-id:
+                    type: string
+                  date: {}
+                  division-ids:
+                    type: array
+                    items:
+                      type:
+                      - string
+                      - 'null'
+                      format: uuid
+                  zip:
+                    type:
+                    - string
+                    - 'null'
+                    x-allOf:
+                    - type: string
+                    - {}
+                required:
+                - sponsor-id
+                - date
+                - name
+                - athena-reason-id
+                - athena-scheduling-provider-id
+                - address-1
+                - city
+                - state
+                - zip
+                - popup-state
+                - created-at
+                - updated-at
+                - id
+                - instructions
+                - address-2
+                - time-zone-id
+                title: grdn.specs.popup/create-popup-response
+      requestBody:
+        content:
+          application/json:
+            schema:
               type: object
               properties:
                 end-date: {}
-                end-time:
-                  type: string
-                  x-nullable: true
-                start-time:
-                  type: string
-                  x-nullable: true
                 athena-reason-id:
                   type: integer
                   format: int64
@@ -50,36 +289,20 @@ paths:
                   x-allOf:
                   - type: string
                   - {}
-                  x-nullable: true
+                  allowEmptyValue: true
                 address-1:
                   type: string
                   x-allOf:
                   - type: string
                   - {}
-                  x-nullable: true
-                athena-department-id:
-                  type: integer
-                  format: int64
-                  x-nullable: true
-                id:
-                  type: string
-                  format: uuid
+                  allowEmptyValue: true
                 athena-scheduling-provider-id:
                   type: integer
                   format: int64
-                  x-nullable: true
-                updated-at: {}
-                popup-state:
-                  enum:
-                  - draft
-                  - active
-                  type: string
-                name:
-                  type: string
-                created-at: {}
+                  allowEmptyValue: true
                 instructions:
                   type: string
-                  x-nullable: true
+                  allowEmptyValue: true
                 eligible-members:
                   enum:
                   - employees_and_dependents
@@ -90,236 +313,41 @@ paths:
                   format: uuid
                 address-2:
                   type: string
-                  x-nullable: true
-                popup-dates:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      start-time:
-                        type: string
-                        x-nullable: true
-                      end-time:
-                        type: string
-                        x-nullable: true
-                    required:
-                    - start-time
-                    - end-time
-                    title: grdn.specs.popup/popup-date
+                  allowEmptyValue: true
                 state:
                   type: string
                   x-allOf:
                   - type: string
                   - {}
-                  x-nullable: true
+                  allowEmptyValue: true
                 time-zone-id:
                   type: string
-                date: {}
+                date:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
                 division-ids:
                   type: array
                   items:
                     type: string
                     format: uuid
-                    x-nullable: true
+                    allowEmptyValue: true
                 zip:
                   type: string
                   x-allOf:
                   - type: string
                   - {}
-                  x-nullable: true
+                  allowEmptyValue: true
               required:
               - sponsor-id
               - date
-              - name
               - athena-reason-id
-              - athena-scheduling-provider-id
-              - athena-department-id
-              - address-1
-              - address-2
-              - city
-              - state
-              - zip
-              - popup-state
-              - created-at
-              - updated-at
-              - id
-              - instructions
               - time-zone-id
-              title: grdn.specs.popup/get-popup-response
-    post:
-      summary: create-popup-handler
-      description: Creates a new popup.
-      tags:
-      - grdn.routes.impl.popup
-      parameters:
-      - in: body
-        name: grdn.specs.popup/create-popup-params
+              title: grdn.specs.popup/create-popup-params
         description: 'origin spec: grdn.specs.popup/create-popup-params'
-        schema:
-          type: object
-          properties:
-            end-date: {}
-            athena-reason-id:
-              type: integer
-              format: int64
-            city:
-              type: string
-              x-allOf:
-              - type: string
-              - {}
-              allowEmptyValue: true
-            address-1:
-              type: string
-              x-allOf:
-              - type: string
-              - {}
-              allowEmptyValue: true
-            athena-scheduling-provider-id:
-              type: integer
-              format: int64
-              allowEmptyValue: true
-            instructions:
-              type: string
-              allowEmptyValue: true
-            eligible-members:
-              enum:
-              - employees_and_dependents
-              - employees_only
-              type: string
-            sponsor-id:
-              type: string
-              format: uuid
-            address-2:
-              type: string
-              allowEmptyValue: true
-            state:
-              type: string
-              x-allOf:
-              - type: string
-              - {}
-              allowEmptyValue: true
-            time-zone-id:
-              type: string
-            date:
-              type: string
-              x-allOf:
-              - type: string
-              - {}
-            division-ids:
-              type: array
-              items:
-                type: string
-                format: uuid
-                allowEmptyValue: true
-            zip:
-              type: string
-              x-allOf:
-              - type: string
-              - {}
-              allowEmptyValue: true
-          required:
-          - sponsor-id
-          - date
-          - athena-reason-id
-          - time-zone-id
-          title: grdn.specs.popup/create-popup-params
-      responses:
-        default:
-          description: Default success response.
-          schema:
-            type: object
-            properties:
-              end-date: {}
-              end-time:
-                type: string
-                x-nullable: true
-              start-time:
-                type: string
-                x-nullable: true
-              athena-reason-id:
-                type: integer
-                format: int64
-              city:
-                type: string
-                x-allOf:
-                - type: string
-                - {}
-                x-nullable: true
-              address-1:
-                type: string
-                x-allOf:
-                - type: string
-                - {}
-                x-nullable: true
-              id:
-                type: string
-                format: uuid
-              athena-scheduling-provider-id:
-                type: integer
-                format: int64
-                x-nullable: true
-              updated-at: {}
-              popup-state:
-                enum:
-                - draft
-                - active
-                type: string
-              name:
-                type: string
-              created-at: {}
-              instructions:
-                type: string
-                x-nullable: true
-              eligible-members:
-                enum:
-                - employees_and_dependents
-                - employees_only
-                type: string
-              sponsor-id:
-                type: string
-                format: uuid
-              address-2:
-                type: string
-                x-nullable: true
-              state:
-                type: string
-                x-allOf:
-                - type: string
-                - {}
-                x-nullable: true
-              time-zone-id:
-                type: string
-              date: {}
-              division-ids:
-                type: array
-                items:
-                  type: string
-                  format: uuid
-                  x-nullable: true
-              zip:
-                type: string
-                x-allOf:
-                - type: string
-                - {}
-                x-nullable: true
-            required:
-            - sponsor-id
-            - date
-            - name
-            - athena-reason-id
-            - athena-scheduling-provider-id
-            - address-1
-            - city
-            - state
-            - zip
-            - popup-state
-            - created-at
-            - updated-at
-            - id
-            - instructions
-            - address-2
-            - time-zone-id
-            title: grdn.specs.popup/create-popup-response
+      operationId: postV2Popup
+      x-operation-id-source: derived
   /v2/popup/{popup-id}:
     delete:
       summary: delete-popup-handler
@@ -331,12 +359,17 @@ paths:
         name: popup-id
         description: 'origin spec: grdn.specs.popup/delete-popup-params'
         required: true
-        type: string
-        format: uuid
+        schema:
+          type: string
+          format: uuid
       responses:
         default:
           description: Default success response.
-          schema: {}
+          content:
+            application/json:
+              schema: {}
+      operationId: deleteV2PopupByPopupId
+      x-operation-id-source: derived
     put:
       summary: update-popup-handler
       description: Sets popup status to be either draft or bookable, and updates fields.
@@ -347,172 +380,188 @@ paths:
         name: popup-id
         description: 'origin spec: grdn.specs.popup/update-popup-params'
         required: true
-        type: string
-        format: uuid
-      - in: body
-        name: grdn.specs.popup/update-popup-params
-        description: 'origin spec: grdn.specs.popup/update-popup-params'
         schema:
-          type: object
-          properties:
-            end-date: {}
-            athena-reason-id:
-              type: integer
-              format: int64
-            city:
-              type: string
-              x-allOf:
-              - type: string
-              - {}
-              allowEmptyValue: true
-            address-1:
-              type: string
-              x-allOf:
-              - type: string
-              - {}
-              allowEmptyValue: true
-            athena-scheduling-provider-id:
-              type: integer
-              format: int64
-              allowEmptyValue: true
-            popup-state:
-              enum:
-              - draft
-              - active
-              type: string
-            name:
-              type: string
-            instructions:
-              type: string
-              allowEmptyValue: true
-            eligible-members:
-              enum:
-              - employees_and_dependents
-              - employees_only
-              type: string
-            address-2:
-              type: string
-              allowEmptyValue: true
-            state:
-              type: string
-              x-allOf:
-              - type: string
-              - {}
-              allowEmptyValue: true
-            time-zone-id:
-              type: string
-            date:
-              type: string
-              x-allOf:
-              - type: string
-              - {}
-            division-ids:
-              type: array
-              items:
-                type: string
-                format: uuid
-                allowEmptyValue: true
-            zip:
-              type: string
-              x-allOf:
-              - type: string
-              - {}
-              allowEmptyValue: true
-          title: grdn.specs.popup/update-popup-params
+          type: string
+          format: uuid
       responses:
         default:
           description: Default success response.
-          schema:
-            type: object
-            properties:
-              end-date: {}
-              end-time:
-                type: string
-                x-nullable: true
-              start-time:
-                type: string
-                x-nullable: true
-              athena-reason-id:
-                type: integer
-                format: int64
-              city:
-                type: string
-                x-allOf:
-                - type: string
-                - {}
-                x-nullable: true
-              address-1:
-                type: string
-                x-allOf:
-                - type: string
-                - {}
-                x-nullable: true
-              id:
-                type: string
-                format: uuid
-              athena-scheduling-provider-id:
-                type: integer
-                format: int64
-                x-nullable: true
-              updated-at: {}
-              popup-state:
-                enum:
-                - draft
-                - active
-                type: string
-              name:
-                type: string
-              created-at: {}
-              instructions:
-                type: string
-                x-nullable: true
-              eligible-members:
-                enum:
-                - employees_and_dependents
-                - employees_only
-                type: string
-              sponsor-id:
-                type: string
-                format: uuid
-              address-2:
-                type: string
-                x-nullable: true
-              state:
-                type: string
-                x-allOf:
-                - type: string
-                - {}
-                x-nullable: true
-              time-zone-id:
-                type: string
-              date: {}
-              division-ids:
-                type: array
-                items:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  end-date: {}
+                  end-time:
+                    type:
+                    - string
+                    - 'null'
+                  start-time:
+                    type:
+                    - string
+                    - 'null'
+                  athena-reason-id:
+                    type: integer
+                    format: int64
+                  city:
+                    type:
+                    - string
+                    - 'null'
+                    x-allOf:
+                    - type: string
+                    - {}
+                  address-1:
+                    type:
+                    - string
+                    - 'null'
+                    x-allOf:
+                    - type: string
+                    - {}
+                  id:
+                    type: string
+                    format: uuid
+                  athena-scheduling-provider-id:
+                    type:
+                    - integer
+                    - 'null'
+                    format: int64
+                  updated-at: {}
+                  popup-state:
+                    enum:
+                    - draft
+                    - active
+                    type: string
+                  name:
+                    type: string
+                  created-at: {}
+                  instructions:
+                    type:
+                    - string
+                    - 'null'
+                  eligible-members:
+                    enum:
+                    - employees_and_dependents
+                    - employees_only
+                    type: string
+                  sponsor-id:
+                    type: string
+                    format: uuid
+                  address-2:
+                    type:
+                    - string
+                    - 'null'
+                  state:
+                    type:
+                    - string
+                    - 'null'
+                    x-allOf:
+                    - type: string
+                    - {}
+                  time-zone-id:
+                    type: string
+                  date: {}
+                  division-ids:
+                    type: array
+                    items:
+                      type:
+                      - string
+                      - 'null'
+                      format: uuid
+                  zip:
+                    type:
+                    - string
+                    - 'null'
+                    x-allOf:
+                    - type: string
+                    - {}
+                required:
+                - sponsor-id
+                - date
+                - name
+                - athena-reason-id
+                - athena-scheduling-provider-id
+                - address-1
+                - city
+                - state
+                - zip
+                - popup-state
+                - created-at
+                - updated-at
+                - id
+                - instructions
+                - address-2
+                - time-zone-id
+                title: grdn.specs.popup/update-popup-response
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                end-date: {}
+                athena-reason-id:
+                  type: integer
+                  format: int64
+                city:
                   type: string
-                  format: uuid
-                  x-nullable: true
-              zip:
-                type: string
-                x-allOf:
-                - type: string
-                - {}
-                x-nullable: true
-            required:
-            - sponsor-id
-            - date
-            - name
-            - athena-reason-id
-            - athena-scheduling-provider-id
-            - address-1
-            - city
-            - state
-            - zip
-            - popup-state
-            - created-at
-            - updated-at
-            - id
-            - instructions
-            - address-2
-            - time-zone-id
-            title: grdn.specs.popup/update-popup-response
+                  x-allOf:
+                  - type: string
+                  - {}
+                  allowEmptyValue: true
+                address-1:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                  allowEmptyValue: true
+                athena-scheduling-provider-id:
+                  type: integer
+                  format: int64
+                  allowEmptyValue: true
+                popup-state:
+                  enum:
+                  - draft
+                  - active
+                  type: string
+                name:
+                  type: string
+                instructions:
+                  type: string
+                  allowEmptyValue: true
+                eligible-members:
+                  enum:
+                  - employees_and_dependents
+                  - employees_only
+                  type: string
+                address-2:
+                  type: string
+                  allowEmptyValue: true
+                state:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                  allowEmptyValue: true
+                time-zone-id:
+                  type: string
+                date:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                division-ids:
+                  type: array
+                  items:
+                    type: string
+                    format: uuid
+                    allowEmptyValue: true
+                zip:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                  allowEmptyValue: true
+              title: grdn.specs.popup/update-popup-params
+        description: 'origin spec: grdn.specs.popup/update-popup-params'
+      operationId: putV2PopupByPopupId
+      x-operation-id-source: derived

@@ -1,12 +1,8 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
-  version: "1.0"
-  title: Grdn grdn.handler grdn.routes.impl.sponsor API
+  version: null
+  title: Grdn.routes.impl.sponsor API
   description: Eden Health Inc. primary backend API service.
-consumes:
-- application/json
-produces:
-- application/json
 tags:
 - name: grdn.routes.impl.sponsor
   description: Handlers for sponsor data.
@@ -22,35 +18,41 @@ paths:
         name: sponsor-id
         description: 'origin spec: grdn.specs.sponsor/get-sponsor-divisions-params'
         required: true
-        type: string
-        format: uuid
+        schema:
+          type: string
+          format: uuid
       responses:
         default:
           description: Default success response.
-          schema:
-            type: object
-            properties:
-              divisions:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      format: uuid
-                      x-nullable: true
-                    name:
-                      type: string
-                      x-allOf:
-                      - type: string
-                      - {}
-                  required:
-                  - id
-                  - name
-                  title: grdn.specs.sponsor/division
-            required:
-            - divisions
-            title: grdn.specs.sponsor/get-sponsor-divisions-response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  divisions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type:
+                          - string
+                          - 'null'
+                          format: uuid
+                        name:
+                          type: string
+                          x-allOf:
+                          - type: string
+                          - {}
+                      required:
+                      - id
+                      - name
+                      title: grdn.specs.sponsor/division
+                required:
+                - divisions
+                title: grdn.specs.sponsor/get-sponsor-divisions-response
+      operationId: getV2SponsorBySponsorIdDivisions
+      x-operation-id-source: derived
   /v2/sponsor/{sponsor-id}/roster:
     post:
       summary: post-roster
@@ -62,71 +64,79 @@ paths:
         name: sponsor-id
         description: 'origin spec: grdn.specs.sponsor/post-roster-params'
         required: true
-        type: string
-        format: uuid
-      - in: body
-        name: grdn.specs.sponsor/post-roster-params
-        description: 'origin spec: grdn.specs.sponsor/post-roster-params'
         schema:
-          type: object
-          properties:
-            roster-data:
-              type: string
-          required:
-          - roster-data
-          title: grdn.specs.sponsor/post-roster-params
+          type: string
+          format: uuid
       responses:
         default:
           description: Default success response.
-          schema:
-            type: object
-            properties:
-              provider-id:
-                type: string
-                format: uuid
-              processed-at:
-                type: string
-                x-allOf:
-                - type: string
-                - {}
-                x-nullable: true
-              id:
-                type: string
-                format: uuid
-              errors:
-                type: array
-                items:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  provider-id:
+                    type: string
+                    format: uuid
+                  processed-at:
+                    type:
+                    - string
+                    - 'null'
+                    x-allOf:
+                    - type: string
+                    - {}
+                  id:
+                    type: string
+                    format: uuid
+                  errors:
+                    type:
+                    - array
+                    - 'null'
+                    items:
+                      type: string
+                  status:
+                    enum:
+                    - ingestion_error
+                    - uploaded
+                    - ingestion_success
+                    type: string
+                  sponsor-id:
+                    type: string
+                    format: uuid
+                  provider-display-name:
+                    type: string
+                  uploaded-at:
+                    type: string
+                    x-allOf:
+                    - type: string
+                    - {}
+                  filename:
+                    type: string
+                required:
+                - id
+                - sponsor-id
+                - provider-id
+                - provider-display-name
+                - uploaded-at
+                - processed-at
+                - status
+                - filename
+                - errors
+                title: grdn.specs.sponsor/post-roster-response
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                roster-data:
                   type: string
-                x-nullable: true
-              status:
-                enum:
-                - ingestion_error
-                - uploaded
-                - ingestion_success
-                type: string
-              sponsor-id:
-                type: string
-                format: uuid
-              provider-display-name:
-                type: string
-              uploaded-at:
-                type: string
-                x-allOf:
-                - type: string
-                - {}
-              filename:
-                type: string
-            required:
-            - id
-            - sponsor-id
-            - provider-id
-            - provider-display-name
-            - uploaded-at
-            - processed-at
-            - status
-            - filename
-            - errors
-            title: grdn.specs.sponsor/post-roster-response
+              required:
+              - roster-data
+              title: grdn.specs.sponsor/post-roster-params
+        description: 'origin spec: grdn.specs.sponsor/post-roster-params'
+      operationId: postV2SponsorBySponsorIdRoster
+      x-operation-id-source: derived
   /v2/sponsor/{sponsor-id}/roster-statuses:
     get:
       summary: get-roster-ingestion-statuses
@@ -138,95 +148,106 @@ paths:
         name: sponsor-id
         description: 'origin spec: grdn.specs.sponsor/get-roster-ingestion-status'
         required: true
-        type: string
-        format: uuid
+        schema:
+          type: string
+          format: uuid
       responses:
         default:
           description: Default success response.
-          schema:
-            type: array
-            items:
-              type: object
-              properties:
-                provider-id:
-                  type: string
-                  format: uuid
-                processed-at:
-                  type: string
-                  x-allOf:
-                  - type: string
-                  - {}
-                  x-nullable: true
-                id:
-                  type: string
-                  format: uuid
-                errors:
-                  type: array
-                  items:
-                    type: string
-                  x-nullable: true
-                status:
-                  enum:
-                  - ingestion_error
-                  - uploaded
-                  - ingestion_success
-                  type: string
-                sponsor-id:
-                  type: string
-                  format: uuid
-                provider-display-name:
-                  type: string
-                uploaded-at:
-                  type: string
-                  x-allOf:
-                  - type: string
-                  - {}
-                filename:
-                  type: string
-              required:
-              - id
-              - sponsor-id
-              - provider-id
-              - provider-display-name
-              - uploaded-at
-              - processed-at
-              - status
-              - filename
-              - errors
-              title: grdn.specs.sponsor/ingestion-status
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    provider-id:
+                      type: string
+                      format: uuid
+                    processed-at:
+                      type:
+                      - string
+                      - 'null'
+                      x-allOf:
+                      - type: string
+                      - {}
+                    id:
+                      type: string
+                      format: uuid
+                    errors:
+                      type:
+                      - array
+                      - 'null'
+                      items:
+                        type: string
+                    status:
+                      enum:
+                      - ingestion_error
+                      - uploaded
+                      - ingestion_success
+                      type: string
+                    sponsor-id:
+                      type: string
+                      format: uuid
+                    provider-display-name:
+                      type: string
+                    uploaded-at:
+                      type: string
+                      x-allOf:
+                      - type: string
+                      - {}
+                    filename:
+                      type: string
+                  required:
+                  - id
+                  - sponsor-id
+                  - provider-id
+                  - provider-display-name
+                  - uploaded-at
+                  - processed-at
+                  - status
+                  - filename
+                  - errors
+                  title: grdn.specs.sponsor/ingestion-status
+      operationId: getV2SponsorBySponsorIdRosterStatuses
+      x-operation-id-source: derived
   /v2/sponsors:
     get:
       summary: get-sponsors
       description: Get all sponsor data.
       tags:
       - grdn.routes.impl.sponsor
-      parameters: []
       responses:
         default:
           description: Default success response.
-          schema:
-            type: array
-            items:
-              type: object
-              properties:
-                id:
-                  type: string
-                  format: uuid
-                name:
-                  type: string
-                created_at: {}
-                schema_name:
-                  type: string
-                  x-nullable: true
-                screeners:
-                  type: array
-                  items:
-                    type: string
-                    format: uuid
-              required:
-              - id
-              - name
-              - created_at
-              - schema_name
-              - screeners
-              title: grdn.specs.sponsor/sponsor
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                    created_at: {}
+                    schema_name:
+                      type:
+                      - string
+                      - 'null'
+                    screeners:
+                      type: array
+                      items:
+                        type: string
+                        format: uuid
+                  required:
+                  - id
+                  - name
+                  - created_at
+                  - schema_name
+                  - screeners
+                  title: grdn.specs.sponsor/sponsor
+      operationId: getV2Sponsors
+      x-operation-id-source: derived

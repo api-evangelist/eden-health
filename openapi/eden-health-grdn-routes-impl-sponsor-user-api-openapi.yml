@@ -1,12 +1,8 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
-  version: "1.0"
-  title: Grdn grdn.handler grdn.routes.impl.sponsor-user API
+  version: null
+  title: Grdn.routes.impl.sponsor User API
   description: Eden Health Inc. primary backend API service.
-consumes:
-- application/json
-produces:
-- application/json
 tags:
 - name: grdn.routes.impl.sponsor-user
   description: Handlers for sponsor_user endpoints
@@ -17,105 +13,115 @@ paths:
       description: Deletes a sponsor user
       tags:
       - grdn.routes.impl.sponsor-user
-      parameters: []
       responses:
         default:
           description: Default success response.
-          schema: {}
+          content:
+            application/json:
+              schema: {}
+      operationId: deleteV2SponsorUser
+      x-operation-id-source: derived
     get:
       summary: get-sponsor-user
       description: Returns sponsor user info from the identity loaded by auth middleware
       tags:
       - grdn.routes.impl.sponsor-user
-      parameters: []
       responses:
         default:
           description: Default success response.
-          schema:
-            type: object
-            properties:
-              sub:
-                type: string
-                format: uuid
-              visitor_code:
-                type: string
-              id:
-                type: string
-                format: uuid
-              schema_name:
-                type: string
-              updated_at: {}
-              last_name:
-                type: string
-                x-allOf:
-                - type: string
-                - {}
-              first_name:
-                type: string
-                x-allOf:
-                - type: string
-                - {}
-              created_at: {}
-              sponsor_name:
-                type: string
-              restricted_vax_status:
-                type: boolean
-              restricted_dashboard:
-                type: boolean
-              sponsor_id:
-                type: string
-                format: uuid
-            required:
-            - first_name
-            - schema_name
-            - sub
-            - updated_at
-            - visitor_code
-            - id
-            - restricted_dashboard
-            - restricted_vax_status
-            - last_name
-            - sponsor_name
-            - sponsor_id
-            - created_at
-            title: grdn.specs.sponsor-user/get-sponsor-user-response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sub:
+                    type: string
+                    format: uuid
+                  visitor_code:
+                    type: string
+                  id:
+                    type: string
+                    format: uuid
+                  schema_name:
+                    type: string
+                  updated_at: {}
+                  last_name:
+                    type: string
+                    x-allOf:
+                    - type: string
+                    - {}
+                  first_name:
+                    type: string
+                    x-allOf:
+                    - type: string
+                    - {}
+                  created_at: {}
+                  sponsor_name:
+                    type: string
+                  restricted_vax_status:
+                    type: boolean
+                  restricted_dashboard:
+                    type: boolean
+                  sponsor_id:
+                    type: string
+                    format: uuid
+                required:
+                - first_name
+                - schema_name
+                - sub
+                - updated_at
+                - visitor_code
+                - id
+                - restricted_dashboard
+                - restricted_vax_status
+                - last_name
+                - sponsor_name
+                - sponsor_id
+                - created_at
+                title: grdn.specs.sponsor-user/get-sponsor-user-response
+      operationId: getV2SponsorUser
+      x-operation-id-source: derived
     post:
       summary: create-sponsor-user
       description: Creates a sponsor user
       tags:
       - grdn.routes.impl.sponsor-user
-      parameters:
-      - in: body
-        name: grdn.specs/create-sponsor-user-params
-        description: 'origin spec: grdn.specs/create-sponsor-user-params'
-        schema:
-          type: object
-          properties:
-            sponsor-id:
-              type: string
-              format: uuid
-            first-name:
-              type: string
-              x-allOf:
-              - type: string
-              - {}
-            last-name:
-              type: string
-              x-allOf:
-              - type: string
-              - {}
-            email:
-              type: string
-              x-allOf:
-              - type: string
-              - {}
-          required:
-          - sponsor-id
-          - first-name
-          - last-name
-          - email
-          title: grdn.specs/create-sponsor-user-params
       responses:
         default:
           description: Default success response.
-          schema: {}
+          content:
+            application/json:
+              schema: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sponsor-id:
+                  type: string
+                  format: uuid
+                first-name:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                last-name:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+                email:
+                  type: string
+                  x-allOf:
+                  - type: string
+                  - {}
+              required:
+              - sponsor-id
+              - first-name
+              - last-name
+              - email
+              title: grdn.specs/create-sponsor-user-params
+        description: 'origin spec: grdn.specs/create-sponsor-user-params'
+      operationId: postV2SponsorUser
+      x-operation-id-source: derived
