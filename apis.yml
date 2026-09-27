@@ -86,7 +86,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-addons-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-app-api
-  name: Eden Health grdn.routes.impl.app API
+  name: Eden Health Grdn.routes.impl.app API
   description: Generic application handlers.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -97,7 +97,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-app-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-appointments-api
-  name: Eden Health grdn.routes.impl.appointments API
+  name: Eden Health Grdn.routes.impl.appointments API
   description: >-
     Contains handlers for routes related to Appointments, Cases, Encounters etc.
 
@@ -129,7 +129,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-appointments-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-assignment-api
-  name: Eden Health grdn.routes.impl.assignment API
+  name: Eden Health Grdn.routes.impl.assignment API
   description: Contains handlers for routes related to provider patient assignments.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -140,7 +140,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-assignment-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-athena-providers-api
-  name: Eden Health grdn.routes.impl.athena-providers API
+  name: Eden Health Grdn.routes.impl.athena Providers API
   description: >-
     The grdn.routes.impl.athena-providers API from Eden Health — 1 operation(s) for grdn.routes.impl.athena-providers.
   humanURL: https://edenhealth.com/
@@ -151,7 +151,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-athena-providers-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-auth-api
-  name: Eden Health grdn.routes.impl.auth API
+  name: Eden Health Grdn.routes.impl.auth API
   description: Direct authentication handlers
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -162,7 +162,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-auth-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-bookable-entities-api
-  name: Eden Health grdn.routes.impl.bookable-entities API
+  name: Eden Health Grdn.routes.impl.bookable Entities API
   description: >-
     The grdn.routes.impl.bookable-entities API from Eden Health — 1 operation(s) for grdn.routes.impl.bookable-entities.
   humanURL: https://edenhealth.com/
@@ -173,7 +173,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-bookable-entities-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-brad-api
-  name: Eden Health grdn.routes.impl.brad API
+  name: Eden Health Grdn.routes.impl.brad API
   description: >-
     The grdn.routes.impl.brad API from Eden Health — 3 operation(s) for grdn.routes.impl.brad.
   humanURL: https://edenhealth.com/
@@ -185,7 +185,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-brad-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-bug-api
-  name: Eden Health grdn.routes.impl.bug API
+  name: Eden Health Grdn.routes.impl.bug API
   description: Bug Report handler
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -196,7 +196,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-bug-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-care-pods-api
-  name: Eden Health grdn.routes.impl.care-pods API
+  name: Eden Health Grdn.routes.impl.care Pods API
   description: >-
     The grdn.routes.impl.care-pods API from Eden Health — 1 operation(s) for grdn.routes.impl.care-pods.
   humanURL: https://edenhealth.com/
@@ -207,7 +207,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-care-pods-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-careteam-api
-  name: Eden Health grdn.routes.impl.careteam API
+  name: Eden Health Grdn.routes.impl.careteam API
   description: >-
     The grdn.routes.impl.careteam API from Eden Health — 2 operation(s) for grdn.routes.impl.careteam.
   humanURL: https://edenhealth.com/
@@ -219,7 +219,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-careteam-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-channel-api
-  name: Eden Health grdn.routes.impl.channel API
+  name: Eden Health Grdn.routes.impl.channel API
   description: Contains handlers for routes related to Channels.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -230,7 +230,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-channel-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-chat-api
-  name: Eden Health grdn.routes.impl.chat API
+  name: Eden Health Grdn.routes.impl.chat API
   description: >-
     The grdn.routes.impl.chat API from Eden Health — 1 operation(s) for grdn.routes.impl.chat.
   humanURL: https://edenhealth.com/
@@ -242,7 +242,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-chat-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-configuration-api
-  name: Eden Health grdn.routes.impl.configuration API
+  name: Eden Health Grdn.routes.impl.configuration API
   description: >-
     The grdn.routes.impl.configuration API from Eden Health — 1 operation(s) for grdn.routes.impl.configuration.
   humanURL: https://edenhealth.com/
@@ -254,7 +254,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-configuration-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-consent-api
-  name: Eden Health grdn.routes.impl.consent API
+  name: Eden Health Grdn.routes.impl.consent API
   description: >-
     The grdn.routes.impl.consent API from Eden Health — 2 operation(s) for grdn.routes.impl.consent.
   humanURL: https://edenhealth.com/
@@ -266,7 +266,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-consent-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-demographics-api
-  name: Eden Health grdn.routes.impl.demographics API
+  name: Eden Health Grdn.routes.impl.demographics API
   description: >-
     The grdn.routes.impl.demographics API from Eden Health — 1 operation(s) for grdn.routes.impl.demographics.
   humanURL: https://edenhealth.com/
@@ -278,7 +278,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-demographics-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-document-api
-  name: Eden Health grdn.routes.impl.document API
+  name: Eden Health Grdn.routes.impl.document API
   description: >-
     The grdn.routes.impl.document API from Eden Health — 12 operation(s) for grdn.routes.impl.document.
   humanURL: https://edenhealth.com/
@@ -290,7 +290,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-document-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-eligibility-api
-  name: Eden Health grdn.routes.impl.eligibility API
+  name: Eden Health Grdn.routes.impl.eligibility API
   description: Route implementation for all things eligibility
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -301,7 +301,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-eligibility-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-event-api
-  name: Eden Health grdn.routes.impl.event API
+  name: Eden Health Grdn.routes.impl.event API
   description: Route implementation for our various event posting endpoints.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -312,7 +312,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-event-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-feedback-api
-  name: Eden Health grdn.routes.impl.feedback API
+  name: Eden Health Grdn.routes.impl.feedback API
   description: Contains handlers for routes related to Appointments, Cases, Encounters etc.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -323,7 +323,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-feedback-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-images-api
-  name: Eden Health grdn.routes.impl.images API
+  name: Eden Health Grdn.routes.impl.images API
   description: Handlers for image upload and download.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -334,7 +334,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-images-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-insurance-api
-  name: Eden Health grdn.routes.impl.insurance API
+  name: Eden Health Grdn.routes.impl.insurance API
   description: >-
     The grdn.routes.impl.insurance API from Eden Health — 3 operation(s) for grdn.routes.impl.insurance.
   humanURL: https://edenhealth.com/
@@ -346,7 +346,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-insurance-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-macros-api
-  name: Eden Health grdn.routes.impl.macros API
+  name: Eden Health Grdn.routes.impl.macros API
   description: Simple CRUD operations for macros.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -357,7 +357,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-macros-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-member-api
-  name: Eden Health grdn.routes.impl.member API
+  name: Eden Health Grdn.routes.impl.member API
   description: Handlers for sponsor roster members
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -368,7 +368,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-member-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-membership-api
-  name: Eden Health grdn.routes.impl.membership API
+  name: Eden Health Grdn.routes.impl.membership API
   description: Handlers for membership, invites, codes
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -379,7 +379,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-membership-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-next-step-api
-  name: Eden Health grdn.routes.impl.next-step API
+  name: Eden Health Grdn.routes.impl.next Step API
   description: Contains handlers for routes related to Patients.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -389,7 +389,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-next-step-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-patients-api
-  name: Eden Health grdn.routes.impl.patients API
+  name: Eden Health Grdn.routes.impl.patients API
   description: Contains handlers for routes related to Patients.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -400,7 +400,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-patients-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-pediatric-api
-  name: Eden Health grdn.routes.impl.pediatric API
+  name: Eden Health Grdn.routes.impl.pediatric API
   description: >-
     The grdn.routes.impl.pediatric API from Eden Health — 7 operation(s) for grdn.routes.impl.pediatric.
   humanURL: https://edenhealth.com/
@@ -412,7 +412,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-pediatric-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-popup-api
-  name: Eden Health grdn.routes.impl.popup API
+  name: Eden Health Grdn.routes.impl.popup API
   description: Simple CRUD operations for popups.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -423,7 +423,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-popup-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-provider-api
-  name: Eden Health grdn.routes.impl.provider API
+  name: Eden Health Grdn.routes.impl.provider API
   description: Handlers to get general info about providers and departments.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -434,7 +434,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-provider-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-provider-groups-api
-  name: Eden Health grdn.routes.impl.provider-groups API
+  name: Eden Health Grdn.routes.impl.provider Groups API
   description: >-
     The grdn.routes.impl.provider-groups API from Eden Health — 1 operation(s) for grdn.routes.impl.provider-groups.
   humanURL: https://edenhealth.com/
@@ -445,7 +445,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-provider-groups-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-screener-response-api
-  name: Eden Health grdn.routes.impl.screener-response API
+  name: Eden Health Grdn.routes.impl.screener Response API
   description: Handlers for screener fetching and submission.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -455,7 +455,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-screener-response-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-screeners-api
-  name: Eden Health grdn.routes.impl.screeners API
+  name: Eden Health Grdn.routes.impl.screeners API
   description: Handlers for screener fetching and submission.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -466,7 +466,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-screeners-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-sendbird-api
-  name: Eden Health grdn.routes.impl.sendbird API
+  name: Eden Health Grdn.routes.impl.sendbird API
   description: Handlers for sendbird webhooks.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -477,7 +477,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-sendbird-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-sponsor-api
-  name: Eden Health grdn.routes.impl.sponsor API
+  name: Eden Health Grdn.routes.impl.sponsor API
   description: Handlers for sponsor data.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -488,7 +488,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-sponsor-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-sponsor-user-api
-  name: Eden Health grdn.routes.impl.sponsor-user API
+  name: Eden Health Grdn.routes.impl.sponsor User API
   description: Handlers for sponsor_user endpoints
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -498,7 +498,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-sponsor-user-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-ticklers-api
-  name: Eden Health grdn.routes.impl.ticklers API
+  name: Eden Health Grdn.routes.impl.ticklers API
   description: >-
     The grdn.routes.impl.ticklers API from Eden Health — 5 operation(s) for grdn.routes.impl.ticklers.
   humanURL: https://edenhealth.com/
@@ -510,7 +510,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-ticklers-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-tools-api
-  name: Eden Health grdn.routes.impl.tools API
+  name: Eden Health Grdn.routes.impl.tools API
   description: >-
     The grdn.routes.impl.tools API from Eden Health — 1 operation(s) for grdn.routes.impl.tools.
   humanURL: https://edenhealth.com/
@@ -522,7 +522,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-tools-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-validation-api
-  name: Eden Health grdn.routes.impl.validation API
+  name: Eden Health Grdn.routes.impl.validation API
   description: >-
     The grdn.routes.impl.validation API from Eden Health — 1 operation(s) for grdn.routes.impl.validation.
   humanURL: https://edenhealth.com/
@@ -534,7 +534,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-validation-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-video-api
-  name: Eden Health grdn.routes.impl.video API
+  name: Eden Health Grdn.routes.impl.video API
   description: Scheduling calls and querying call metadata
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -545,7 +545,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-video-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-video-visit-api
-  name: Eden Health grdn.routes.impl.video-visit API
+  name: Eden Health Grdn.routes.impl.video Visit API
   description: Handlers for getting and creating Video Visits.
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
@@ -555,7 +555,7 @@ apis:
   - type: OpenAPI
     url: openapi/eden-health-grdn-routes-impl-video-visit-api-openapi.yml
 - aid: eden-health:eden-health-grdn-routes-impl-visitor-api
-  name: Eden Health grdn.routes.impl.visitor API
+  name: Eden Health Grdn.routes.impl.visitor API
   description: Handlers for sponsor visitors
   humanURL: https://edenhealth.com/
   baseURL: https://api.edenhealth.com
